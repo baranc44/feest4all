@@ -24,13 +24,7 @@
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                {{-- @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
-                        {{ __('Forgot your password?') }}
-                    </a>
-                @endif --}}
-
-                <x-jet-button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                <x-jet-button class="bg-orange-600 hover:bg-orange-700 text-white font-bold py-2 px-4 rounded-full">
                     {{ __('Log in') }}
                 </x-jet-button>
             </div>
