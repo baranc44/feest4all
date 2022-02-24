@@ -1129,12 +1129,6 @@ select {
 .w-1\/5 {
   width: 20%;
 }
-.w-1\/4 {
-  width: 25%;
-}
-.w-1\/6 {
-  width: 16.666667%;
-}
 .min-w-0 {
   min-width: 0px;
 }
@@ -1418,9 +1412,6 @@ select {
 }
 .p-6 {
   padding: 1.5rem;
-}
-.p-3 {
-  padding: 0.75rem;
 }
 .px-4 {
   padding-left: 1rem;
