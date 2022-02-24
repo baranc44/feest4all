@@ -17,7 +17,7 @@
                             <th>Action</th>
                         </tr>
                     @foreach ($products as $product)
-                        <tr name="{{$product->id}}" class="mt-6 text-gray-500">
+                        <tr id="{{$product->id}}" class="mt-6 text-gray-500">
                             <td>{{$product->naam}}</td>
                             <td>{{$product->voorraad}}</td>
                             <td>€ {{$product->prijs}}</td>
