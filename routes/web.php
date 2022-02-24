@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\DB;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,7 +23,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/producten', function () {
-    return view('producten');
+
+    $products = DB::table('products')
+        ->get();
+    return view('producten', [
+        'products' => $products
+    ]);
 })->name('producten');
 
 Route::get('/planning', function(){
