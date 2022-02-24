@@ -40,6 +40,7 @@ Route::get('/werknemers', function(){
 Route::get('/exporteren', function(){
     return view('exporteren');
 })->name('exporteren');
+
 Route::get('/projecten', function(){
     return view('projecten');
 })->name('projecten');
