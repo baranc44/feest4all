@@ -22,6 +22,14 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::get('/werknemers', function () {
+
+    $werknemers = DB::table('users')->get();
+    return view('werknemers', [
+        'werknemers' => $werknemers
+    ]);
+})->name('werknemers');
+
 Route::get('/producten', function () {
 
     $products = DB::table('products')
@@ -38,10 +46,6 @@ Route::get('/planning', function(){
 Route::get('/overzichten', function(){
     return view('overzichten');
 })->name('overzichten');
-
-Route::get('/werknemers', function(){
-    return view('werknemers');
-})->name('werknemers');
 
 Route::get('/exporteren', function(){
     return view('exporteren');

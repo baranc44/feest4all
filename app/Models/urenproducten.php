@@ -7,5 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class urenproducten extends Model
 {
-    use HasFactory;
+    public function uren_producten(){
+        return $this->hasOne(uren::class);
+    }
 }
