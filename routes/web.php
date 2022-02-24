@@ -24,3 +24,22 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/producten', function () {
     return view('producten');
 })->name('producten');
+
+Route::get('/planning', function(){
+    return view('planning');
+})->name('planning');
+
+Route::get('/overzichten', function(){
+    return view('overzichten');
+})->name('overzichten');
+
+Route::get('/werknemers', function(){
+    return view('werknemers');
+})->name('werknemers');
+
+Route::get('/exporteren', function(){
+    return view('exporteren');
+})->name('exporteren');
+Route::get('/projecten', function(){
+    return view('projecten');
+})->name('projecten');
