@@ -9,12 +9,12 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">       
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
                     <table>
-                        <tr class="mt-8 text-2xl w-100%">
-                            <th class="w-25 p-3">Product naam</th>
-                            <th class="w-25 p-3">Voorraad</th>
-                            <th class="w-25 p-3">Prijs/Eenheid</th>
-                            <th class="w-25 p-3">Eenheid</th>
-                            <th class="w-25 p-3">action</th>
+                        <tr class="mt-8 text-2xl">
+                            <th class="w-1/5">Product naam</th>
+                            <th class="w-1/5">Voorraad</th>
+                            <th class="w-1/5">Prijs/Eenheid</th>
+                            <th class="w-1/5">Eenheid</th>
+                            <th class="w-1/5">action</th>
                         </tr>
                     
                         <tr class="mt-6 text-gray-500">
