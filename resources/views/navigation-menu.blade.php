@@ -18,32 +18,32 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('producten') }}">
+                    <x-jet-nav-link href="{{ route('producten') }}" :active="request()->routeIs('producten')">
                         {{ __('Producten') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('planning') }}">
+                    <x-jet-nav-link href="{{ route('planning') }}" :active="request()->routeIs('planning')">
                     {{ __('Planning') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('overzichten') }}">
+                    <x-jet-nav-link href="{{ route('overzichten') }}" :active="request()->routeIs('overzichten')">
                     {{ __('Overzichten') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('werknemers') }}">
+                    <x-jet-nav-link href="{{ route('werknemers') }}" :active="request()->routeIs('werknemers')">
                     {{ __('Werknemers') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{  route('exporteren') }}">
+                    <x-jet-nav-link href="{{  route('exporteren') }}" :active="request()->routeIs('exporteren')">
                     {{ __('Exporteren') }}
                     </x-jet-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-jet-nav-link href="{{ route('projecten') }}">
+                    <x-jet-nav-link href="{{ route('projecten') }}" :active="request()->routeIs('projecten')">
                     {{ __('Projecten') }}
                     </x-jet-nav-link>
                 </div>
