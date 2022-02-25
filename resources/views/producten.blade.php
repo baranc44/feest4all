@@ -36,35 +36,44 @@
     <script>
         function edit(id) {
             
+            // show all the inputs next to the edit button
             $("#"+id).find("td").find("input").removeClass("hidden");
+            // hide all the text next to the edit button
             $("#"+id).find("td").find("span").addClass("hidden");
 
+            // show the save button
             $("#"+id).find("td").find("#save").removeClass("hidden");
+            // hide the edit button
             $("#"+id).find("td").find("#edit").addClass("hidden");
 
 
         }
 
         function save(id) {
+            //csrf token
             $.ajaxSetup({
             headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
 
-
+            // make a product array
             const product = new Array();
 
+            // add the id to the product array [0]
             product.push(id);
 
+            // find the inputs next to the edit / save button and go trough every input
             $("#"+id).find("td").find("input").each(function() {
+                // get the value of the input
                 value = $(this).val();
-                
+                // fill the span with the current value
                 $(this).parent("td").find("span").text(value);
-
+                // push the value to a array
                 product.push(value);
             });
 
+            // post the data to the productscontroller
             $.ajax({
             type: "POST",
             url: "/productedit",
@@ -72,13 +81,16 @@
                 product: product
             }
         })  
-            console.log(product);
             
-
+            
+            // hide all the inputs next to the edit button
             $("#"+id).find("td").find("input").addClass("hidden");
+            // show all the text next to the edit button
             $("#"+id).find("td").find("span").removeClass("hidden");
 
+            // hide the save button
             $("#"+id).find("td").find("#save").addClass("hidden");
+            // show the edit button
             $("#"+id).find("td").find("#edit").removeClass("hidden");
         }
 
