@@ -22,8 +22,8 @@
                             <td><span class="">{{$product->voorraad}}</span><input class="hidden" type="text" value="{{$product->voorraad}}"/></td>
                             <td><span>€ </span><span class="">{{$product->prijs}}</span><input class="hidden" type="text" value="{{$product->prijs}}"/></td>
                             <td><span class="">{{$product->eenheid}}</span><input class="hidden" type="text" value="{{$product->eenheid}}"/></td>
-                            <td><button onclick="edit({{$product->id}})" class="px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-pencil-alt"></i></button> 
-                                <button onclick="del({{$product->id}})" class="px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"><i class="fas fa-trash-alt"></i></button></td>
+                            <td><button onclick="edit({{$product->id}})" class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-pencil-alt"></i></button> 
+                                <button onclick="del({{$product->id}})" class="btn px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"><i class="fas fa-trash-alt"></i></button></td>
                         </tr>
                     @endforeach
                     </table>
@@ -35,13 +35,37 @@
     <script>
         function edit(id) {
             
+            const rwww = $("#"+id).text();
+            $("#"+id).find("td").find("input").removeClass("hidden");
+            $("#"+id).find("td").find("span").addClass("hidden");
 
-            const tr = document.getElementById(id).innerHTML = 'ddd';
-
-            console.log("edit");
+            console.log(r);
         }
         function del(id) {
             console.log("delete" +id);
         }
     </script>
+    <style>
+        @media only screen and (max-width: 1000px) {
+        
+        table {
+            display:flex;
+        }
+        
+        th {
+            display: none;
+        }
+
+        tr {
+            margin-bottom: 20px;  
+        }
+        td {
+            display:flex;
+        }
+
+        td > .btn {
+            display:grid;
+            width:50%;
+        }
+    </style>
 </x-app-layout>
