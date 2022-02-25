@@ -15,7 +15,7 @@ class WerknemerController extends Controller
     }
 
     public function addUser() {
-        //return view('addwerknemer')
+        return view('addwerknemer');
     }
 }
     

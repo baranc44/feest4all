@@ -27,8 +27,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 })->name('dashboard');
 
 Route::get('/werknemers', [WerknemerController::class, 'allUsers'])->name('werknemers');
-Route::get('/producten', [ProductsController::class, 'allProducts'])->name('producten');
 Route::get('/werknemers/addwerknemer', [WerknemerController::class, 'addUser'])->name('addwerknemer');
+Route::get('/producten', [ProductsController::class, 'allProducts'])->name('producten');
 Route::get('/planning', [PlanningController::class, 'allPlanning'])->name('planning');
 Route::get('/overzichten', [OverzichtenController::class, 'allOverzichten'])->name('overzichten');
 Route::get('/exporteren', [ExportController::class, 'allExports'])->name('exporteren');
