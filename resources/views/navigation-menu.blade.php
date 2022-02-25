@@ -195,29 +195,30 @@
                     {{ __('Profile') }}
                 </x-jet-responsive-nav-link>
 
-                <x-jet-dropdown-link href="{{ route('producten') }}">
+                <x-jet-responsive-nav-link href="{{ route('producten') }}" :active="request()->routeIs('producten')">
                     {{ __('Producten') }}
-                </x-jet-dropdown-link> 
+                </x-jet-responsive-nav-link> 
 
-                <x-jet-dropdown-link href="{{ route('planning') }}">
+                <x-jet-responsive-nav-link href="{{ route('planning') }}" :active="request()->routeIs('planning')">
                     {{ __('Planning') }}
-                </x-jet-dropdown-link>
+                </x-jet-responsive-nav-link>
 
-                <x-jet-dropdown-link href="{{ route('overzichten') }}">
+                <x-jet-responsive-nav-link href="{{ route('overzichten') }}" :active="request()->routeIs('overzichten')">
                     {{ __('Overzichten') }}
-                </x-jet-dropdown-link>
+                </x-jet-responsive-nav-link>
 
-                <x-jet-dropdown-link href="{{ route('werknemers') }}">
+                <x-jet-responsive-nav-link href="{{ route('werknemers') }}" :active="request()->routeIs('werknemers')">
                     {{ __('Werknemers') }}
-                </x-jet-dropdown-link>
+                </x-jet-responsive-nav-link>
 
-                <x-jet-dropdown-link href="{{ route('exporteren') }}">
+                <x-jet-responsive-nav-link href="{{ route('exporteren') }}" :active="request()->routeIs('exporteren')">
                     {{ __('Exporteren') }}
-                </x-jet-dropdown-link>
+                </x-jet-responsive-nav-link>
                 
-                <x-jet-dropdown-link href="{{ route('projecten') }}">
+                <x-jet-responsive-nav-link href="{{ route('projecten') }}" :active="request()->routeIs('projecten')">
                     {{ __('Projecten') }}
-                </x-jet-dropdown-link>
+                </x-jet-responsive-nav-link>
+                <div style="width: 100%; height:2px;background-color: rgb(107 114 128);"></div>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
@@ -229,7 +230,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-jet-responsive-nav-link href="{{ route('logout') }}"
+                    <x-jet-responsive-nav-link style="color:rgb(223, 0, 0);" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                     this.closest('form').submit();">
                         {{ __('Log Out') }}
