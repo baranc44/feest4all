@@ -26,10 +26,16 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+// werknemers
 Route::get('/werknemers', [WerknemerController::class, 'allUsers'])->name('werknemers');
-Route::get('/werknemers/addwerknemer', [WerknemerController::class, 'addUser'])->name('addwerknemer');
+Route::get('/werknemer/add', [WerknemerController::class, 'addView'])->name('addwerknemer');
+Route::post('/addwerknemerdata', [WerknemerController::class, 'addUser'])->name('addwerknemerdata');
+
+// producten
 Route::get('/producten', [ProductsController::class, 'allProducts'])->name('producten');
 Route::post('/productedit', [ProductsController::class, 'edit'])->name('productedit');
+
+//planning
 Route::get('/planning', [PlanningController::class, 'allPlanning'])->name('planning');
 Route::get('/overzichten', [OverzichtenController::class, 'allOverzichten'])->name('overzichten');
 Route::get('/exporteren', [ExportController::class, 'allExports'])->name('exporteren');

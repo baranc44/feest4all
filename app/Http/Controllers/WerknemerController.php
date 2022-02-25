@@ -16,8 +16,19 @@ class WerknemerController extends Controller
     ]);
     }
 
-    public function addUser(Request $request){
+    public function addView(){
         return view('/addwerknemer');      
     }
-    
+
+    public function addUser(Request $request){
+        $werknemer = User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'password' => $request->input('password')
+        ]);
+
+        return redirect('/werknemers');
+
+        
+    }
 }
