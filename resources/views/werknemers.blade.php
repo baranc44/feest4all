@@ -15,23 +15,50 @@
                             <th>Action</th>
                         </tr>
                         @foreach($werknemers as $werknemer) 
-                        <tr class="mt-6 text-gray-500">
-                            <td>{{ $werknemer->name }}</td>
-                            <td>{{ $werknemer->email }}</td>
+                        <tr id="{{$werknemer->id}}"class="mt-6 text-gray-500">
+                            <td><span>{{$werknemer->name}}</span><input class="hidden" type="text" value="{{$werknemer->name}}"/></td>
+                            <td><span>{{$werknemer->email}}</span><input class="hidden" type="text" value="{{$werknemer->email}}"/></td>
                             <td>Action</td>
                             <td>
                             <div class="float-right">
-                                <a class="border-b-2 pb-2 border-dotted italic text-green-500" href="/werknemers/{{ $werknemer->id }}/editwerknemer">Edit</a>                      
-                                <a class="border-b-2 pb-2 border-dotted italic text-gray-500" href="/werknemers/addwerknemer">Add</a>
-                                <a class="border-b-2 pb-2 border-dotted italic text-red-500">Delete</a>
+                                <button id="save" onclick="save({{$werknemer->id}})" class="hidden btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-save"></i></button> 
+                                <button id="edit" onclick="edit({{$werknemer->id}})" class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-pencil-alt"></i></button> 
+                                <button onclick="del({{$werknemer->id}})" class="btn px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"><i class="fas fa-trash-alt"></i></button></td>
                             </div>
-
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="float-right">
+                                    <button></button>
+                                </div>
+                            </td>
                         </tr>
                         @endforeach
-                    </table>                    
+                    </table>                              
                 </div>       
             </div>
         </div>
     </div>
 </div>
+    <script>
+            function edit(id) {
+            
+            $("#"+id).find("td").find("input").removeClass("hidden");
+            $("#"+id).find("td").find("span").addClass("hidden");
+
+            $("#"+id).find("td").find("#save").removeClass("hidden");
+            $("#"+id).find("td").find("#edit").addClass("hidden");
+        }
+            function save(id) {
+             
+            $("#"+id).find("td").find("input").addClass("hidden");
+            $("#"+id).find("td").find("span").removeClass("hidden");
+            
+            $("#"+id).find("td").find("#edit").removeClass("hidden");
+            $("#"+id).find("td").find("#save").addClass("hidden");
+                                
+            }
+
+
+    </script>
 </x-app-layout>

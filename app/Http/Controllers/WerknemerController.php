@@ -3,12 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class WerknemerController extends Controller
 {
-    public function edit($id){
-        $werknemer = DB::find($id);
-        dd($id);
-        return view('editwerknemer');
+    public function allUsers() {
+        $werknemers = DB::table('users')->get();
+        return view('/werknemers', [
+            'werknemers' => $werknemers
+        ]);
+    }
+
+    public function addUser() {
+        //return view('addwerknemer')
     }
 }
+    
+

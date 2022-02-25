@@ -5,9 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class PlanningController extends Controller
+class ExportController extends Controller
 {
-    public function allPlanning(){
-        return view('planning');
+    public function allExports(){
+        return view('exporteren');
     }
 }
