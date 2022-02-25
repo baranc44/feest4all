@@ -218,7 +218,7 @@
                 <x-jet-responsive-nav-link href="{{ route('projecten') }}" :active="request()->routeIs('projecten')">
                     {{ __('Projecten') }}
                 </x-jet-responsive-nav-link>
-                <div style="width: 100%; height:2px;background-color: rgb(107 114 128);"></div>
+                <div style="width: 25%; height:2px;background-color: rgb(107 114 128);"></div>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
