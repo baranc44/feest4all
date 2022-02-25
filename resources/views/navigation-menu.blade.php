@@ -195,6 +195,30 @@
                     {{ __('Profile') }}
                 </x-jet-responsive-nav-link>
 
+                <x-jet-dropdown-link href="{{ route('producten') }}">
+                    {{ __('Producten') }}
+                </x-jet-dropdown-link> 
+
+                <x-jet-dropdown-link href="{{ route('planning') }}">
+                    {{ __('Planning') }}
+                </x-jet-dropdown-link>
+
+                <x-jet-dropdown-link href="{{ route('overzichten') }}">
+                    {{ __('Overzichten') }}
+                </x-jet-dropdown-link>
+
+                <x-jet-dropdown-link href="{{ route('werknemers') }}">
+                    {{ __('Werknemers') }}
+                </x-jet-dropdown-link>
+
+                <x-jet-dropdown-link href="{{ route('exporteren') }}">
+                    {{ __('Exporteren') }}
+                </x-jet-dropdown-link>
+                
+                <x-jet-dropdown-link href="{{ route('projecten') }}">
+                    {{ __('Projecten') }}
+                </x-jet-dropdown-link>
+
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}
