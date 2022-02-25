@@ -36,17 +36,20 @@
     <script>
         function edit(id) {
             
-            const rwww = $("#"+id).text();
             $("#"+id).find("td").find("input").removeClass("hidden");
             $("#"+id).find("td").find("span").addClass("hidden");
 
             $("#"+id).find("td").find("#save").removeClass("hidden");
             $("#"+id).find("td").find("#edit").addClass("hidden");
 
-            console.log(r);
+
         }
 
         function save(id) {
+
+            const value = $("#"+id).find("td").find("input").val();
+            console.log(value);
+
             $("#"+id).find("td").find("input").addClass("hidden");
             $("#"+id).find("td").find("span").removeClass("hidden");
 
@@ -67,6 +70,10 @@
         td {
             padding-top: 5px;
             padding-bottom: 5px;
+        }
+
+        input {
+            height: 35px;
         }
 
         .btn {
