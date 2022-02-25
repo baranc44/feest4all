@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('planning', function(Blueprint $table){
             $table->increments('id');
+            $table->unsignedBigInteger('project_id');
+            $table->unsignedBigInteger('member_id');          
             $table->double('uren');
             $table->longText('omschrijving');
             $table->timestamps();
@@ -29,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('planning');
     }
 };

@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('datum');
             $table->tinyInteger('gefactureerd');
             $table->integer('factuur_nummer');
-            $table->timestamp('mod_timestamp');
+            $table->timestamps();
         });
     }
 
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        //
+        Schema::dropIfExists('uren');
     }
 };
