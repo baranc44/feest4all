@@ -7,16 +7,15 @@ use Illuminate\Support\Facades\DB;
 
 class WerknemerController extends Controller
 {
-    public function allUsers() {
-        $werknemers = DB::table('users')->get();
-        return view('/werknemers', [
-            'werknemers' => $werknemers
-        ]);
+    public function allUsers(){
+        $werknemers = DB::table('users')
+        ->get();
+    return view('werknemers', [
+        'werknemers' => $werknemers
+    ]);
     }
 
-    public function addUser() {
+    public function addUser(){
         return view('addwerknemer');
     }
 }
-    
-

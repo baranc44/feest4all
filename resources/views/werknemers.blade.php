@@ -12,10 +12,11 @@
                         <tr class="mt-8 text-2xl">
                             <th>Naam</th>
                             <th>Email</th>
-                            <th>Action</th>
+                            <th>Actie</th>
                         </tr>
                         @foreach($werknemers as $werknemer) 
-                        <tr id="{{$werknemer->id}}"class="mt-6 text-gray-500">
+                        <tbody id="werknemersBody">
+                        <tr {{$werknemer->id}}"class="mt-6 text-gray-500">
                             <td><span>{{$werknemer->name}}</span><input class="hidden" type="text" value="{{$werknemer->name}}"/></td>
                             <td><span>{{$werknemer->email}}</span><input class="hidden" type="text" value="{{$werknemer->email}}"/></td>
                             <td>
@@ -26,6 +27,7 @@
                                 </div>
                             </td>                    
                         </tr>
+                        </tbody>
                         @endforeach
                     </table>   
                     <div class="text-center">
