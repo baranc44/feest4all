@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\WerknemerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,9 +26,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
 Route::get('/werknemers', function () {
 
     $werknemers = DB::table('users')->get();
-    return view('werknemers', [
+    return view('/werknemers', [
         'werknemers' => $werknemers
     ]);
+
 })->name('werknemers');
 
 Route::get('/producten', function () {
@@ -54,3 +56,12 @@ Route::get('/exporteren', function(){
 Route::get('/projecten', function(){
     return view('projecten');
 })->name('projecten');
+
+Route::get('/werknemers/{id}/editwerknemer', [WerknemerController::class, 'edit']);
+
+Route::get('/werknemers/addwerknemer', function(){
+    return view('addwerknemer');
+});
+
+
+

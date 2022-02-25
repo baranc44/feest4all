@@ -9,23 +9,16 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">      
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-left">
                     <table style="width: 100%;">
-                        <tr class="mt-8 text-2xl">
+                        <tr class="mt-8 text-2xl">\                    
                             <th>Naam</th>
                             <th>Email</th>
                             <th>Action</th>
                         </tr>
-                        @foreach($werknemers as $werknemer) 
+                        @foreach($werknemers as $werknemer)
                         <tr class="mt-6 text-gray-500">
                             <td>{{ $werknemer->name }}</td>
                             <td>{{ $werknemer->email }}</td>
                             <td>Action</td>
-                            <td>
-                            <div class="float-right">
-                                <a class="border-b-2 pb-2 border-dotted italic text-green-500" href="/werknemers/{{ $werknemer->id }}/editwerknemer">Edit</a>                      
-                                <a class="border-b-2 pb-2 border-dotted italic text-gray-500" href="/werknemers/addwerknemer">Add</a>
-                                <a class="border-b-2 pb-2 border-dotted italic text-red-500">Delete</a>
-                            </div>
-
                         </tr>
                         @endforeach
                     </table>                    
