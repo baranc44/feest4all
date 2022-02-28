@@ -50,4 +50,11 @@ class WerknemerController extends Controller
 
         return redirect('/werknemers');
     }
+    public function pwedit(Request $request) {
+        $pw = DB::table('users')
+            ->where('id', $request->id)
+            ->update([
+                'password' => bcrypt($request->password)
+            ]);
+    }
 } 

@@ -32,6 +32,7 @@ Route::get('/werknemer/add', [WerknemerController::class, 'addView'])->name('add
 Route::post('/addwerknemerdata', [WerknemerController::class, 'addUser'])->name('addwerknemerdata');
 Route::post('/werknemeredit', [WerknemerController::class, 'edit'])->name('werknemeredit');
 Route::delete('/werknemer/{id}/delete', [WerknemerController::class, 'delete'])->name('werknemerdelete');
+Route::post('/passwordedit', [WerknemerController::class, 'pwedit'])->name('passwordedit');
 
 
 // producten

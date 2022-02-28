@@ -21,8 +21,9 @@
                             <td><span>{{$werknemer->email}}</span><input class="hidden" type="text" value="{{$werknemer->email}}"/></td>
                             <td>
                                 <div class="float-right">
-                                    <button id="save" onclick="save({{$werknemer->id}})" class="hidden btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-save"></i></button> 
+                                    <button id="save" onclick="save({{$werknemer->id}})" class="btn hidden btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-save"></i></button> 
                                     <button id="edit" onclick="edit({{$werknemer->id}})" class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-pencil-alt"></i></button> 
+                                    <button id="changePw" onclick="changePw({{$werknemer->id}})" class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-key"></i></button>
                                     <form action="/werknemer/{{ $werknemer->id }}/delete" method="POST">
                                         @csrf
                                         @method('delete')
@@ -35,7 +36,7 @@
                         @endforeach
                     </table>   
                     <div class="text-center">
-                        <a href="{{ route('addwerknemer') }}" class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Nieuwe werknemer</a>
+                        <a href="{{ route('addwerknemer') }}" class=" px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Nieuwe werknemer</a>
                     </div>                    
                 </div>       
             </div>
@@ -55,6 +56,28 @@
             // Hide the edit button
             $("#"+id).find("td").find("#edit").addClass("hidden");
         }
+        function changePw(id){  
+                       //csrf token
+                       $.ajaxSetup({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });     
+           var pw = prompt("Change your password");
+            if(pw!=null){   
+
+            $.ajax({
+            type: "POST",
+            url: "/passwordedit",
+            data: {
+                id: id,
+                password: pw
+            }
+            });      
+            }
+        }
+
+
         function save(id) {
             //csrf token
             $.ajaxSetup({
@@ -103,4 +126,12 @@
             console.log("delete" +id);
         }
     </script>
+    <style>
+        .btn {
+            width:  40px;
+            height: 40px;
+            float:left;
+            margin-left: 2px;
+        }
+    </style>
 </x-app-layout>
