@@ -27,8 +27,17 @@ class WerknemerController extends Controller
             'password' => $request->input('password')
         ]);
 
-        return redirect('/werknemers');
-
-        
+        return redirect('/werknemers');    
     }
-}
+    public function edit(Request $request) {
+        
+        $werknemer = $request->all()["werknemer"];
+
+        $change = DB::table('users')
+            ->where('id', $werknemer[0])
+            ->update([
+                'name' => $werknemer[1],
+                'email' => $werknemer[2]
+            ]);
+    }  
+} 
