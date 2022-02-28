@@ -31,6 +31,8 @@ Route::get('/werknemers', [WerknemerController::class, 'allUsers'])->name('werkn
 Route::get('/werknemer/add', [WerknemerController::class, 'addView'])->name('addwerknemer');
 Route::post('/addwerknemerdata', [WerknemerController::class, 'addUser'])->name('addwerknemerdata');
 Route::post('/werknemeredit', [WerknemerController::class, 'edit'])->name('werknemeredit');
+Route::delete('/werknemer/{id}/delete', [WerknemerController::class, 'delete'])->name('werknemerdelete');
+
 
 // producten
 Route::get('/producten', [ProductsController::class, 'allProducts'])->name('producten');

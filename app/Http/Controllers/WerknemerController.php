@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class WerknemerController extends Controller
 {
@@ -21,10 +22,13 @@ class WerknemerController extends Controller
     }
 
     public function addUser(Request $request){
+        
+        $password =  bcrypt($request->input('password'));
+
         $werknemer = User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
-            'password' => $request->input('password')
+            'password' => $password
         ]);
 
         return redirect('/werknemers');    
@@ -40,4 +44,10 @@ class WerknemerController extends Controller
                 'email' => $werknemer[2]
             ]);
     }  
+    public function delete($id){
+        $werknemer = User::find($id);
+        $werknemer->delete();
+
+        return redirect('/werknemers');
+    }
 } 
