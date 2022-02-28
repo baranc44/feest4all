@@ -8,6 +8,7 @@
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">       
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-left">
+                    <a href="product/add" style="margin-bottom: 20px;" class="px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Voeg product toe</a>
                     <table style="width: 100%;">
                         <tr class="mt-8 text-2xl">
                             <th>Product</th>
@@ -17,7 +18,7 @@
                             <th>Action</th>
                         </tr>
                     @foreach ($products as $product)
-                        <tr id="{{$product->id}}" class="mt-6 text-gray-500">
+                        <tr id="{{$product->id}}" class="mt-6 text-gray-500" ondblclick="edit({{$product->id}})">
                             <td><span class="">{{$product->naam}}</span><input class="hidden" type="text" placeholder="Vul hier een product in." value="{{$product->naam}}"/></td>
                             <td><span class="">{{$product->voorraad}}</span><input class="hidden" type="number" placeholder="Vul hier de voorraad in." value="{{$product->voorraad}}"/></td>
                             <td><span class="">{{$product->prijs}}</span><input class="hidden" type="number" placeholder="Vul hier de prijs in." value="{{$product->prijs}}"/></td>

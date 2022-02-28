@@ -16,6 +16,27 @@ class ProductsController extends Controller
     ]);
     }
 
+    public function add() {
+
+        return view('productadd');
+    }
+
+    public function insert(Request $request) {
+
+        $date = date('Y-m-d H:i:s');
+
+        $change = DB::table('products')
+            ->insert([
+                'naam' => $request->naam,
+                'voorraad' => $request->voorraad,
+                'prijs' => $request->prijs,
+                'eenheid' => $request->eenheid,
+                'created_at' => $date
+            ]);
+
+        return redirect('/producten');
+    }
+
     public function edit(Request $request) {
         
         $product = $request->all()["product"];

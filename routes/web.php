@@ -33,6 +33,8 @@ Route::post('/addwerknemerdata', [WerknemerController::class, 'addUser'])->name(
 
 // producten
 Route::get('/producten', [ProductsController::class, 'allProducts'])->name('producten');
+Route::get('/product/add', [ProductsController::class, 'add'])->name('productadd');
+Route::post('/product/addproduct', [ProductsController::class, 'insert'])->name('addproduct');
 Route::post('/product/edit', [ProductsController::class, 'edit'])->name('productedit');
 Route::delete('product/{id}/delete', [ProductsController::class, 'delete'])->name('productdel');
 
