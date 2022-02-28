@@ -8,16 +8,19 @@
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">       
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                
-                    <div class="mt-8 text-2xl">
-                        Welcome to your Jetstream application!
-                    </div>            
-                    <div class="mt-6 text-gray-500">
-                        Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
-                        to help you build your application using a development environment that is simple, powerful, and enjoyable. We believe
-                        you should love expressing your creativity through programming, so we have spent time carefully crafting the Laravel
-                        ecosystem to be a breath of fresh air. We hope you love it.
-                    </div>
+                    <table style="width: 100%;">
+                        <tbody id="werknemersBody">
+                        <tr class="mt-6 text-gray-500">
+                                <div> 
+                                    <button class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Uren per werknemer</button> 
+                                    <button class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Uren per project</button> 
+                                    <button class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Producten per project</button> 
+                                    <button class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Maand overzicht</button> 
+                                </div>
+                            </td>                    
+                        </tr>
+                        </tbody>
+                    </table>   
                 </div>
             </div>
         </div>
