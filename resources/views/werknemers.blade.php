@@ -16,7 +16,7 @@
                         </tr>
                         @foreach($werknemers as $werknemer) 
                         <tbody id="werknemersBody">
-                        <tr {{$werknemer->id}}"class="mt-6 text-gray-500">
+                        <tr id="{{$werknemer->id}}" class="mt-6 text-gray-500">
                             <td><span>{{$werknemer->name}}</span><input class="hidden" type="text" value="{{$werknemer->name}}"/></td>
                             <td><span>{{$werknemer->email}}</span><input class="hidden" type="text" value="{{$werknemer->email}}"/></td>
                             <td>
@@ -41,22 +41,62 @@
     <script>
             function edit(id) {
             
+            // Show all the inputs next to the edit button
             $("#"+id).find("td").find("input").removeClass("hidden");
+            // Hide all the text next to the edit button
             $("#"+id).find("td").find("span").addClass("hidden");
 
+            // Show the save button
             $("#"+id).find("td").find("#save").removeClass("hidden");
+            // Hide the edit button
             $("#"+id).find("td").find("#edit").addClass("hidden");
         }
-            function save(id) {
-             
+        function save(id) {
+            //csrf token
+            $.ajaxSetup({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            // make a product array
+            const werknemer = new Array();
+
+            // add the id to the product array [0]
+            werknemer.push(id);
+
+            // find the inputs next to the edit / save button and go trough every input
+            $("#"+id).find("td").find("input").each(function() {
+                // get the value of the input
+                value = $(this).val();
+                // fill the span with the current value
+                $(this).parent("td").find("span").text(value);
+                // push the value to a array
+                werknemer.push(value);
+            });
+
+            // post the data to the productscontroller
+            $.ajax({
+            type: "POST",
+            url: "/werknemeredit",
+            data: {
+                werknemer: werknemer
+            }
+            });  
+
+            // Hide all the inputs next to the edit buttojn
             $("#"+id).find("td").find("input").addClass("hidden");
+            // Show all the text next to the edit button
             $("#"+id).find("td").find("span").removeClass("hidden");
-            
+        
+            // Hide the save button
+            $("#"+id).find("td").find("#save").addClass("hidden");                              
+            // Show the edit button.
             $("#"+id).find("td").find("#edit").removeClass("hidden");
-            $("#"+id).find("td").find("#save").addClass("hidden");
-                                
             }
 
-
+            function del(id) {
+            console.log("delete" +id);
+        }
     </script>
 </x-app-layout>
