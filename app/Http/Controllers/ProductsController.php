@@ -11,7 +11,7 @@ class ProductsController extends Controller
     public function allProducts(){
         $products = DB::table('products')
         ->get();
-    return view('producten', [
+        return view('producten', [
         'products' => $products
     ]);
     }
@@ -24,6 +24,11 @@ class ProductsController extends Controller
     public function insert(Request $request) {
 
         $date = date('Y-m-d H:i:s');
+
+        if ($request->naam == null || $request->voorraad == null || $request->prijs == null || $request->eenheid == null)
+        {
+            return redirect('/producten');
+        }
 
         $change = DB::table('products')
             ->insert([
@@ -38,10 +43,15 @@ class ProductsController extends Controller
     }
 
     public function edit(Request $request) {
-        
+
         $product = $request->all()["product"];
         $date = date('Y-m-d H:i:s');
 
+        if ($product[0] == null || $product[1] == null || $product[2] == null || $product[3] == null || $product[4] == null)
+        {
+            return;
+        }
+        
         $change = DB::table('products')
             ->where('id', $product[0])
             ->update([

@@ -26,6 +26,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::middleware(['auth'])->group(function () {
 // werknemers
 Route::get('/werknemers', [WerknemerController::class, 'allUsers'])->name('werknemers');
 Route::get('/werknemer/add', [WerknemerController::class, 'addView'])->name('addwerknemer');
@@ -33,7 +34,6 @@ Route::post('/addwerknemerdata', [WerknemerController::class, 'addUser'])->name(
 Route::post('/werknemeredit', [WerknemerController::class, 'edit'])->name('werknemeredit');
 Route::delete('/werknemer/{id}/delete', [WerknemerController::class, 'delete'])->name('werknemerdelete');
 Route::post('/passwordedit', [WerknemerController::class, 'pwedit'])->name('passwordedit');
-
 
 // producten
 Route::get('/producten', [ProductsController::class, 'allProducts'])->name('producten');
@@ -48,7 +48,7 @@ Route::get('/overzichten', [OverzichtenController::class, 'allOverzichten'])->na
 Route::get('/exporteren', [ExportController::class, 'allExports'])->name('exporteren');
 Route::get('/projecten', [ProjectController::class, 'allProjects'])->name('projecten');
 
-
+});
 
 
 
