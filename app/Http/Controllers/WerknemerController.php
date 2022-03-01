@@ -13,9 +13,9 @@ class WerknemerController extends Controller
         $werknemers = DB::table('users')
         ->get();
     return view('werknemers', [
-        'werknemers' => $werknemers
+    'werknemers' => $werknemers
     ]);
-    }
+}
 
     public function addView(){
         return view('/addwerknemer');      

@@ -8,18 +8,59 @@
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">       
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                
-                    <div class="mt-8 text-2xl">
-                        Welcome to your Jetstream application!
-                    </div>            
-                    <div class="mt-6 text-gray-500">
-                        Laravel Jetstream provides a beautiful, robust starting point for your next Laravel application. Laravel is designed
-                        to help you build your application using a development environment that is simple, powerful, and enjoyable. We believe
-                        you should love expressing your creativity through programming, so we have spent time carefully crafting the Laravel
-                        ecosystem to be a breath of fresh air. We hope you love it.
-                    </div>
+                    <table style="width: 100%; text-align: left;">
+                        <tr class="mt-8 text-2xl">
+                            <th>Projectnummer</th>
+                            <th>Projectnaam</th>
+                        </tr>
+                        @foreach($projecten as $project)
+                        
+                        <tbody id="projectenBody">
+                        <tr id="{{ $project->id }}"class="mt-6 text-gray-500">
+                            <td><span>{{$project->project_nummer}}</span><input class="hidden" type="text" value="{{$project->project_nummer}}"/></td>
+                            <td><span>{{$project->naam}}</span><input class="hidden" type="text" value="{{$project->naam}}"/></td>
+                            <td>
+                                <div class="float-right">
+                                    <button id="save" onclick="edit({{ $project->id }})"class="btn hidden btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-save"></i></button> 
+                                    <button id="edit" class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-pencil-alt"></i></button> 
+                                    <form action="/project/delete" method="POST">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="btn px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"><i class="fas fa-trash-alt"></i></button></td>
+                                    </form>
+                                </div>
+                            </td>                    
+                        </tr>
+                        </tbody>
+                        @endforeach
+                    </table>  
+                    <div class="text-center">
+                        <a href="{{ route('addproject') }}" class=" px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Nieuw project</a>
+                    </div> 
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        function edit(id) {
+            
+            // Show all the inputs next to the edit button
+            $("#"+id).find("td").find("input").removeClass("hidden");
+            // Hide all the text next to the edit button
+            $("#"+id).find("td").find("span").addClass("hidden");
+
+            // Show the save button
+            $("#"+id).find("td").find("#save").removeClass("hidden");
+            // Hide the edit button
+            $("#"+id).find("td").find("#edit").addClass("hidden");
+        }
+    </script>
+    <style>
+        .btn {
+            width:  40px;
+            height: 40px;
+            float:left;
+            margin-left: 2px;
+        }
+    </style>
 </x-app-layout>

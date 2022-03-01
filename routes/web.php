@@ -46,9 +46,11 @@ Route::delete('product/{id}/delete', [ProductsController::class, 'delete'])->nam
 Route::get('/planning', [PlanningController::class, 'allPlanning'])->name('planning');
 Route::get('/overzichten', [OverzichtenController::class, 'allOverzichten'])->name('overzichten');
 Route::get('/exporteren', [ExportController::class, 'allExports'])->name('exporteren');
+
+// projecten
 Route::get('/projecten', [ProjectController::class, 'allProjects'])->name('projecten');
-
-
-
+Route::get('/project/add', [ProjectController::class, 'addView'])->name('addproject');
+Route::post('/addprojectdata',[ProjectController::class, 'addProject'])->name('addprojectdata');
+Route::post('/project/edit', [ProjectController::class, 'edit'])->name('editproject');
 
 
