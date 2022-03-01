@@ -9,8 +9,8 @@ use Illuminate\Support\Facades\DB;
 class ProductsController extends Controller
 {
     public function allProducts(){
-        $products = DB::table('products')
-        ->get();
+        $products = DB::table('products')->paginate(50);
+        
         return view('producten', [
         'products' => $products
     ]);
