@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Project;
-use App\Models\product;
+use App\Models\Product;
+use App\Models\Projectproducten;
 use App\Http\Controllers\Products;
 
 class ProjectController extends Controller
@@ -38,8 +39,10 @@ class ProjectController extends Controller
 
     public function addProject(Request $request){
         $project = Project::create([
-            'id' => $request->input('id'),
+            'project_nummer' => $request->input('project_nummer'),
             'naam' => $request->input('naam')
         ]);
+        $data = DB::table('project')
+            ->join('project_producten', 'project.id', "=", 'project_producten_id');
     }
 }

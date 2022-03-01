@@ -10,12 +10,11 @@ class project extends Model
     use HasFactory;
 
     protected $table = 'project';
-
-    protected $primaryKey = 'id';
     
     protected $fillable = [
         'naam',
         'id',
+        'project_nummer',
         'updated_at',
         'created_at'
     ];
