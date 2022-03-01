@@ -12,13 +12,13 @@
                         <form action="/product/addproduct" method="POST">
                             @csrf
                             <p>Product naam</p>
-                            <input type="text" placeholder="product naam" name="naam" style="width: 60%;"/>
+                            <input type="text" placeholder="product naam" name="naam" style="width: 60%;" required/>
                             <p>Voorraad</p>
-                            <input type="number" placeholder="voorraad" name="voorraad" style="width: 60%;"/>
+                            <input type="number" placeholder="voorraad" name="voorraad" style="width: 60%;" required/>
                             <p>Prijs</p>
-                            <input type="number" placeholder="prijs" step="any" name="prijs" style="width: 60%;"/>
+                            <input type="number" placeholder="prijs" step="any" name="prijs" style="width: 60%;" required/>
                             <p>Eenheid</p>
-                            <input type="text" placeholder="eenheid" name="eenheid" style="width: 60%;"/>
+                            <input type="text" placeholder="eenheid" name="eenheid" style="width: 60%;" required/>
                             <button type="submit" style="width: 60%;" class="btn px-4 py-2 bg-orange-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-orange-700 active:bg-orange-700 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Voeg toe</button>
 
                         </form>
