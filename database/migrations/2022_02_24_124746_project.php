@@ -15,13 +15,14 @@ return new class extends Migration
     {
         Schema::create('project', function(Blueprint $table){
             $table->increments('id');
-            $table->unsigendBigInteger('project_nummer');
+            $table->integer('project_nummer');
             $table->string('naam');
             $table->double('uurprijs');
             $table->tinyInteger('verschotten');
             $table->double('opdrachtbedrag');
             $table->string('factuurtype');
             $table->longText('factuuradres');
+            $table->timeStamps();
         });
     }
 
