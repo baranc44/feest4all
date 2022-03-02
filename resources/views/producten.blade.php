@@ -11,20 +11,16 @@
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">       
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-left">
-                    <table>
-                        <tr>
-                            <td>Product zoeken: </td>
-                            <td><input type="search" placeholder="zoeken..." onkeyup="search(value)"/></td>
-                        </tr>
-                    </table>
-                    <a href="product/add" style="margin-bottom: 20px;" class="px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Voeg product toe</a>
+                    <div class="text-center">
+                        <input type="search" placeholder="Zoeken..." class="btnSearch" onkeyup="search(value)"/>                        
+                    </div>
                     <table style="width: 100%;">
                         <tr class="mt-8 text-2xl">
                             <th>Product</th>
                             <th>Voorraad</th>
                             <th>Prijs</th>
                             <th>Eenheid</th>
-                            <th>Action</th>
+                            <th><a href="product/add" style="margin-bottom: 20px;" class="px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">+</a></th>
                         </tr>
                         <tbody id="tbody">
                             @include('productsList')
@@ -116,24 +112,49 @@
 
 
     <style>
+        .btnSearch {
+            border-radius: 25px;
+            text-align: center;
+            
+        }
+
         table {
             table-layout: fixed;
         }
+        
+        td:first-child, th:first-child {
+            padding-left: 10px;
+        }
 
         td {
-            padding-top: 5px;
-            padding-bottom: 5px;
-            border-bottom: 1px solid rgb(0, 0, 0, 0.2);
+            padding-top: 8px;
+            padding-bottom: 8px;
+        }
+
+        th:last-child, td:last-child{
+            text-align: center;
+            margin: 0;
+        }
+
+        tr:nth-child(even) {
+        background-color: #eeeeee;
+        }
+
+        tr:last-child {
+            background-color: #ffffff;
         }
 
         input {
             height: 35px;
         }
 
+        form {
+            display: inline;
+        }
+
         .btn {
             width:  40px;
             height: 40px;
-            float:left;
             margin-left: 2px;
         }
 
@@ -150,13 +171,11 @@
         th {
             display: none;
         }
-
-        tr {
-            border-bottom: 2px solid rgb(0, 0, 0, 0.3);
-        }
         td {
             display:flex;
-            border-bottom: none;
+        }
+        form > .btn {
+            width: 50%;
         }
 
         td > .btn {
