@@ -14,9 +14,11 @@ class product extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'id',
         'naam', 
         'voorraad', 
         'prijs', 
-        'eenheid'
+        'eenheid',
+        'created_at'
     ];
 }

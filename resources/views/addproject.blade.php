@@ -14,14 +14,24 @@
                         <th>Hoeveelheid</th>
                         <th>Opmerkingen</th>
                     </tr>
-                    
+                    <tr>
                     <td><select name="producten" style="width:">
                         @foreach($products as $product)
-                            <option id="products" value="{{ $product->id }}">{{ $product->naam }} </option>
+                            <option name="products" value="{{ $product->id }}">{{ $product->naam }} </option>
                         @endforeach
                       </select></td>
                             <td><input type="text" name="amount"></td>
-                            <td><input type="text" name="comment" placeholder="Opmerkingen"></td>
+                            <td><input type="text" name="comment" placeholder="Opmerkingen"></td>                       
+                        </tr>
+                        <tr>
+                            <td><select name="producten" style="width:">
+                                @foreach($products as $product)
+                                    <option name="products" value="{{ $product->id }}">{{ $product->naam }} </option>
+                                @endforeach
+                              </select></td>
+                                    <td><input type="text" name="amount2"></td>
+                                    <td><input type="text" name="comment2" placeholder="Opmerkingen"></td>
+                                </tr>
                 </table>
                 <div class="text-center">
                     <a onclick="addRow();">+</a>
