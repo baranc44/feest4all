@@ -43,17 +43,17 @@ class ProjectController extends Controller
             'project_nummer' => $request->input('project_nummer'),
             'naam' => $request->input('naam')
         ]);
-        return redirect('/projecten');
         //get last project (nieuwe project)
-        $lastproject_id = Project::select('id')->OrderBy('created_at', 'DESC')->First();
-
-        //voor dat laatste project x aantal producten
-        foreach($products as $product){
-            $project_products = New ProjectProduct;
+        $lastproject_id = Project::select('id')->OrderBy('created_at', 'DESC')->first();
+        // voor dat laatste project x aantal producten
+        foreach($lastproject_id as $product){
+            $project_products = new ProjectProducten;
             $project_products->project_id = $lastproject_id;
             $project_products->product_id = $product->id;
-            $project_products->hoeveelheid = $product->hoeveelheid;
-            $project_products->afgeleverd = $product->afgeleverd;  
-        }                        
+            $project_products->hoeveelheid = $product->amount;
+            $project_products->afgeleverd = $product->comment;
+            $project_products->save();
+        }      
+        return redirect('/projecten');
     }
 }

@@ -14,7 +14,7 @@
                         <th>Hoeveelheid</th>
                         <th>Opmerkingen</th>
                     </tr>
-                
+                    
                     <td><select name="producten" style="width:">
                         @foreach($products as $product)
                             <option id="products" value="{{ $product->id }}">{{ $product->naam }} </option>
