@@ -20,7 +20,7 @@
                             <option id="products" value="{{ $product->id }}">{{ $product->naam }} </option>
                         @endforeach
                       </select></td>
-                            <td><input type="text" name="amount" value="0"></td>
+                            <td><input type="text" name="amount"></td>
                             <td><input type="text" name="comment" placeholder="Opmerkingen"></td>
                 </table>
                 <div class="text-center">

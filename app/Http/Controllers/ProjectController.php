@@ -38,22 +38,36 @@ class ProjectController extends Controller
     }
 
     public function addProject(Request $request){
-        //insert new project
+
         $project = Project::create([
             'project_nummer' => $request->input('project_nummer'),
-            'naam' => $request->input('naam')
+            'naam' => $request->input('naam'),
         ]);
-        //get last project (nieuwe project)
-        $lastproject_id = Project::select('id')->OrderBy('created_at', 'DESC')->first();
-        // voor dat laatste project x aantal producten
-        foreach($lastproject_id as $product){
-            $project_products = new ProjectProducten;
-            $project_products->project_id = $lastproject_id;
-            $project_products->product_id = $product->id;
-            $project_products->hoeveelheid = $product->amount;
-            $project_products->afgeleverd = $product->comment;
-            $project_products->save();
-        }      
+
+        // $lastproject_id = Project::select('id')->orderBy('created_at', 'DESC')->first();
+        // $product_id = Product::select('id')->orderBy('created_at', 'DESC')->first();
+    
+        // $project_producten = ProjectProducten::create([
+        //     'project_id' => $lastproject_id,
+        //     'product_id' => $product_id,
+        //     'hoeveelheid' => $request->input('amount'),
+        //     'opmerkingen' => $request->input('comment')
+        // ]);
+
+        // $lastproject = Project::select('id')->orderBy('created_ad', 'DESC')->first();
+        // // voor dat laatste project x aantal producten
+        // foreach($lastproject as $product){
+        //     $project_products = new ProjectProducten;
+        //     $project_products->project_id = $lastproject;
+        //     $project_products->product_id = $product->id;
+        //     $project_products->hoeveelheid = $product->hoeveelheid;
+        //     $project_products->afgeleverd = $product->afgeleverd;
+        //     $project_products->save();
+        // }
         return redirect('/projecten');
     }
 }
+        
+ 
+        
+

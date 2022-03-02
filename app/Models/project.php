@@ -15,7 +15,6 @@ class project extends Model
         'naam',
         'id',
         'project_nummer',
-        'updated_at',
         'created_at'
     ];
 }

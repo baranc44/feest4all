@@ -22,6 +22,7 @@ return new class extends Migration
             $table->integer('opgehaald');
             $table->tinyInteger('gefactureerd');
             $table->longText('opmerkingen');
+            $table->timeStamps();
         });
     }
 
