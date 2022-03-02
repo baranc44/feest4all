@@ -16,6 +16,26 @@ class ProductsController extends Controller
     ]);
     }
 
+    public function allProducts_ajax(Request $request) {
+        if ($request->ajax()) {
+            
+            $search = $request->get('search');
+
+            $products = DB::table('products')
+                    ->where('naam', 'like', '%'.$search.'%')
+                    ->orWhere('voorraad', 'like', '%'.$search.'%')
+                    ->orWhere('prijs', 'like', '%'.$search.'%')
+                    ->orWhere('eenheid', 'like', '%'.$search.'%')
+                    ->paginate(50);
+
+
+
+                    return view('productsList', [
+                        'products' => $products
+                    ]);
+        }
+    }
+
     public function add() {
 
         return view('productadd');
