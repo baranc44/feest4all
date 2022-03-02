@@ -17,10 +17,10 @@ return new class extends Migration
             $table->increments('id');
             $table->unsignedBigInteger('project_id');
             $table->unsignedBigInteger('product_id');
-            $table->integer('hoeveelheid');
-            $table->tinyInteger('afgeleverd');
-            $table->integer('opgehaald');
-            $table->tinyInteger('gefactureerd');
+            $table->integer('hoeveelheid')->default(0);
+            $table->tinyInteger('afgeleverd')->default(0);
+            $table->integer('opgehaald')->default(0);
+            $table->tinyInteger('gefactureerd')->default(0);
             $table->longText('opmerkingen');
             $table->timeStamps();
         });

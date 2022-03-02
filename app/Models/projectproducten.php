@@ -15,6 +15,10 @@ class projectproducten extends Model
         'id',
         'project_id',
         'product_id',
+        'hoeveelheid',
+        'opgehaald',
+        'gefactureerd',
+        'afgeleverd',
         'opmerkingen'
     ];
 }

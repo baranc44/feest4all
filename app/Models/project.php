@@ -15,6 +15,11 @@ class project extends Model
         'naam',
         'id',
         'project_nummer',
+        'uurprijs',
+        'verschotten',
+        'opdrachtbedrag',
+        'factuurtype',
+        'factuuradres',
         'created_at'
     ];
 }

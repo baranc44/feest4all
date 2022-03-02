@@ -39,31 +39,19 @@ class ProjectController extends Controller
 
     public function addProject(Request $request){
 
+        // print_r($request->input('producten'));
         $project = Project::create([
             'project_nummer' => $request->input('project_nummer'),
-            'naam' => $request->input('naam'),
+            'naam' => $request->input('naam')
         ]);
+        $lastprojectId = Project::select('id')->orderBy('created_at', 'DESC')->first();
 
-        // $lastproject_id = Project::select('id')->orderBy('created_at', 'DESC')->first();
-        // $product_id = Product::select('id')->orderBy('created_at', 'DESC')->first();
-    
-        // $project_producten = ProjectProducten::create([
-        //     'project_id' => $lastproject_id,
-        //     'product_id' => $product_id,
-        //     'hoeveelheid' => $request->input('amount'),
-        //     'opmerkingen' => $request->input('comment')
-        // ]);
-
-        // $lastproject = Project::select('id')->orderBy('created_ad', 'DESC')->first();
-        // // voor dat laatste project x aantal producten
-        // foreach($lastproject as $product){
-        //     $project_products = new ProjectProducten;
-        //     $project_products->project_id = $lastproject;
-        //     $project_products->product_id = $product->id;
-        //     $project_products->hoeveelheid = $product->hoeveelheid;
-        //     $project_products->afgeleverd = $product->afgeleverd;
-        //     $project_products->save();
-        // }
+        $project_product = ProjectProducten::create([
+            'project_id' => $lastprojectId->id,
+            'product_id' => $request->input('producten'),
+            'hoeveelheid' => $request->input('amount'),
+            'opmerkingen' => $request->input('comment')
+        ]);
         return redirect('/projecten');
     }
 }
