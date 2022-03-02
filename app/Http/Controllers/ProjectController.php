@@ -38,8 +38,6 @@ class ProjectController extends Controller
     }
 
     public function addProject(Request $request){
-
-        // print_r($request->input('producten'));
         $project = Project::create([
             'project_nummer' => $request->input('project_nummer'),
             'naam' => $request->input('naam')
@@ -50,12 +48,11 @@ class ProjectController extends Controller
             'project_id' => $lastprojectId->id,
             'product_id' => $request->input('producten'),
             'hoeveelheid' => $request->input('amount'),
-            'opmerkingen' => $request->input('comment')
+            'opmerkingen' => $request->input('comment')           
         ]);
         return redirect('/projecten');
     }
-}
-        
+    }  
  
         
 
