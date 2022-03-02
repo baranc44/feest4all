@@ -1,4 +1,7 @@
 <x-app-layout>
+    <script>
+        BASE_URL="<?php echo url('');?>"
+    </script>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Producten') }}
@@ -8,6 +11,12 @@
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">       
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-left">
+                    <table>
+                        <tr>
+                            <td>Product zoeken: </td>
+                            <td><input type="search" placeholder="zoeken..." onkeyup="search(value)"/></td>
+                        </tr>
+                    </table>
                     <a href="product/add" style="margin-bottom: 20px;" class="px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Voeg product toe</a>
                     <table style="width: 100%;">
                         <tr class="mt-8 text-2xl">
@@ -17,29 +26,27 @@
                             <th>Eenheid</th>
                             <th>Action</th>
                         </tr>
-                    @foreach ($products as $product)
-                        <tr id="{{$product->id}}" class="mt-6 text-gray-500" ondblclick="edit({{$product->id}})">
-                            <td><span class="">{{$product->naam}}</span><input class="hidden" type="text" placeholder="Vul hier een product in." value="{{$product->naam}}"/></td>
-                            <td><span class="">{{$product->voorraad}}</span><input class="hidden" type="number" placeholder="Vul hier de voorraad in." value="{{$product->voorraad}}"/></td>
-                            <td><span class="">{{$product->prijs}}</span><input class="hidden" type="number" placeholder="Vul hier de prijs in." value="{{$product->prijs}}"/></td>
-                            <td><span class="">{{$product->eenheid}}</span><input class="hidden" type="text" placeholder="Vul hier de eenheid." value="{{$product->eenheid}}"/></td>
-                            <td><button id="save" onclick="save({{$product->id}})" class="hidden btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-save"></i></button> 
-                            <button id="edit" onclick="edit({{$product->id}})" class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-pencil-alt"></i></button> 
-                            <form action="product/{{$product->id}}/delete" method="POST">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"><i class="fas fa-trash-alt"></i></button></td>
-                            </form>  
-                        </tr>
-                    @endforeach
+                        <tbody id="tbody">
+                            @include('productsList')
+                        </tbody>
                     </table>
-                    {{$products->links()}}
+                    
                 </div>
             </div>
         </div>
     </div>
 
     <script>
+        function search(search) {
+        
+            $.ajax({
+                url:BASE_URL+"/producten_ajax?search="+search,
+                success:function(data){
+                    $('#tbody').html(data);
+                }
+            })
+        }
+
         function edit(id) {
             
             // show all the inputs next to the edit button

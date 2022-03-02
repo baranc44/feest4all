@@ -10,8 +10,8 @@ use Illuminate\Support\Facades\Hash;
 class WerknemerController extends Controller
 {
     public function allUsers(){
-        $werknemers = DB::table('users')
-        ->get();
+        $werknemers = DB::table('users')->paginate(50);
+        
     return view('werknemers', [
     'werknemers' => $werknemers
     ]);
