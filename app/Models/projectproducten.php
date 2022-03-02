@@ -16,6 +16,6 @@ class projectproducten extends Model
         'project_id',
         'product_id',
         'hoeveelheid',
-        'opmerkingen'
+        'afgeleverd'
     ];
 }

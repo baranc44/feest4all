@@ -38,11 +38,22 @@ class ProjectController extends Controller
     }
 
     public function addProject(Request $request){
+        //insert new project
         $project = Project::create([
             'project_nummer' => $request->input('project_nummer'),
             'naam' => $request->input('naam')
         ]);
-        $data = DB::table('project')
-            ->join('project_producten', 'project.id', "=", 'project_producten_id');
+        //get last project (nieuwe project)
+        $lastproject_id = Project::select('id')->OrderBy('created_at', 'DESC')->first();
+        // voor dat laatste project x aantal producten
+        foreach($lastproject_id as $product){
+            $project_products = new ProjectProducten;
+            $project_products->project_id = $lastproject_id;
+            $project_products->product_id = $product->id;
+            $project_products->hoeveelheid = $product->amount;
+            $project_products->afgeleverd = $product->comment;
+            $project_products->save();
+        }      
+        return redirect('/projecten');
     }
 }

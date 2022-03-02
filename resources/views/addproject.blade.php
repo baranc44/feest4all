@@ -5,7 +5,7 @@
             <form class="mb-0 space-y-6 " action="/addprojectdata" method="POST" >        
                 @csrf
                    <h1 class="text-6xl font-bold text-center">Nieuw project</h1>
-                <input type="text" name="project_nummer" placeholder="{{ __('Project nummer') }}"class="sm:w-full form-control border-gray-300 rounded-md shadow-sm block mt-1" required>
+                <input type="number" name="project_nummer" placeholder="{{ __('Project nummer') }}"class="sm:w-full form-control border-gray-300 rounded-md shadow-sm block mt-1" required>
                 <input type="text" name="naam" placeholder="{{ __('Project naam') }}"class="sm:w-full form-control border-gray-300 rounded-md shadow-sm block mt-1" required>
                 <h1 class="text-6xl font-bold text-center">Producten</h1>
                 <table style="width: 100%; !important; text-align: left;">
@@ -14,7 +14,7 @@
                         <th>Hoeveelheid</th>
                         <th>Opmerkingen</th>
                     </tr>
-                
+                    
                     <td><select name="producten" style="width:">
                         @foreach($products as $product)
                             <option id="products" value="{{ $product->id }}">{{ $product->naam }} </option>
