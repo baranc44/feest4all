@@ -17,11 +17,11 @@ return new class extends Migration
             $table->increments('id');
             $table->integer('project_nummer');
             $table->string('naam');
-            $table->double('uurprijs');
-            $table->tinyInteger('verschotten');
-            $table->double('opdrachtbedrag');
-            $table->string('factuurtype');
-            $table->longText('factuuradres');
+            $table->double('uurprijs')->default(0);
+            $table->tinyInteger('verschotten')->default(0);
+            $table->double('opdrachtbedrag')->default(0);
+            $table->string('factuurtype')->default("0");
+            $table->longText('factuuradres')->default("0");
             $table->timeStamps();
         });
     }
