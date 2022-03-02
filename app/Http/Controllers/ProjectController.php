@@ -45,6 +45,7 @@ class ProjectController extends Controller
             'naam' => $request->input('naam')
         ]);
         $lastprojectId = Project::select('id')->orderBy('created_at', 'DESC')->first();
+        
 
         $project_product = ProjectProducten::create([
             'project_id' => $lastprojectId->id,
