@@ -8,6 +8,7 @@ use App\Http\Controllers\PlanningController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\OverzichtenController;
+use App\Http\Controllers\TijdController;
 
 /*
 |--------------------------------------------------------------------------
@@ -46,6 +47,9 @@ Route::delete('product/{id}/delete', [ProductsController::class, 'delete'])->nam
 
 // planning
 Route::get('/planning', [PlanningController::class, 'allPlanning'])->name('planning');
+
+// tijd registratie
+Route::get('/tijdregistratie', [TijdController::class, 'showTijd'])->name('tijdregistratie');
 
 // overzichten
 Route::get('/overzichten', [OverzichtenController::class, 'allOverzichten'])->name('overzichten');

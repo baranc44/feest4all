@@ -47,6 +47,11 @@
                     {{ __('Projecten') }}
                     </x-jet-nav-link>
                 </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('tijdregistratie') }}" :active="request()->routeIs('tijdregistratie')">
+                    {{ __('Tijdregistratie') }}
+                    </x-jet-nav-link>
+                </div>
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -217,6 +222,10 @@
                 
                 <x-jet-responsive-nav-link href="{{ route('projecten') }}" :active="request()->routeIs('projecten')">
                     {{ __('Projecten') }}
+                </x-jet-responsive-nav-link>
+
+                <x-jet-responsive-nav-link href="{{ route('tijdregistratie') }}" :active="request()->routeIs('tijdregistratie')">
+                    {{ __('Tijdregistratie') }}
                 </x-jet-responsive-nav-link>
                 <div style="width: 25%; height:2px;background-color: rgb(107 114 128);"></div>
 
