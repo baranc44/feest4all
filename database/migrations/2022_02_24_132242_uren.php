@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('uren', function(Blueprint $table){
             $table->increments('id');
+            $table->date('datum');
             $table->double('uren');
             $table->longText('omschrijving');
-            $table->date('datum');
             $table->tinyInteger('gefactureerd');
             $table->integer('factuur_nummer');
             $table->timestamps();

@@ -11,80 +11,131 @@
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">       
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-left">
-                    <table style=" width: 90%;">
+                    <table style=" width: 100%;">
                         <tr class="mt-8 text-2xl">
+                            <th style="width: 200px">Datum</th>
                             <th>Project</th>
                             <th>Omschrijving</th>
                             <th>Uren</th>
                         </tr>
                         <tbody id="projectBody">
                             <tr class="trProjects">
-                                <td><select name="producten" style="width:100%">
-                                    @foreach($products as $product)
-                                        <option name="products" value="{{ $product->id }}">{{ $product->naam }} </option>
+                                <td><input name="datum" style="width: 200px" type="date"></td>
+                                <td><select name="projects" style="width:100%">
+                                    @foreach($projects as $project)
+                                        <option value="" hidden>Select a project</option>
+                                        <option name="project" value="{{ $project->id }}">{{ $project->naam }} </option>
                                     @endforeach
                                   </select>
                                 </td>
-                                <td><input style="width: 100%" type="text" name="omschrijving" class="omschrijving" placeholder="omschrijving"></td>
-                                <td><input onchange="timeChange()" onkeyup="timeChange()" style="width: 100px" type="number" min="0" name="uren" step="0.01" class="uren" placeholder="uren"></td>
+                                <td><input style="width: 100%" type="text" name="omschrijving" placeholder="omschrijving"></td>
+                                <td><input onchange="timeChange()" onkeyup="timeChange()" type="number" min="0" name="uren" step="0.01" placeholder="uren"></td>
                             </tr>
                         </tbody>
                         <tr>
                             <td></td>
-                            <td style="text-align: right">Totaal:</td>
-                            <td style="padding-left: 30px; font-weight:bold;"><span id="totalHour">0</span></td>
+                            <td></td>
+                            <td style="text-align: right">Totaal: </td>
+                            <td style="text-align: center;font-weight:bold;"> <span id="totalHour">0.00</span></td>
                         </tr>
-                    </table><a class="text-center" class="add" onclick="addProductRow();">
-                        <p>+</p>
-                    </a>
-
-
+                        <tr>
+                            <td colspan="4"><a class="text-center" class="add" onclick="addProductRow();">
+                                <p>+</p>
+                            </a></td>
+                        </tr>
+                        <tr>
+                            <td onclick="send()">submit button</td> 
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
     </div>
     <script>
         function send() {
-        $.ajaxSetup({
-        headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
+            $.ajaxSetup({
+            headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
 
-        
+            const date = document.getElementsByName("datum");
+            const projectsnames = document.getElementsByName("projects");
+            const omschrijving = document.getElementsByName("omschrijving");
+            const uren = document.getElementsByName("uren");
+
+            let length = date.length;
+
+            var projects = new Array();
+
+            for (i = 0; i < length; i++) {
+
+                if (date[i].value != '' && projectsnames[i].value != '' && uren[i].value != '')
+                {
+                project = [date[i].value, projectsnames[i].value, omschrijving[i].value, uren[i].value];
+
+                projects.push(project);
+                }
+            }
+
+            $.ajax({
+                type: "POST",
+                url: "tijdpost",
+                data: {
+                    projects: projects
+                }
+            });
+
+            //location.replace("/dashboard");
+
+            console.log(projects);
 
         }
 
         function addProductRow() {
 
         document.getElementById("projectBody").insertAdjacentHTML('beforeend' ,'<tr class="trProjects">\
-                                <td><select name="producten" style="width:100%">\
-                                    @foreach($products as $product)\
-                                        <option name="products" value="{{ $product->id }}">{{ $product->naam }} </option>\
+                                <td><input name="datum" style="width: 200px" type="date"></td>\
+                                <td><select name="projects" style="width:100%">\
+                                    @foreach($projects as $project)\
+                                        <option value="-1" hidden>Select a project</option>\
+                                        <option name="project" value="{{ $project->id }}">{{ $project->naam }} </option>\
                                     @endforeach\
                                   </select>\
                                 </td>\
-                                <td><input style="width: 100%" type="text" name="omschrijving" class="omschrijving" placeholder="omschrijving"></td>\
-                                <td><input onchange="timeChange()" onkeyup="timeChange()" style="width: 100px" type="number" min="0" name="uren" step="0.01" class="uren" placeholder="uren"></td>\
+                                <td><input style="width: 100%" type="text" name="omschrijving" placeholder="omschrijving"></td>\
+                                <td><input onchange="timeChange()" onkeyup="timeChange()" type="number" min="0" name="uren" step="0.01" placeholder="uren"></td>\
                             </tr>');
         }
 
         function timeChange() {
-            const uren = document.getElementsByClassName("uren");
+            const uren = document.getElementsByName("uren");
             const length = uren.length;
             let total = 0;
 
-            for (i=0; i<length; i++) {
+            for (i = 0; i < length; i++) {
 
                 let currentVal = uren[i].value;
                 if (!currentVal) {
                     currentVal = 0;
                 } 
                 total += parseFloat(currentVal);
+                
             }
             total = total.toFixed(2);
             
             document.getElementById("totalHour").innerHTML = total;
         }
     </script>
+    <style>
+        td:last-child, th:last-child {
+            width: 100px;
+            text-align: center;
+        }
+
+        td:last-child > input {
+            text-align: center;
+            
+        }
+    </style>
 </x-app-layout>
