@@ -14,7 +14,6 @@
                             <th>Projectnaam</th>
                         </tr>
                         @foreach($projecten as $project)
-                        
                         <tbody id="projectenBody">
                         <tr id="{{ $project->id }}"class="mt-6 text-gray-500">
                             <td><span>{{$project->project_nummer}}</span><input class="hidden" type="text" value="{{$project->project_nummer}}"/></td>
@@ -23,9 +22,9 @@
                                 <div class="float-right">
                                     <button id="save" onclick="edit({{ $project->id }})"class="btn hidden btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-save"></i></button> 
                                     <button id="edit" class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-pencil-alt"></i></button> 
-                                    <form action="/project/delete" method="POST">
+                                    <form action="/project/{{ $project->id }}/delete" method="POST">
                                         @csrf
-                                        @method('delete')
+                                        @method('post')
                                         <button class="btn px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"><i class="fas fa-trash-alt"></i></button></td>
                                     </form>
                                 </div>

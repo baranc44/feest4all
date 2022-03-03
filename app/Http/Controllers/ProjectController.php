@@ -30,6 +30,12 @@ class ProjectController extends Controller
                 'email' => $project[2]
             ]);
     }  
+    public function delete($id){
+        $project = Project::find($id);
+        $project->delete();
+
+        return redirect('/projecten');
+    }
     public function addView(){
         $products = DB::table('products')->get();
         return view('/addproject', [
