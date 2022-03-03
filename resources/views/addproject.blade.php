@@ -5,8 +5,8 @@
             <div class="mb-0 space-y-6 ">        
                 @csrf
                    <h1 class="text-6xl font-bold text-center">Nieuw project</h1>
-                <input type="number" id="pnummer" name="project_nummer" placeholder="{{ __('Project nummer') }}"class="sm:w-full form-control border-gray-300 rounded-md shadow-sm block mt-1" required>
-                <input type="text" id="pnaam"name="naam" placeholder="{{ __('Project naam') }}"class="sm:w-full form-control border-gray-300 rounded-md shadow-sm block mt-1" required>
+                <input type="number" id="pnummer" name="project_nummer" placeholder="{{ __('Project nummer') }}"class="sm:w-full form-control border-gray-300 rounded-md shadow-sm block mt-1">
+                <input type="text" id="pnaam"name="naam" placeholder="{{ __('Project naam') }}"class="sm:w-full form-control border-gray-300 rounded-md shadow-sm block mt-1">
                 <h1 class="text-6xl font-bold text-center">Producten</h1>
                 <table id="tableId" name="table" style="width: 100%; !important; text-align: left;">               
                     <tr class="mt-8 text-2xl">
@@ -17,17 +17,18 @@
                     <tr>
                     <td><select name="producten">
                         @foreach($products as $product)
+                            <option hidden>Voeg een product toe</option>
                             <option name="products" value="{{ $product->id }}">{{ $product->naam }} </option>
                         @endforeach
                       </select></td>
-                            <td><input type="text" name="amount" value="0" placeholder="Hoeveelheid"></td>
+                            <td><input type="text" id="amount" name="amount" value="0" placeholder="Hoeveelheid"></td>
                             <td><input type="text" name="comment" placeholder="Opmerkingen"></td>                                         
                         </tr>
                 </table>
                 <div class="text-center">
                     <a>+</a>
                 </div>
-                <button onclick="allData();" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-smt ext-sm font-medium text-white bg-orange-600 hover:big-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">Aanmaken</button>         
+                <button onclick="allData(); empty();" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-smt ext-sm font-medium text-white bg-orange-600 hover:big-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">Aanmaken</button>         
             </div>           
         </div>
     </div>       
@@ -67,9 +68,12 @@
                 array: array,
                 pnummer: pnummer,
                 pnaam: pnaam
+            },success: function(){
+                location.replace('/projecten');
+            },error: function(response){
+                alert(response.success);
             }
             });
-            location.replace("/projecten");
         }
     </script>
 </x-guest-layout>
