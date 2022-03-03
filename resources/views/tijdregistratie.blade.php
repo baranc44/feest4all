@@ -36,14 +36,14 @@
                             <td></td>
                             <td></td>
                             <td style="text-align: right">Totaal: </td>
-                            <td style="text-align: center;font-weight:bold;"> <span id="totalHour">0.00</span></td>
+                            <td style="font-weight:bold;"> <span id="totalHour">0.00</span></td>
                         </tr>
-                        <tr>
+                        <tr class="buttons">
                             <td colspan="4"><a class="text-center" class="add" onclick="addProductRow();">
                                 <p>+</p>
                             </a></td>
                         </tr>
-                        <tr>
+                        <tr class="buttons">
                             <td onclick="send()">submit button</td> 
                         </tr>
                     </table>
@@ -136,6 +136,27 @@
         td:last-child > input {
             text-align: center;
             
+        }
+
+        @media only screen and (max-width: 1000px) {
+        
+            .buttons {
+                color: red;
+                text-align: center;
+            }
+            
+            th {
+                display: none;
+            }
+            td {
+                display:flex;
+            }
+
+            input["number"] {
+                width: 100%;
+            }
+            
+
         }
     </style>
 </x-app-layout>

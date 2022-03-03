@@ -17,11 +17,8 @@ class TijdController extends Controller
     }
 
     public function add(Request $request) {
-
-        
         if ($request->all() != null) {
             dd($request->all());
         }
-
     }
 }
