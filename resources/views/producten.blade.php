@@ -102,11 +102,6 @@
             // show the edit button
             $("#"+id).find("td").find("#edit").removeClass("hidden");
         }
-
-
-        function del(id) {
-            console.log("delete" +id);
-        }
     </script>
 
 

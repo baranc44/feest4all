@@ -50,6 +50,7 @@ Route::get('/planning', [PlanningController::class, 'allPlanning'])->name('plann
 
 // tijd registratie
 Route::get('/tijdregistratie', [TijdController::class, 'showTijd'])->name('tijdregistratie');
+Route::post('tijdpost', [TijdController::class, 'add'])->name('tijdpost');
 
 // overzichten
 Route::get('/overzichten', [OverzichtenController::class, 'allOverzichten'])->name('overzichten');

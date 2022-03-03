@@ -9,10 +9,19 @@ class TijdController extends Controller
 {
     public function showTijd() {
 
-        $products = Project::all();
+        $projects = Project::all();
 
         return view('tijdregistratie', [
-            'products' => $products
+            'projects' => $projects
         ]);
+    }
+
+    public function add(Request $request) {
+
+        
+        if ($request->all() != null) {
+            dd($request->all());
+        }
+
     }
 }
