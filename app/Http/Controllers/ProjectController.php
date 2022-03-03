@@ -48,6 +48,7 @@ class ProjectController extends Controller
         $pnummer = $request->all()["pnummer"];
         $array = $request->all()["array"];
 
+        
         $project = Project::create([
             'project_nummer' => $pnummer,            
             'naam' => $pnaam          
@@ -55,13 +56,16 @@ class ProjectController extends Controller
         $lastprojectId = Project::select('id')->orderBy('created_at', 'DESC')->first();
 
         foreach($array as $item){
+
         $project_product = ProjectProducten::create([
             'project_id' => $lastprojectId->id,
             'product_id' => $item[0],
             'hoeveelheid' => $item[1],
-            'opmerkingen' => $item[2]
+            'opmerkingen' => $item[2] || ""
         ]);    
-    }     
+        }   
+        response() ->json(['code'=>200,'success' => 'Hooray']);
+        
         return redirect('/projecten');
     }
     }  
