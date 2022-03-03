@@ -54,9 +54,8 @@ class ProjectController extends Controller
             'naam' => $pnaam          
         ]);
         $lastprojectId = Project::select('id')->orderBy('created_at', 'DESC')->first();
-
+        
         foreach($array as $item){
-
         $project_product = ProjectProducten::create([
             'project_id' => $lastprojectId->id,
             'product_id' => $item[0],

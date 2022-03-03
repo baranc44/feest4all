@@ -65,7 +65,6 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
             // make a product array
             const product = new Array();
 

@@ -70,8 +70,8 @@
                 pnaam: pnaam
             },success: function(){
                 location.replace('/projecten');
-            },error: function(response){
-                alert(response.success);
+            },error: function(){
+               // alert("werkt neit");
             }
             });
         }
