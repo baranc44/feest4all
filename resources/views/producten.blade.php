@@ -119,7 +119,8 @@
             border-radius: 25px;
             text-align: center;
             width: 40%;
-            
+            padding: 25px;
+            margin-bottom: 20px;
         }
 
         table {
