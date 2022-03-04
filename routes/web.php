@@ -55,6 +55,7 @@ Route::post('tijdpost', [TijdController::class, 'add'])->name('tijdpost');
 // overzichten
 Route::get('/overzichten', [OverzichtenController::class, 'overzichtMenu'])->name('overzichten');
 Route::get('/urenOverzichtUser', [OverzichtenController::class, 'urenOverzichtUser'])->name('urenOverzichtUser');
+Route::get('/uren_ajax', [OverzichtenController::class, 'allUren_ajax'])->name('urenajax');
 
 // exporteren
 Route::get('/exporteren', [ExportController::class, 'allExports'])->name('exporteren');

@@ -12,6 +12,28 @@ class OverzichtenController extends Controller
     }
 
     public function urenOverzichtUser() {
-        return view('urenOverzichtUser');
+        $users = DB::table('users')->get();
+        $uren = DB::table('uren')->get();
+        return view('urenOverzichtUser', [
+            'users' => $users,
+            'uren' => $uren
+        ]);
+    }
+
+    public function allUren_ajax(Request $request) {
+        if ($request->ajax()) {
+            
+            $search = $request->get('search');
+
+            $uren = DB::table('uren')
+                    ->where('member_id', $search)
+                    ->paginate(50);
+
+
+
+                    return view('urenList', [
+                        'uren' => $uren
+                    ]);
+        }
     }
 }
