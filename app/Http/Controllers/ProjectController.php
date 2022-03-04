@@ -19,17 +19,11 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function edit(Request $request) {
-        
-        $project = $request->all()["project"];
-
-        $change = DB::table('project')
-            ->where('id', $project[0])
-            ->update([
-                'name' => $project[1],
-                'email' => $project[2]
-            ]);
+    public function edit($id) {     
+        $project = Project::find($id);
+        return view('editproject')->with('projects', $project);
     }  
+
     public function delete($id){
         $project = Project::find($id);
         $project->delete();

@@ -61,8 +61,8 @@ Route::get('/exporteren', [ExportController::class, 'allExports'])->name('export
 // projecten
 Route::get('/projecten', [ProjectController::class, 'allProjects'])->name('projecten');
 Route::get('/project/add', [ProjectController::class, 'addView'])->name('addproject');
-Route::post('/addprojectdata',[ProjectController::class, 'addProject'])->name('addprojectdata');
-Route::post('/project/edit', [ProjectController::class, 'edit'])->name('editproject');
+Route::post('/addprojectdata', [ProjectController::class, 'addProject'])->name('addprojectdata');
+Route::get('/project/{id}/edit', [ProjectController::class, 'edit'])->name('projectedit');
 Route::post('/project/{id}/delete', [ProjectController::class, 'delete'])->name('deleteproject');
 
 });
