@@ -21,8 +21,13 @@ class ProjectController extends Controller
 
     public function edit($id) {     
         $project = Project::find($id);
-        return view('editproject')->with('projects', $project);
-    }  
+        $product = Product::with('projectproducten')->get();
+        return view('editproject',[
+            'projects' => $project,
+            'products' => $product
+        ]);
+        
+    }
 
     public function delete($id){
         $project = Project::find($id);
@@ -41,8 +46,6 @@ class ProjectController extends Controller
         $pnaam = $request->all()["pnaam"];
         $pnummer = $request->all()["pnummer"];
         $array = $request->all()["array"];
-
-        
         $project = Project::create([
             'project_nummer' => $pnummer,            
             'naam' => $pnaam          
