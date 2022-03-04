@@ -18,11 +18,12 @@
                     <tr>
                         <td><select name="producten">
                         @foreach($products as $product)
-                            <option name="products" value="{{ $product->id }}">{{ $product->naam }}</option>
-                         @endforeach
-                          </select></td>
+                            <option name="products" value="{{ $product->id }}"selected>{{ $product->naam }}</option>
+                        @endforeach
+                        </select>                     
+                    </td>
                                 <td><input type="text" id="amount"name="amount" value="0" placeholder="Hoeveelheid"></td>
-                                <td><input type="text" name="comment"placeholder="Opmerkingen"></td>                                         
+                                <td><input type="text" name="comment" placeholder="Opmerkingen"></td>                                         
                             </tr>
                 </table>
                 <div class="text-center">
