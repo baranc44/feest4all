@@ -7,55 +7,35 @@
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">       
-                <div class="p-6 sm:px-20 bg-white border-b border-gray-200">
-                    <div class="selectMenuDiv">
-                    <select id="select" onchange="change()">
-                        <option value="" selected disabled hidden>&raquo; Klik hier om te kiezen &laquo;</option>
-                        <option value="1">Overzicht per week</option>
-                        <option value="2">Overzicht per project</option><!-- product per project moet hierin-->
-                        <option value="3">Uren per werknemer</option> <!-- admin only -->
-                        <option value="4">Maand overzicht</option> <!-- admin only -->
-                    <select>  
+                <div class="p-6 sm:px-20 bg-white border-b border-gray-200" style="display:flex;">
+                    <div class="btnOverzicht">
+                        <h1>Overzicht</h1> <!-- Overzicht per week,maand,jaar? && per project -->
+                    </div>
+                    <div onclick="location.href='urenOverzichtUser'" class="btnOverzicht">
+                        <h1>Uren per werknemer</h1>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <script>
-        function change() 
-        {
-            value = document.getElementById("select").value;
-            console.log(value);
-        }
-    </script>
     <style>
-        .selectMenuDiv {
-            text-align: center;
-        }
-        
-        .selectMenuDiv select {
-            background: transparent;
-            border: none;
-            font-weight: bold;
-            color: white;
-            background-color: #ff6d2e;
-            border-radius: 12px 12px 3px 3px;
-            font-size: 30px;
-            padding: 20px;
-            text-align: left;
-            box-shadow: 0px 0px 12px rgb(54, 54, 54);
-            
+        .btnOverzicht {
+            margin: 2%;
+            width: 46%; 
+            padding: 150px;
+            text-align:center; 
+            background-color: rgb(114, 114, 114);
+            color:white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px black;
+            font-size: 25px;
         }
 
-        .selectMenuDiv select > option {
-            color: #ff6d2e;
-            background-color: white;
-            font-weight: bold;
-        }
-
-
-        .selectMenuDiv select:active {
-            border: none;
+        .btnOverzicht:hover {
+            background-color: rgb(93, 93, 93);
+            transition: 2ms;
+            font-size: 23px;
+            cursor:pointer;
         }
     </style>
 </x-app-layout>

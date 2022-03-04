@@ -7,7 +7,11 @@ use Illuminate\Support\Facades\DB;
 
 class OverzichtenController extends Controller
 {
-    public function allOverzichten(){
+    public function overzichtMenu(){
         return view('overzichten');
+    }
+
+    public function urenOverzichtUser() {
+        return view('urenOverzichtUser');
     }
 }

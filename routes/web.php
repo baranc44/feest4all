@@ -53,7 +53,8 @@ Route::get('/tijdregistratie', [TijdController::class, 'showTijd'])->name('tijdr
 Route::post('tijdpost', [TijdController::class, 'add'])->name('tijdpost');
 
 // overzichten
-Route::get('/overzichten', [OverzichtenController::class, 'allOverzichten'])->name('overzichten');
+Route::get('/overzichten', [OverzichtenController::class, 'overzichtMenu'])->name('overzichten');
+Route::get('/urenOverzichtUser', [OverzichtenController::class, 'urenOverzichtUser'])->name('urenOverzichtUser');
 
 // exporteren
 Route::get('/exporteren', [ExportController::class, 'allExports'])->name('exporteren');
