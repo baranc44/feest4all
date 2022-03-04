@@ -15,11 +15,13 @@ return new class extends Migration
     {
         Schema::create('uren', function(Blueprint $table){
             $table->increments('id');
-            $table->date('datum');
+            $table->integer('project_id');
+            $table->integer('member_id');
             $table->double('uren');
             $table->longText('omschrijving');
-            $table->tinyInteger('gefactureerd');
-            $table->integer('factuur_nummer');
+            $table->date('datum');
+            $table->tinyInteger('gefactureerd')->default(0);
+            $table->integer('factuur_nummer')->default(0);
             $table->timestamps();
         });
     }

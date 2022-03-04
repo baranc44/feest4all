@@ -20,10 +20,10 @@
                         </tr>
                         <tbody id="projectBody">
                             <tr class="trProjects">
-                                <td><input name="datum" style="width: 200px" type="date"></td>
+                                <td><input name="datum" type="date"></td>
                                 <td><select name="projects" style="width:100%">
+                                        <option value="-1" hidden>Select a project</option>
                                     @foreach($projects as $project)
-                                        <option value="" hidden>Select a project</option>
                                         <option name="project" value="{{ $project->id }}">{{ $project->naam }} </option>
                                     @endforeach
                                   </select>
@@ -39,12 +39,12 @@
                             <td style="font-weight:bold;"> <span id="totalHour">0.00</span></td>
                         </tr>
                         <tr class="buttons">
-                            <td colspan="4"><a class="text-center" class="add" onclick="addProductRow();">
-                                <p>+</p>
+                            <td colspan="4"><a class="text-center" class="add">
+                                <p onclick="addProductRow();" style="cursor: pointer;">+</p>
                             </a></td>
                         </tr>
                         <tr class="buttons">
-                            <td onclick="send()">submit button</td> 
+                            <td><a onclick="send()" style="cursor: pointer; text-align: center;" class="px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">submit button</a></td> 
                         </tr>
                     </table>
                 </div>
@@ -65,40 +65,48 @@
             const uren = document.getElementsByName("uren");
 
             let length = date.length;
+            
 
             var projects = new Array();
 
             for (i = 0; i < length; i++) {
-
+                
                 if (date[i].value != '' && projectsnames[i].value != '' && uren[i].value != '')
                 {
-                project = [date[i].value, projectsnames[i].value, omschrijving[i].value, uren[i].value];
+                    
+                    project = [date[i].value, projectsnames[i].value, omschrijving[i].value, uren[i].value];
 
-                projects.push(project);
+                    projects.push(project);
                 }
             }
+            console.log(projects);
 
             $.ajax({
                 type: "POST",
                 url: "tijdpost",
                 data: {
-                    projects: projects
+                    user_id: {{ Auth::user()->id }},
+                    uren: projects
+                },
+                success: function(){ 
+                    location.replace("/dashboard");
+                },
+                error: function(){
+                    alert('error!');
                 }
             });
 
             //location.replace("/dashboard");
-
-            console.log(projects);
 
         }
 
         function addProductRow() {
 
         document.getElementById("projectBody").insertAdjacentHTML('beforeend' ,'<tr class="trProjects">\
-                                <td><input name="datum" style="width: 200px" type="date"></td>\
+                                <td><input name="datum" type="date"></td>\
                                 <td><select name="projects" style="width:100%">\
-                                    @foreach($projects as $project)\
                                         <option value="-1" hidden>Select a project</option>\
+                                    @foreach($projects as $project)\
                                         <option name="project" value="{{ $project->id }}">{{ $project->naam }} </option>\
                                     @endforeach\
                                   </select>\
@@ -149,12 +157,22 @@
                 display: none;
             }
             td {
-                display:flex;
-            }
-
-            input["number"] {
+                display: flex;
                 width: 100%;
             }
+
+            input[type="date"] {
+                width: 100%;
+            }
+
+            td:last-child {
+                margin: 0;
+            }
+
+            td:last-child > input {
+            width: auto;
+            text-align: left;
+        }
             
 
         }
