@@ -71,11 +71,7 @@
             },success: function(){
                 location.replace('/projecten');
             },error: function(){
-<<<<<<< HEAD
-               // alert("werkt neit");
-=======
                 alert("Vul alle velden in");
->>>>>>> f100f0e953537fa7e1a948727f87c91492467bdb
             }
             });
         }
