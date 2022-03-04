@@ -12,7 +12,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">       
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-left">
                     <div class="text-center">
-                        <input type="search" placeholder="Zoeken..." class="btnSearch" onkeyup="search(value)"/>                        
+                        <input type="search" placeholder="Zoeken..." class="btnSearch" oninput="search(value)"/>                        
                     </div>
                     <table style="width: 100%;">
                         <tr class="mt-8 text-2xl">
@@ -33,14 +33,23 @@
     </div>
 
     <script>
+        let timeout = null;
+
         function search(search) {
         
-            $.ajax({
+            clearTimeout(timeout);
+
+            timeout = setTimeout(function () {
+                $.ajax({
                 url:BASE_URL+"/producten_ajax?search="+search,
                 success:function(data){
                     $('#tbody').html(data);
                 }
-            })
+            });
+            }, 500);
+
+
+            
         }
 
         function edit(id) {
@@ -109,6 +118,7 @@
         .btnSearch {
             border-radius: 25px;
             text-align: center;
+            width: 40%;
             
         }
 
@@ -156,7 +166,25 @@
             text-align: center;
         }
 
-        @media only screen and (max-width: 1000px) {
+        @media only screen and (max-width: 1380px) and (min-width: 810px)  {
+            input, input[type="number"] {
+                width: 100%;
+            }
+
+            td:nth-child(3) {
+                display: flex;
+            }
+        }
+
+
+        @media only screen and (max-width: 810px) {
+
+        .btnSearch {
+            width: 100%;
+            
+        }
+
+        
         
         table {
             display:flex;
