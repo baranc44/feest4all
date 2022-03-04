@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('project_producten', function(Blueprint $table){
             $table->increments('id');
             $table->unsignedInteger('project_id');
-            $table->unsignedBigInteger('product_id');
+            $table->unsignedInteger('product_id');
             $table->integer('hoeveelheid')->default(0);
             $table->tinyInteger('afgeleverd')->default(0);
             $table->integer('opgehaald')->default(0);
@@ -24,6 +24,7 @@ return new class extends Migration
             $table->longText('opmerkingen');
             $table->timeStamps();
             $table->foreign('project_id')->references('id')->on('project')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products');
         });
     }
 

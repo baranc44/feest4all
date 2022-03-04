@@ -22,4 +22,12 @@ class project extends Model
         'factuuradres',
         'created_at'
     ];
+    public function products(){
+        return $this->hasManyThrough(
+            Product::class,
+            Projectproducten::class, 
+            'product_id',
+            'project_id'
+        );
+    }
 }
