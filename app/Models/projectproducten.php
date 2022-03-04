@@ -10,6 +10,8 @@ class projectproducten extends Model
     use HasFactory;
 
     protected $table = 'project_producten';
+
+    protected $primaryKey = 'id';
     
     protected $fillable = [
         'id',
