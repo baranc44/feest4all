@@ -19,13 +19,14 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function edit(Request $request, $id) {     
+    public function edit($id) {     
         $project = Project::find($id);     
-        $product = DB::table('products')->get();
+        $product = Product::find($id);       
         return view('editproject',[
             'projects' => $project,
             'products' => $product
-        ]);       
+        ]);   
+        $product = DB::table('products')->get();    
     }
 
     public function delete($id){
@@ -53,7 +54,7 @@ class ProjectController extends Controller
         $lastprojectId = Project::select('id')->orderBy('created_at', 'DESC')->first();
 
         foreach($array as $item){
-        if ($item[0] == "" && $item[1] == "")
+        if ($item[0] == "-1" || $item[1] == "")
         {
             return;
         }

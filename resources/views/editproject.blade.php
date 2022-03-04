@@ -18,7 +18,7 @@
                     <tr>
                         <td><select name="producten">
                         @foreach($products as $product)
-                            <option name="products" value="{{ $product->id }}"selected>{{ $product->naam }}</option>
+                            <option name="products" value="{{ $product->id }}">{{ $product->naam }}</option>
                         @endforeach
                         </select>                     
                     </td>
