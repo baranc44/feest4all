@@ -10,6 +10,8 @@ class projectproducten extends Model
     use HasFactory;
 
     protected $table = 'project_producten';
+
+    protected $primaryKey = 'id';
     
     protected $fillable = [
         'id',
@@ -21,4 +23,7 @@ class projectproducten extends Model
         'afgeleverd',
         'opmerkingen'
     ];
+    public function products(){
+        return $this->hasMany('App\Models\product');
+    }
 }
