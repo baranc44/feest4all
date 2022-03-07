@@ -21,4 +21,7 @@ class product extends Model
         'eenheid',
         'created_at'
     ];
+    public function ProjProducts(){
+        return $this->belongsTo('App\Models\projectproducten');
+    }
 }

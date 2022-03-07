@@ -19,15 +19,16 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function edit($id) {     
-        $project = Project::find($id);     
-        $product = Product::find($id);       
+    public function edit($id) {    
+        $project = Project::find($id);   
+        $product = Projectproducten::where("project_id", $id)->get();
+        $pro
         return view('editproject',[
             'projects' => $project,
             'products' => $product
-        ]);   
-        $product = DB::table('products')->get();    
+        ]);      
     }
+    
 
     public function delete($id){
         $project = Project::find($id);
@@ -51,6 +52,7 @@ class ProjectController extends Controller
             'project_nummer' => $pnummer,            
             'naam' => $pnaam          
         ]);
+
         $lastprojectId = Project::select('id')->orderBy('created_at', 'DESC')->first();
         
         foreach($array as $item){
@@ -65,8 +67,7 @@ class ProjectController extends Controller
             'opmerkingen' => $item[2] || ""
         ]);    
         }   
-        response() ->json(['code'=>200,'success' => 'Hooray']);
-        
+        response() ->json(['code'=>200,'success' => 'Hooray']);       
         return;
     }
     }  
