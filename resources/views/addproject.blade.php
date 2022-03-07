@@ -21,13 +21,12 @@
                                 <option name="products" value="{{ $product->id }}">{{ $product->naam }} </option>
                             @endforeach
                           </select></td>
-                                <td><input type="text" id="amount" name="amount" value="0" placeholder="Hoeveelheid"></td>
+                                <td><input type="number" id="amount" name="amount" value="0" placeholder="Hoeveelheid"></td>
                                 <td><input type="text" name="comment" placeholder="Opmerkingen"></td>                                         
                             </tr>
                 </table>
                 <div class="text-center">
                     <a>+</a>
-                    <button id="Delete">-</a>
                 </div>
                 <button onclick="allData(); empty(); allowEmpty();" id="buttonSubmit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-smt ext-sm font-medium text-white bg-orange-600 hover:big-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">Aanmaken</button>         
             </div>           
@@ -38,9 +37,9 @@
             var tbody = $('#tableId').children('tbody');
             var table = tbody.length ? tbody : $('tableId');
             $('a').click(function(){
-            table.append('<tr> <td><select name="producten"> <option value="-1" hidden>Voeg een product toe</option> @foreach($products as $product) <option name="products" value="{{ $product->id }}">{{ $product->naam }} </option> @endforeach</select></td><td><input type="text" name="amount" placeholder="Hoeveelheid" value="0"></td><td><input type="text" name="comment" placeholder="Opmerkingen"></td></tr>');
+            table.append('<tr> <td><select name="producten"> <option value="-1" hidden>Voeg een product toe</option> @foreach($products as $product) <option name="products" value="{{ $product->id }}">{{ $product->naam }} </option> @endforeach</select></td><td><input type="number" name="amount" placeholder="Hoeveelheid" value="0"></td><td><input type="text" name="comment" placeholder="Opmerkingen"></td></tr>');
             })        
-        });   
+        });  
         function allData(){
             $.ajaxSetup({
             headers: {
