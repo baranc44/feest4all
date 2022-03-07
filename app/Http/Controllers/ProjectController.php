@@ -22,7 +22,6 @@ class ProjectController extends Controller
     public function edit($id) {    
         $project = Project::find($id);   
         $product = Projectproducten::where("project_id", $id)->get();
-        $pro
         return view('editproject',[
             'projects' => $project,
             'products' => $product
