@@ -70,14 +70,10 @@
             var projects = new Array();
 
             for (i = 0; i < length; i++) {
-                
-                if (date[i].value != '' && projectsnames[i].value != '' && uren[i].value != '')
-                {
                     
                     project = [date[i].value, projectsnames[i].value, omschrijving[i].value, uren[i].value];
 
                     projects.push(project);
-                }
             }
             console.log(projects);
 
@@ -85,14 +81,14 @@
                 type: "POST",
                 url: "tijdpost",
                 data: {
-                    user_id: {{ Auth::user()->id }},
+                    user_id:  {{ Auth::user()->id }},
                     uren: projects
                 },
                 success: function(){ 
                     location.replace("/dashboard");
                 },
-                error: function(){
-                    alert('error!');
+                error: function(request, status, error){
+                    alert(request.responseText);
                 }
             });
 
