@@ -54,8 +54,15 @@ Route::post('tijdpost', [TijdController::class, 'add'])->name('tijdpost');
 
 // overzichten
 Route::get('/overzichten', [OverzichtenController::class, 'overzichtMenu'])->name('overzichten');
+Route::get('/Overzicht', [OverzichtenController::class, 'Overzicht'])->name('overzicht');
+Route::get('/overzichtopties', [OverzichtenController::class, 'overzichtOpties'])->name('overzichtopties');
 Route::get('/urenOverzichtUser', [OverzichtenController::class, 'urenOverzichtUser'])->name('urenOverzichtUser');
 Route::get('/uren_ajax', [OverzichtenController::class, 'allUren_ajax'])->name('urenajax');
+
+Route::get("/projects_ajax", [OverzichtenController::class, 'allProjects_ajax'])->name('projectsajax');
+Route::delete('/uren/{id}/delete', [OverzichtenController::class, 'delete'])->name('urendel');
+Route::get("/projectKiezen", [OverzichtenController::class, 'projectKiezen'])->name('projectKiezen');
+Route::get("/projectProducten", [OverzichtenController::class, 'projectProducten'])->name('projectProducten');
 
 // exporteren
 Route::get('/exporteren', [ExportController::class, 'allExports'])->name('exporteren');

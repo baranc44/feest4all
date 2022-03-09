@@ -19,6 +19,27 @@ class OverzichtenController extends Controller
             'uren' => $uren
         ]);
     }
+    public function overzichtOpties(){
+        $projects = DB::table('project')->get();
+        $products = DB::table('products')->get();
+        return view('overzichtopties',[
+            'projects' => $projects,
+            'products' => $products
+        ]);
+    }
+    public function projectKiezen(){       
+        $projects = DB::table('project')->get();
+        return view('projectKiezen',[
+            'projects' => $projects,
+        ]);
+    }
+    public function Overzicht(){
+        return view('overzicht');
+    }
+   
+    public function projectProducten(){
+        return view('projectProducten');
+    }
 
     public function allUren_ajax(Request $request) {
         if ($request->ajax()) {
@@ -29,11 +50,31 @@ class OverzichtenController extends Controller
                     ->where('member_id', $search)
                     ->paginate(50);
 
-
-
                     return view('urenList', [
                         'uren' => $uren
                     ]);
         }
+    }
+    public function allProjects_ajax(Request $request){
+        if($request->ajax()){
+
+            $search = $request->get('search');
+
+
+            $projects = DB::table('project')
+                        ->where('id', $search)
+                        ->paginate(50);
+
+                        return view('projectList',[
+                            'projects'=> $projects
+                        ]);
+
+        }
+    }
+    public function delete($id){
+        $uren = Uren::find($id);
+        $uren->delete();
+
+        return redirect('/urenOverzichtUser');
     }
 }

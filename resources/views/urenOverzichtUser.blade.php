@@ -13,9 +13,11 @@
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-left">
                     <select style="margin-bottom: 20px;" onchange="search(value)" name="users" id="users" style="width: 300px;">
                         <option value="-1" hidden>Selecteer een werknemer </option>
+                        
                     @foreach ($users as $user)
                         <option value="{{$user->id}}">{{$user->name}}</option>
                     @endforeach
+                    
                     </select>
 
                     <table style="width: 100%;">
@@ -23,8 +25,8 @@
                             <th>Datum</th>
                             <th>Uren</th>
                             <th>Project</th>
-                            <th>Omschrijving</th>
-                        </tr>
+                            <th>Omschrijving</th>                     
+                        </tr>                       
                         <tbody id="tbody">
                             @include('urenList')
                         </tbody>
@@ -46,10 +48,7 @@
                 $('#tbody').html(data);
             }
         });
-        }, 500);
-
-
-        
+        }, 500);     
     }
     </script>
     <style>

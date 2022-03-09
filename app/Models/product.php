@@ -14,8 +14,8 @@ class product extends Model
     protected $primaryKey = 'id';
 
     protected $fillable = [
+        'naam',
         'id',
-        'naam', 
         'voorraad', 
         'prijs', 
         'eenheid',
