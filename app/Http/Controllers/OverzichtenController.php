@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Models\Project;
+// use Carbon\Carbon;
 
 class OverzichtenController extends Controller
 {
@@ -76,5 +78,10 @@ class OverzichtenController extends Controller
         $uren->delete();
 
         return redirect('/urenOverzichtUser');
+    }
+    
+    public function getData(Request $request){
+        $data = Project::whereBetween('created_at',[$request->from.' 00:00:00',$request->to.' 23:59:59'])->get();   
+        return view('overzichtopties', ['projects' => $data]);     
     }
 }
