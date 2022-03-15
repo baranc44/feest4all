@@ -42,15 +42,8 @@
                     </div>
                     <br>
                 </form>
-                {{-- <select style="margin-bottom: 20px;" onchange="search(value)" name="projects" class="projects" style="width: 300px;">
-                <option value="-1" hidden>Selecteer een project </option>
-
-                @foreach($projects as $project)
-                    <option value="{{ $project->id }}">{{ $project->naam }}</option>
-                @endforeach
-                </select> --}}
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-left">
-                <table style="width: 100%;">
+                <table style="width: 100%;" id="table">
                     <tr class="mt-8 text-2xl">
                         <th>Project ID</th>
                         <th>Project Nummer</th>                     
@@ -61,7 +54,7 @@
                     </tr>   
                     <tbody id="tbody">
                         @include('projectList')
-                    </tbody>         
+                    </tbody> 
                 </table>
                 </div> 
             </div>
