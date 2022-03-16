@@ -1,4 +1,5 @@
 <x-app-layout>
+    @include('sweetalert::alert')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Werknemers') }}
@@ -65,9 +66,8 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });     
-           var pw = prompt("Change your password");
+            var pw = prompt("Change your password");        
             if(pw!=null){   
-
             $.ajax({
             type: "POST",
             url: "/passwordedit",
@@ -78,8 +78,6 @@
             });      
             }
         }
-
-
         function save(id) {
             //csrf token
             $.ajaxSetup({
@@ -127,6 +125,7 @@
             function del(id) {
             console.log("delete" +id);
         }
+
     </script>
     <style>
         .btn {

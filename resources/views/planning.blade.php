@@ -14,13 +14,39 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
 </head>
 <body>
+    <div id="schedule-calendar"></div>
+<!-- Add Modal -->
+<div class="modal fade" id="schedule-add">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <!-- Modal Header -->
+            <div class="modal-header">
+                <h4 class="modal-title">Add Your Schedule</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <!-- Modal body -->
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label>Schedule Name:</label>
+                        <input type="text" class="form-control">
+                    </div>
+                </form>
+            </div>
+            <!-- Modal footer -->
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-success">Add Your Schedule</button>
+            </div>
+        </div>
+    </div>
+</div>
     <div class="container mt-5" style="max-width: 700px">
         <div class="row">
             <div class="col-12">
                 <div class="col-md-11 offset-1 mt-5 mb-5">
-                     <div id="calendar">
-
-                     </div>
+                     <div id="calendar"></div>
+                     <div id="dayPopup"></div>
                 </div>
             </div>
         </div>
@@ -40,30 +66,29 @@
                     month: 'Maand',
                     agendaDay: 'Dag'
                 },
-                events:'/planning'
+                events:'/planning',
                 selectable:true,
                 selectHelper: true,
                 select:function(start, end, allday){
-                    var title = prompt('Title:');
+                    var title = prompt("Title:");
                     if(title){
                         var start = $.fullCalendar.formatDate(start, 'Y-MM-DD HH:mm:ss');
-                        var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');
-
+                        var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');            
                         $.ajax({
-                            url:"/planning/action",
+                            url:"planning/action",
                             type:"POST",
                             data:{
                                  title: title,
                                  start: start,
-                                 end: end,
-                                 type: 'add'
+                                 end: end
                             },
-                            success:function(data){
+                            success:function(data){                              
                                 calendar.fullCalendar('refetchEvents');
                                 alert("Gelukt! De taak is succesvol opgeslagen");
+                                console.log(data);
                             }
                         })
-                    }
+                    }                  
                 }
             });          
         });        

@@ -6,19 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class WerknemerController extends Controller
 {
     public function allUsers(){
-        $werknemers = DB::table('users')->paginate(50);
-        
+    $werknemers = DB::table('users')->paginate(50);
+
     return view('werknemers', [
     'werknemers' => $werknemers
     ]);
 }
 
     public function addView(){
-        return view('/addwerknemer');      
+        return view('/addwerknemer'); 
     }
 
     public function addUser(Request $request){
