@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Project;
-// use Carbon\Carbon;
 
 class OverzichtenController extends Controller
 {
@@ -32,15 +31,17 @@ class OverzichtenController extends Controller
     public function projectKiezen(){       
         $projects = DB::table('project')->get();
         return view('projectKiezen',[
-            'projects' => $projects,
+            'projects' => $projects
         ]);
+    }
+    public function projectProducten(){
+        $product = DB::table('products')->get();
+        return view('projectProducten',[
+            'products' => $product
+        ]);   
     }
     public function Overzicht(){
         return view('overzicht');
-    }
-   
-    public function projectProducten(){
-        return view('projectProducten');
     }
 
     public function allUren_ajax(Request $request) {

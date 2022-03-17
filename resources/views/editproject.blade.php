@@ -34,50 +34,6 @@
             </div>           
         </div>
     </div>       
-    {{-- <script>
-        $(document).ready(function(){
-            var tbody = $('#tableId').children('tbody');
-            var table = tbody.length ? tbody : $('tableId');
-            $('a').click(function(){
-            table.append('<tr> <td><select name="producten"> @foreach($products as $product) <option hidden>Voeg een product toe</option> <option name="products" value="{{ $product->id }}">{{ $product->naam }} </option> @endforeach</select></td><td><input type="text" name="amount" placeholder="Hoeveelheid" value="0"></td><td><input type="text" name="comment" placeholder="Opmerkingen"></td></tr>');
-            })         
-        });   
-        function allData(){
-            $.ajaxSetup({
-            headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            const products = document.getElementsByName("producten");
-            const pnummer = document.getElementById("pnummer").value;
-            const pnaam = document.getElementById("pnaam").value;
-            const amount = document.getElementsByName("amount");
-            const comment = document.getElementsByName("comment");
-            var array = new Array();
-            let length = products.length;
-            for (i = 0; i < length; i++)
-            {
-                var a = [products[i].value, amount[i].value, comment[i].value];
-                
-                array.push(a);
-            }      
-            console.log(array);
-            $.ajax({
-            type: 'post',
-            url: '/addprojectdata',
-            data: {
-                array: array,
-                pnummer: pnummer,
-                pnaam: pnaam
-            },success: function(){
-                location.replace('/projecten');
-            },error: function(){
-                alert("Vul alle velden in");
-            }
-            });
-        }
-    </script> --}}
 </x-guest-layout>
 
 

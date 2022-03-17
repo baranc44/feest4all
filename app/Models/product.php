@@ -20,8 +20,5 @@ class product extends Model
         'prijs', 
         'eenheid',
         'created_at'
-    ];
-    public function ProjProducts(){
-        return $this->belongsTo('App\Models\projectproducten');
-    }
+    ]; 
 }

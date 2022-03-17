@@ -8,7 +8,7 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
+     * 
      * @return void
      */
     public function up()
@@ -24,7 +24,7 @@ return new class extends Migration
             $table->longText('opmerkingen');
             $table->timeStamps();
             $table->foreign('project_id')->references('id')->on('project')->onDelete('cascade');
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 
