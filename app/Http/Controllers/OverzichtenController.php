@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Project;
+use App\Models\Product;
+use App\Models\Projectproducten;
 
 class OverzichtenController extends Controller
 {
@@ -34,11 +36,14 @@ class OverzichtenController extends Controller
             'projects' => $projects
         ]);
     }
-    public function projectProducten(){
-        $product = DB::table('products')->get();
-        return view('projectProducten',[
+    public function projectProducten($id){
+        $project = Product::find($id);
+        $product = Projectproducten::where("project_id", $id)->get();
+        return view('projectProducten',[        
+            'projects' => $project,
             'products' => $product
-        ]);   
+        ]);  
+         
     }
     public function Overzicht(){
         return view('overzicht');
