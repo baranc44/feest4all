@@ -6,7 +6,9 @@
                 @csrf
             <table>
             @foreach($products as $product)
-                <td>{{ $product->product_id }}</td>
+            <tr>
+                <td>{{ $product->product->naam}}</td>
+            </tr>
             @endforeach
             </table>
             </form>

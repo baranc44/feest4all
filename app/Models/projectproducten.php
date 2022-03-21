@@ -23,5 +23,8 @@ class projectproducten extends Model
         'afgeleverd',
         'opmerkingen'
     ];
+    public function product(){
+        return $this->belongsTo(Product::class);
+    }
 }
 

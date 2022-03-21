@@ -21,4 +21,7 @@ class product extends Model
         'eenheid',
         'created_at'
     ]; 
+    public function projectProducten(){
+        return $this->hasMany(Projectproducten::class);
+    }
 }
