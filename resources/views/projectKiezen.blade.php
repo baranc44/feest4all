@@ -9,7 +9,7 @@
                         <option value="{{$project->id}}">{{$project->naam}}</option>
                     @endforeach                  
                     </select>
-                    <a href="{{ url('/projectProducten') }}"><button type="button">Kies &rarr;</button></a>   
+                    <a href="/projectProducten/{{ $project->id }}"><button type="button">Kies &rarr;</button></a>   
                 </div>
             </div>
         </div>

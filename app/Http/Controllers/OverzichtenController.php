@@ -39,12 +39,11 @@ class OverzichtenController extends Controller
     public function projectProducten($id){
         $project = Product::find($id);
         $product = Projectproducten::where("project_id", $id)->get();
-        $allProducts = Product::all();
         return view('projectProducten',[        
             'projects' => $project,
-            'products' => $product,
-            'allProducts' => $allProducts
+            'products' => $product
         ]);  
+        
     }
     public function Overzicht(){
         return view('overzicht');
