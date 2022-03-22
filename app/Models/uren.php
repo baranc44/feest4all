@@ -20,4 +20,7 @@ class uren extends Model
         'factuur_nummer',
         'created_at'
     ];
+    public function project(){
+        return $this->belongsTo(Project::class);
+    }
 }

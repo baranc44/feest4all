@@ -42,8 +42,15 @@ class OverzichtenController extends Controller
         return view('projectProducten',[        
             'projects' => $project,
             'products' => $product
-        ]);  
-        
+        ]);         
+    }
+    public function urenProject($id){
+        $project = Project::find($id);
+        $uren = Uren::where("project_id", $id)->get();
+        return view('urenproject',[
+            'projects' => $project,
+            'uren' => $uren
+        ]);
     }
     public function Overzicht(){
         return view('overzicht');

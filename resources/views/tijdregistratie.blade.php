@@ -91,13 +91,9 @@
                     alert(request.responseText);
                 }
             });
-
-            //location.replace("/dashboard");
-
-        }
+       }
 
         function addProductRow() {
-
         document.getElementById("projectBody").insertAdjacentHTML('beforeend' ,'<tr class="trProjects">\
                                 <td><input name="datum" type="date"></td>\
                                 <td><select name="projects" style="width:100%">\

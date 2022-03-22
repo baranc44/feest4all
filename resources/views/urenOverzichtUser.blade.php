@@ -28,7 +28,7 @@
                             <th>Omschrijving</th>                     
                         </tr>                       
                         <tbody id="tbody">
-                            @include('urenList')
+                           <!-- @include('urenList') -->
                         </tbody>
                     </table>
                 </div>

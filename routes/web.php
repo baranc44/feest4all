@@ -65,6 +65,7 @@ Route::get("/projects_ajax", [OverzichtenController::class, 'allProjects_ajax'])
 Route::delete('/uren/{id}/delete', [OverzichtenController::class, 'delete'])->name('urendel');
 Route::get("/projectKiezen", [OverzichtenController::class, 'projectKiezen'])->name('projectKiezen');
 Route::get('/projectProducten/{id}', 'App\Http\Controllers\OverzichtenController@projectProducten')->name('projectProducten');
+Route::get('/urenproject/{id}', 'App\Http\Controllers\OverzichtenController@urenProject')->name('urenProject');
 
 // exporteren
 Route::get('/exporteren', [ExportController::class, 'allExports'])->name('exporteren');

@@ -22,4 +22,7 @@ class project extends Model
         'factuuradres',
         'created_at'
     ];
+    public function uren(){
+        return $this->hasMany(Uren::class);
+    }
 }

@@ -1,15 +1,14 @@
-@foreach ($projects as $item)
-    <tr id="{{$item->id}}" id="tr" class="mt-6 text-gray-500">
+<form action='/urenproject/{{ $projects->id }}' method="POST">
+@foreach ($projects as $project)
+    <tr id="{{$project->id}}" id="tr" class="mt-6 text-gray-500">
         <div style="text-align: center;">
-        <td>{{$item->id}}</td>
-        <td>{{$item->project_nummer}}</td>
-        <td>{{$item->uurprijs}}</td>
-        <td>{{$item->verschotten}}</td>
-        <td>{{$item->opdrachtbedrag}}</td>
-        <td>{{$item->created_at}}</td>
+        <td>{{$project->id}}</td>
+        <td>{{$project->naam}}</td>
+        <td>{{$project->uurprijs}}</td>
         </div>
     </tr>
 @endforeach
+</form>
 <tr>
     <td colspan="5">-----------------------------------------------------</td>
 </tr>

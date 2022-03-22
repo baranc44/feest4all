@@ -7,7 +7,7 @@
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">       
-                <div class="p-6 sm:px-20 bg-white border-b border-gray-200" style="display:flex;">
+                <div class="p-6 sm:px-4 bg-white border-b border-gray-200" style="display:flex;">
                     <div onclick="location.href='overzichtopties'" class="btnOverzicht">
                         <h1>Overzicht</h1> <!-- Overzicht per week,maand,jaar? && per project -->
                     </div>
@@ -16,6 +16,9 @@
                     </div>
                     <div onclick="location.href='projectKiezen'" class="btnOverzicht">
                         <h1>Producten per project</h1>
+                    </div>
+                    <div onclick="location.href='urenproject'" class="btnOverzicht">
+                        <h1>Uren per project</h1>
                     </div>
                 </div>
             </div>
