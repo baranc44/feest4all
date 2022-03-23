@@ -18,7 +18,6 @@
                                     <a href="/projectProducten/{{ $project->id }}"><button id="btn" type="button"><i class="fas fa-eye"></i></button></a>  
                                         @csrf
                                         @method('post')
-                                    </form>
                                 </div> 
                             </td>                    
                         </tr>
