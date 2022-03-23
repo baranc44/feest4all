@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use App\Models\Project;
 use App\Models\Product;
 use App\Models\Projectproducten;
+use App\Models\Uren;
 
 class OverzichtenController extends Controller
 {
@@ -47,7 +48,7 @@ class OverzichtenController extends Controller
     public function urenProject($id){
         $project = Project::find($id);
         $uren = Uren::where("project_id", $id)->get();
-        return view('urenproject',[
+        return view('projectList',[
             'projects' => $project,
             'uren' => $uren
         ]);

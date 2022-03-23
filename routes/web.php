@@ -9,6 +9,7 @@ use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\OverzichtenController;
 use App\Http\Controllers\TijdController;
+use App\Http\Controllers\Uren;
 
 /*
 |--------------------------------------------------------------------------

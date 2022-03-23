@@ -12,10 +12,7 @@
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-left">
                     <select style="margin-bottom: 20px;" onchange="search(value)" name="users" style="width: 300px;">
-                        <option value="-1" hidden>Selecteer project</option>
-                    @foreach($projects as $project)
-                        <option value="{{ $project->id }}">{{ $project->naam }}</option>
-                    @endforeach
+                        <option value="-1" hidden>Selecteer project</option>                    
                     </select>              
                     <table style="width: 100%;">
                         <tr class="mt-8 text-2xl">
