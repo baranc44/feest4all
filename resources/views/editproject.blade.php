@@ -3,8 +3,6 @@
     <div class="mt-8 sm:mx-auto sm:w-full" style="width: 59%;">
         <div class="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
             <div class="mb-0 space-y-6 ">        
-            <form action='/project/{{ $projects->id }}/edit' method="POST">
-                @csrf
                    <h1 class="text-6xl font-bold text-center">Nieuw project</h1>
                 <input type="number" id="pnummer" name="project_nummer" value="{{ $projects->project_nummer }}" placeholder="{{ __('Project nummer') }}"class="sm:w-full form-control border-gray-300 rounded-md shadow-sm block mt-1">
                 <input type="text" id="pnaam"name="naam" value="{{ $projects->naam }}" placeholder="{{ __('Project naam') }}"class="sm:w-full form-control border-gray-300 rounded-md shadow-sm block mt-1">
@@ -16,24 +14,64 @@
                         <th>Opmerkingen</th>
                     </tr>
                     <tr>
-                        <td><select name="producten">
                         @foreach($products as $product)
-                            <option name="products" value="{{ $product->id }}">{{ $product->id }}</option>
-                        @endforeach   
-                        </select>                  
-                    </td>
-                                <td><input type="text" id="amount"name="amount" value="0" placeholder="Hoeveelheid"></td>
-                                <td><input type="text" name="comment" placeholder="Opmerkingen"></td>                                         
-                            </tr>
+                        <td><select name="producten">                  
+                            <option name="products" value="{{ $product->id }}">{{ $product->product->naam }}</option>                                          
+                        </select>   
+                        </td>                            
+                         <td><input type="text" id="amount"name="amount" value="{{ $product->hoeveelheid }}" placeholder="Hoeveelheid"></td>
+                         <td><input type="text" name="comment" value="{{ $product->opmerkingen }}" placeholder="Opmerkingen"></td>                                                           
+                    </tr>  
+                    @endforeach      
                 </table>
                 <div class="text-center">
                     <a>+</a>
                 </div>
-                <button class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-smt ext-sm font-medium text-white bg-orange-600 hover:big-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">Wijzig</button>         
-            </form>
+                <a href="{{url('/projecten')}}"><button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-smt ext-sm font-medium text-white bg-orange-600 hover:big-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">Wijzig</button></a>     
             </div>           
         </div>
     </div>       
+    <script>
+        $(document).ready(function(){
+            var tbody = $('#tableId').children('tbody');
+            var table = tbody.length ? tbody : $('tableId');
+            $('a').click(function(){
+                table.append('<tr> <td><select name="producten"> <option value="-1" hidden>Voeg een product toe</option> @foreach($products as $product) <option name="products" value="{{ $product->id }}">{{ $product->product->naam }} </option> @endforeach</select></td><td><input type="number" name="amount" placeholder="Hoeveelheid" value="0"></td><td><input type="text" name="comment" placeholder="Opmerkingen"></td></tr>');
+            })
+        });
+        function allData(){
+            $.ajaxSetup({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            const pnummer = document.getElementById("pnummer").value;
+            const pnaam = document.getElementById("pnaam").value;
+            var array = new Array();
+            let length = products.length;
+            for (i = 0; i < length; i++)
+            {
+                var a = [pnummer[i].value, pnaam[i].value;
+                
+                array.push(a);
+            }      
+            console.log(array);
+            $.ajax({
+            type: 'post',
+            url: '/editprojecten',
+            data: {
+                array: array,
+                pnummer: pnummer,
+                pnaam: pnaam
+            },success: function(){
+                location.replace('/projecten');
+            },error: function(){
+                alert("Vul alle velden in");
+            }
+            });
+        }  
+    </script>
 </x-guest-layout>
 
 

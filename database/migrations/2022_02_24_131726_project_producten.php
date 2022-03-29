@@ -21,7 +21,7 @@ return new class extends Migration
             $table->tinyInteger('afgeleverd')->default(0);
             $table->integer('opgehaald')->default(0);
             $table->tinyInteger('gefactureerd')->default(0);
-            $table->longText('opmerkingen');
+            $table->string('opmerkingen');
             $table->timeStamps();
             $table->foreign('project_id')->references('id')->on('project')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');

@@ -19,16 +19,23 @@ class ProjectController extends Controller
         ]);
     }
 
-    public function edit($id) {    
+    public function edit($id) {  
         $project = Project::find($id);   
         $product = Projectproducten::where("project_id", $id)->get();
         return view('editproject',[
             'projects' => $project,
             'products' => $product
-        ]);      
+        ]);         
+    }
+    public function update(Request $request, $id){
+        dd($request->all());
+        $projects = Project::find($id);
+        $projects->project_nummer = $request->input('project_nummer');
+        $projects->naam = $request->input('naam');
+        $students->update();
+        return redirect('/projecten');
     }
     
-
     public function delete($id){
         $project = Project::find($id);
         $project->delete();

@@ -4,7 +4,7 @@
             <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-left" style="text-align: center;">                 
             <form action='/projectProducten/{{ $projects->id }}' method="POST">
                 @csrf
-            <table>
+            <table id="tableId">
             @foreach($products as $product)
             <tr>
                 <td>{{ $product->product->naam}}</td>
