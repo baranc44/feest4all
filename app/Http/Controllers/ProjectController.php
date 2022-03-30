@@ -27,15 +27,20 @@ class ProjectController extends Controller
             'products' => $product
         ]);         
     }
-    public function update(Request $request, $id){
-        dd($request->all());
-        $projects = Project::find($id);
-        $projects->project_nummer = $request->input('project_nummer');
-        $projects->naam = $request->input('naam');
-        $students->update();
-        return redirect('/projecten');
+
+    function updateData(Request $request){
+        $pnaam = $request->all()["pnaam"];
+        $pnummer = $request->all()["pnummer"];
+        $array = $request->all()["array"];
+
+        $project = Project::update([
+            'project_nummer' => $pnummer,            
+            'naam' => $pnaam,
+        ]);  
+        response()->json(['code'=>200, 'success' => 'Hooray']);
+        return;
     }
-    
+
     public function delete($id){
         $project = Project::find($id);
         $project->delete();

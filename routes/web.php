@@ -77,7 +77,7 @@ Route::get('/projecten', [ProjectController::class, 'allProjects'])->name('proje
 Route::get('/project/add', [ProjectController::class, 'addView'])->name('addproject');
 Route::post('/addprojectdata', [ProjectController::class, 'addProject'])->name('addprojectdata');
 Route::get('project/{id}/edit', [ProjectController::class, 'edit'])->name('projectedit');
-Route::post('update/{id}', [ProjectController::class, 'update'])->name('projectupdate');
+Route::post('/update', [ProjectController::class, 'updateData'])->name('projectupdate');
 Route::post('/project/{id}/delete', [ProjectController::class, 'delete'])->name('deleteproject');
 });
 

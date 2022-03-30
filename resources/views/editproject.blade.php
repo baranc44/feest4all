@@ -16,18 +16,18 @@
                     <tr>
                         @foreach($products as $product)
                         <td><select name="producten">                  
-                            <option name="products" value="{{ $product->id }}">{{ $product->product->naam }}</option>                                          
+                            <option id="products" name="products" value="{{ $product->id }}">{{ $product->product->naam }}</option>                                          
                         </select>   
                         </td>                            
-                         <td><input type="text" id="amount"name="amount" value="{{ $product->hoeveelheid }}" placeholder="Hoeveelheid"></td>
-                         <td><input type="text" name="comment" value="{{ $product->opmerkingen }}" placeholder="Opmerkingen"></td>                                                           
+                         <td><input type="text" id="amount" name="amount" value="{{ $product->hoeveelheid }}" placeholder="Hoeveelheid"></td>
+                         <td><input type="text" id="comment" name="comment" value="{{ $product->opmerkingen }}" placeholder="Opmerkingen"></td>                                                           
                     </tr>  
                     @endforeach      
                 </table>
                 <div class="text-center">
                     <a>+</a>
                 </div>
-                <a href="{{url('/projecten')}}"><button type="submit" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-smt ext-sm font-medium text-white bg-orange-600 hover:big-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">Wijzig</button></a>     
+                <button id="button" type="submit" onclick="passData()" class="w-full flex justify-center py-2 px-4 border border-transparent rounded-md shadow-smt ext-sm font-medium text-white bg-orange-600 hover:big-orange-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-orange-500">Wijzig</button>
             </div>           
         </div>
     </div>       
@@ -39,28 +39,33 @@
                 table.append('<tr> <td><select name="producten"> <option value="-1" hidden>Voeg een product toe</option> @foreach($products as $product) <option name="products" value="{{ $product->id }}">{{ $product->product->naam }} </option> @endforeach</select></td><td><input type="number" name="amount" placeholder="Hoeveelheid" value="0"></td><td><input type="text" name="comment" placeholder="Opmerkingen"></td></tr>');
             })
         });
-        function allData(){
+
+        
+            function passData(){
             $.ajaxSetup({
             headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
 
+            const products = document.getElementsByName("producten");
             const pnummer = document.getElementById("pnummer").value;
             const pnaam = document.getElementById("pnaam").value;
+            const amount = document.getElementsByName("amount");
+            const comment = document.getElementsByName("comment");
             var array = new Array();
             let length = products.length;
             for (i = 0; i < length; i++)
             {
-                var a = [pnummer[i].value, pnaam[i].value;
-                
+                var a = [products[i].value, amount[i].value, comment[i].value];
                 array.push(a);
             }      
-            console.log(array);
+            var id = {{$projects->id}};
             $.ajax({
             type: 'post',
-            url: '/editprojecten',
+            url:'/update',
             data: {
+                id: id,
                 array: array,
                 pnummer: pnummer,
                 pnaam: pnaam
@@ -69,18 +74,7 @@
             },error: function(){
                 alert("Vul alle velden in");
             }
-            });
-        }  
+            });          
+            }
     </script>
 </x-guest-layout>
-
-
-
-
-
-
-
-
-
-
-

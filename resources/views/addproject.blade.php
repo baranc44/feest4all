@@ -56,10 +56,10 @@
             let length = products.length;
             for (i = 0; i < length; i++)
             {
-                var a = [products[i].value, amount[i].value, comment[i].value];
-                
+                var a = [products[i].value, amount[i].value, comment[i].value];   
                 array.push(a);
-            }      
+                
+            }     
             console.log(array);
             $.ajax({
             type: 'post',
