@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\Projectproducten;
 use App\Http\Controllers\Products;
 
+
 class ProjectController extends Controller
 {
     public function allProjects(){
@@ -20,25 +21,31 @@ class ProjectController extends Controller
     }
 
     public function edit($id) {  
+        // $lijst = Product::find($id);
+        // $a = Projectproducten::where("product_id", $id)->get();
+        $lijst = DB::table("products")->get();
         $project = Project::find($id);   
         $product = Projectproducten::where("project_id", $id)->get();
         return view('editproject',[
             'projects' => $project,
-            'products' => $product
+            'products' => $product,
+            'lijst' => $lijst,
+            // 'productLijst' => $a
         ]);         
     }
 
     function updateData(Request $request){
-        $pnaam = $request->all()["pnaam"];
-        $pnummer = $request->all()["pnummer"];
-        $array = $request->all()["array"];
-
-        $project = Project::update([
-            'project_nummer' => $pnummer,            
-            'naam' => $pnaam,
-        ]);  
-        response()->json(['code'=>200, 'success' => 'Hooray']);
-        return;
+        $project = DB::table('project')->get();
+        $id = $request->all()['id'];
+        $array = $request->all()['array'];
+        $pnaam = $request->all()['pnaam'];
+        $pnummer = $request->all()['pnummer'];
+        $update = DB::table('project')
+            ->where('id', $id)
+            ->update([
+                'project_nummer' => $pnummer,
+                'naam' => $pnaam
+            ]);
     }
 
     public function delete($id){

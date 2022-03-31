@@ -44,7 +44,7 @@
                             </a></td>
                         </tr>
                         <tr class="buttons">
-                            <td><a onclick="send()" style="cursor: pointer; text-align: center;" class="px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">submit button</a></td> 
+                            <td><a onclick="send()" style="cursor: pointer; text-align: center;" class="px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Registreren</a></td> 
                         </tr>
                     </table>
                 </div>
