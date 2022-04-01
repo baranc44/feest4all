@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+
+class product extends Model
+{
+    use HasFactory;
+
+    protected $table = 'products';
+
+    protected $primaryKey = 'id';
+
+    protected $fillable = [
+        'naam',
+        'id',
+        'voorraad', 
+        'prijs', 
+        'eenheid',
+        'created_at'
+    ]; 
+    public function projectProducten(){
+        return $this->hasMany(Projectproducten::class);
+    }
+}

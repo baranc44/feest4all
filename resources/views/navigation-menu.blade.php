@@ -1,12 +1,12 @@
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div style="max-width: 110rem;" class="mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-jet-application-mark class="block h-9 w-auto" />
+                        <x-jet-application-mark style="margin-top: -35px;" class="block h-9 w-auto" />
                     </a>
                 </div>
 
@@ -14,6 +14,42 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                    </x-jet-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('producten') }}" :active="request()->routeIs('producten')">
+                        {{ __('Producten') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('planning') }}" :active="request()->routeIs('planning')">
+                    {{ __('Planning') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('overzichten') }}" :active="request()->routeIs('overzichten')">
+                    {{ __('Overzichten') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('werknemers') }}" :active="request()->routeIs('werknemers')">
+                    {{ __('Werknemers') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{  route('exporteren') }}" :active="request()->routeIs('exporteren')">
+                    {{ __('Exporteren') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('projecten') }}" :active="request()->routeIs('projecten')">
+                    {{ __('Projecten') }}
+                    </x-jet-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('tijdregistratie') }}" :active="request()->routeIs('tijdregistratie')">
+                    {{ __('Tijdregistratie') }}
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -164,6 +200,35 @@
                     {{ __('Profile') }}
                 </x-jet-responsive-nav-link>
 
+                <x-jet-responsive-nav-link href="{{ route('producten') }}" :active="request()->routeIs('producten')">
+                    {{ __('Producten') }}
+                </x-jet-responsive-nav-link> 
+
+                <x-jet-responsive-nav-link href="{{ route('planning') }}" :active="request()->routeIs('planning')">
+                    {{ __('Planning') }}
+                </x-jet-responsive-nav-link>
+
+                <x-jet-responsive-nav-link href="{{ route('overzichten') }}" :active="request()->routeIs('overzichten')">
+                    {{ __('Overzichten') }}
+                </x-jet-responsive-nav-link>
+
+                <x-jet-responsive-nav-link href="{{ route('werknemers') }}" :active="request()->routeIs('werknemers')">
+                    {{ __('Werknemers') }}
+                </x-jet-responsive-nav-link>
+
+                <x-jet-responsive-nav-link href="{{ route('exporteren') }}" :active="request()->routeIs('exporteren')">
+                    {{ __('Exporteren') }}
+                </x-jet-responsive-nav-link>
+                
+                <x-jet-responsive-nav-link href="{{ route('projecten') }}" :active="request()->routeIs('projecten')">
+                    {{ __('Projecten') }}
+                </x-jet-responsive-nav-link>
+
+                <x-jet-responsive-nav-link href="{{ route('tijdregistratie') }}" :active="request()->routeIs('tijdregistratie')">
+                    {{ __('Tijdregistratie') }}
+                </x-jet-responsive-nav-link>
+                <div style="width: 25%; height:2px;background-color: rgb(107 114 128);"></div>
+
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}
@@ -174,7 +239,7 @@
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
 
-                    <x-jet-responsive-nav-link href="{{ route('logout') }}"
+                    <x-jet-responsive-nav-link style="color:rgb(223, 0, 0);" href="{{ route('logout') }}"
                                    onclick="event.preventDefault();
                                     this.closest('form').submit();">
                         {{ __('Log Out') }}
