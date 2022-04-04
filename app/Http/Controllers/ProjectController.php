@@ -8,6 +8,7 @@ use App\Models\Project;
 use App\Models\Product;
 use App\Models\Projectproducten;
 use App\Http\Controllers\Products;
+use RealRashid\SweetAlert\Facades\Alert;
 
 
 class ProjectController extends Controller
@@ -15,7 +16,7 @@ class ProjectController extends Controller
     public function allProjects(){
         $projecten = DB::table('project')
             ->get();
-        return view('projecten',[
+         return view('projecten',[
         'projecten' => $projecten
         ]);
     }

@@ -53,18 +53,17 @@
     </div>
     
     <script>
+        $.ajaxSetup({
+            headers:{
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
         $(document).ready(function(){       
             $('#calendar').fullCalendar({
                 editable: true,
                 header:{
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month, agendaDay'
-                },
-                buttonText:{
-                    today: 'Vandaag',
-                    month: 'Maand',
-                    agendaDay: 'Dag'
+                    right: 'prev,next'
                 },
                 events:'/planning',
                 selectable:true,
@@ -72,8 +71,8 @@
                 select:function(start, end, allday){
                     var title = prompt("Title:");
                     if(title){
-                        var start = $.fullCalendar.formatDate(start, 'Y-MM-DD HH:mm:ss');
-                        var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');            
+                        var start = $.fullCalendar.formatDate(start, 'Y-MM-DD h:mm:ss');
+                        var end = $.fullCalendar.formatDate(end, 'Y-MM-DD h:mm:ss');    
                         $.ajax({
                             url:"planning/action",
                             type:"POST",
@@ -83,10 +82,11 @@
                                  end: end
                             },
                             success:function(data){                              
-                                calendar.fullCalendar('refetchEvents');
+                                $('#calendar').fullCalendar('refetchEvents');
                                 alert("Gelukt! De taak is succesvol opgeslagen");
                                 console.log(data);
                             }
+                                                    
                         })
                     }                  
                 }

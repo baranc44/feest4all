@@ -34,7 +34,6 @@
     </div>       
     <script>
         var ids =[@foreach($products as $product) {{ $product->id }}, @endforeach ]
-        
       
         $(document).ready(function(){
             var tbody = $('#tableId').children('tbody');
@@ -63,6 +62,7 @@
                 console.log(a);
                 array.push(a);
             }      
+            var_dump(ids);
             var id = {{ $projects->id }}
             $.ajax({
             type: 'post',

@@ -60,7 +60,7 @@ Route::get('/Overzicht', [OverzichtenController::class, 'Overzicht'])->name('ove
 Route::get('/overzichtopties', [OverzichtenController::class, 'overzichtOpties'])->name('overzichtopties');
 Route::get('/urenOverzichtUser', [OverzichtenController::class, 'urenOverzichtUser'])->name('urenOverzichtUser');
 Route::get('/uren_ajax', [OverzichtenController::class, 'allUren_ajax'])->name('urenajax');
-Route::post('/overzichtopties', [OverzichtenController::class, 'getData'])->name('datedata');
+Route::get('/overzichtopties', [OverzichtenController::class, 'getData'])->name('datedata');
 
 Route::get("/projects_ajax", [OverzichtenController::class, 'allProjects_ajax'])->name('projectsajax');
 Route::delete('/uren/{id}/delete', [OverzichtenController::class, 'delete'])->name('urendel');

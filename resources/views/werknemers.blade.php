@@ -1,6 +1,7 @@
 <x-app-layout>
     @include('sweetalert::alert')
-    <x-slot name="header">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+        <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Werknemers') }}
         </h2>
@@ -66,7 +67,18 @@
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });     
-            var pw = prompt("Change your password");        
+            // const { value:pw } = swal({
+            //     title: 'Wijzig je wachtwoord',
+            //     input: 'password',
+            //     inputLabel: 'Password',
+            //     inputPlaceholder: 'Wijzig je wachtwoord',
+            //     inputAttributes: {
+            //         maxlength: 8,
+            //         autocapitalize: 'off',
+            //         autocorrect: 'off'
+            //     }
+            // })
+            var pw = prompt("Wijzig je wachtwoord");        
             if(pw!=null){   
             $.ajax({
             type: "POST",
