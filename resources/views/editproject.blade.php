@@ -16,13 +16,14 @@
                     <tr>
                         @foreach($products as $product)
                         <td><select name="producten">                  
-                            <option id="products" name="products" value="{{ $product->id }}">{{ $product->product->naam }}</option>                                          
+                            <option id="products" name="products" value="{{ $product->id }}">{{ $product->product->naam }}</option> 
+                            @foreach($lijst as $item) <option name="products" value="{{ $item->id }}">{{ $item->naam }} </option> @endforeach                                         
                         </select>   
                         </td>                            
                          <td><input type="text" id="amount" name="amount" value="{{ $product->hoeveelheid }}" placeholder="Hoeveelheid"></td>
                          <td><input type="text" id="comment" name="comment" value="{{ $product->opmerkingen }}" placeholder="Opmerkingen"></td>                                                           
                     </tr>  
-                    @endforeach      
+                    @endforeach    
                 </table>
                 <div class="text-center">
                     <a>+</a>
@@ -32,6 +33,8 @@
         </div>
     </div>       
     <script>
+        var ids =[@foreach($products as $product) {{ $product->id }}, @endforeach ]
+      
         $(document).ready(function(){
             var tbody = $('#tableId').children('tbody');
             var table = tbody.length ? tbody : $('tableId');
@@ -49,15 +52,17 @@
             const products = document.getElementsByName("producten");
             const pnummer = document.getElementById("pnummer").value;
             const pnaam = document.getElementById("pnaam").value;
-            const amount = document.getElementsByName("amount");
-            const comment = document.getElementsByName("comment");
+            var amount = document.getElementsByName("amount");
+            var comment = document.getElementsByName("comment");
             var array = new Array();
             let length = products.length;
             for (i = 0; i < length; i++)
             {
-                var a = [products[i].value, amount[i].value, comment[i].value];
+                var a = [ ids[i], products[i].value, amount[i].value, comment[i].value];
+                console.log(a);
                 array.push(a);
             }      
+            var_dump(ids);
             var id = {{ $projects->id }}
             $.ajax({
             type: 'post',
@@ -66,7 +71,8 @@
                 id: id,
                 array: array,
                 pnaam: pnaam,
-                pnummer: pnummer          
+                pnummer: pnummer,
+                
             },success: function(){
                 location.replace('/projecten');
             },error: function(){

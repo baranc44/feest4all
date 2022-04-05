@@ -31,6 +31,13 @@ class OverzichtenController extends Controller
             'products' => $products
         ]);
     }
+    public function getData(){
+        $user = DB::table('users')->get();
+        return view('overzichtopties',[
+            'user' => $user 
+        ]);
+        
+    }
     public function projectKiezen(){       
         $projects = DB::table('project')->get();
         return view('projectKiezen',[
@@ -100,8 +107,5 @@ class OverzichtenController extends Controller
         return redirect('/urenOverzichtUser');
     }
     
-    public function getData(Request $request){
-        $data = Project::whereBetween('created_at',[$request->from.' 00:00:00',$request->to.' 23:59:59'])->get();   
-        return view('overzichtopties', ['projects' => $data]);     
-    }
+    
 }

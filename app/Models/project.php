@@ -25,4 +25,7 @@ class project extends Model
     public function uren(){
         return $this->hasMany(Uren::class);
     }
+    public function projectproducten(){
+        return $this->belongsTo(Projectproducten::class);
+    }
 }
