@@ -10,8 +10,13 @@ class Planning extends Model
     use HasFactory;
 
     protected $fillable = [
-        	'title',
-            'start',
-            'end'
+        	'id',
+            'project_id',
+            'member_id',
+            'uren',
+            'omschrijving',
+            'voltooid',
+            'created_at',
+            'updated_at'
     ];
 }
