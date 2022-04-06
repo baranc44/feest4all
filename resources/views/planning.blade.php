@@ -40,19 +40,32 @@
           <h5 class="modal-title" id="modaltitle">Taak Plannen</h5>
         </div>
         <div class="modal-body">
+        <table>
           <label for="date">Datum:</label><br>
           <input type="date" id="date" disabled type="text"><br><br>
           <label for="selectUser">Werknemer:</label><br>
-          <select id="selectUser" style="width:100%;"><br><br></select><br><br>
+          
+          <select id="selectUser" style="width:100%;">
+            <option style="display:none"></option>
+            @foreach($werknemer as $werknemer)
+              <option>{{ $werknemer->name }}</option>
+            @endforeach
+          <br><br></select><br><br>         
           <label for="selectProject">Project:</label><br>
-          <select id="selectProject" style="width:100%;"><br><br></select><br><br>
+          <select id="selectProject" style="width:100%;">
+            <option style="display:none"></option>
+            @foreach($project as $project)
+              <option>{{ $project->naam }}</option>
+            @endforeach
+          <br><br></select><br><br>
           <label for="uren">Aantal uren:</label><br>
-          <input type="text" id="uren"><br><br>
+          <input type="number" id="uren"><br><br>
           <label for="opmerking">Opmerkingen:</label><br>
           <input type="text" id="opmerking"><br><br>
+        </table>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Opslaan</button>
+          <button type="button" onclick="save()" id="btn" class="btn btn-primary">Opslaan</button>
         </div>
       </div>
     </div>
@@ -62,8 +75,7 @@
             headers:{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
-        });  
-        
+          });
         $(document).ready(function(){              
             $('#calendar').fullCalendar({
                 editable: true,
@@ -77,33 +89,26 @@
                     var modal = new bootstrap.Modal(document.getElementById('modal'));
                     modal.show();     
                     var date = date.format();
-                    console.log(document.getElementById("date").value);
-                    
-                    
-                    // var date = date.format();             
-                    // $("#date").value(date);                                 
-                    // if(title){
-                    //     var start = $.fullCalendar.formatDate(start, 'Y-MM-DD h:mm:ss');
-                    //     var end = $.fullCalendar.formatDate(end, 'Y-MM-DD h:mm:ss');    
-                    //     $.ajax({
-                    //         url:"planning/action",
-                    //         type:"POST",
-                    //         data:{
-                    //              title: title,
-                    //              start: start,
-                    //              end: end
-                    //         },
-                    //         success:function(data){                              
-                    //             $('#calendar').fullCalendar('refetchEvents');
-                    //             alert("Gelukt! De taak is succesvol opgeslagen");
-                    //             // console.log(data);
-                    //         }
-                                                    
-                    //     })
-                    // }                  
-                }
+                    $('#date').val(date);                                                                                                                
+                }              
             });          
-        });        
+        });      
+        function save(){
+        var uren = document.getElementById('uren').value;
+        var opmerking = document.getElementById('opmerking').value;
+        var project = document.getElementById('selectProject').value;
+        var werknemer = document.getElementById('selectUser').value;
+        $.ajax({
+          type: "POST",
+          url: "planning/action",
+          data:{
+            uren: uren,
+            opmerking: opmerking,
+            project: project,
+            werknemer: werknemer
+          }        
+        }) 
+      } 
     </script>
 </body>
 </html>
