@@ -28,4 +28,7 @@ class project extends Model
     public function projectproducten(){
         return $this->belongsTo(Projectproducten::class);
     }
+    public function planning(){
+        return $this->belongsTo(Planning::class);
+    }
 }

@@ -60,4 +60,7 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
+    public function planning(){
+        return $this->belongsTo(Planning::class);
+    }
 }
