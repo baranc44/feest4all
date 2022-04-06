@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('planning', function(Blueprint $table){
             $table->increments('id');
-            $table->unsignedBigInteger('project_id');
-            $table->unsignedBigInteger('member_id');          
+            $table->unsignedInteger('project_id');
+            $table->unsignedInteger('user_id');         
             $table->double('uren');
             $table->longText('omschrijving');
             $table->timestamps();
-            $table->boolean('voltooid');           
+            $table->boolean('voltooid');         
         });
     }
 
