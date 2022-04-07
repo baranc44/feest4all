@@ -24,6 +24,7 @@ class User extends Authenticatable
      * @var string[]
      */
     protected $fillable = [
+        'id',
         'name',
         'email',
         'password',
@@ -61,6 +62,6 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
     public function planning(){
-        return $this->belongsTo(Planning::class);
+        return $this->hasMany(Planning::class);
     }
 }

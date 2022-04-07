@@ -12,7 +12,7 @@ class Planning extends Model
     protected $fillable = [
         	'id',
             'project_id',
-            'member_id',
+            'user_id',
             'uren',
             'omschrijving',
             'voltooid',
@@ -23,6 +23,6 @@ class Planning extends Model
         return $this->hasMany(Project::class);
     }
     public function user(){
-        return $this->hasMany(User::class);
+        return $this->belongsTo(User::class);
     }
 }
