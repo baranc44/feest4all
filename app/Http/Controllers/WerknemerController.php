@@ -32,8 +32,8 @@ class WerknemerController extends Controller
             'email' => $request->input('email'),
             'password' => $password
         ]);
-        $message = "Het account is toegevoegd.";
-        return redirect('/werknemers')->with('success', $message);    
+        $message = $this->message("Het account is toegevoegd.", "SUC");
+        return redirect('/werknemers')->with('message', $message);    
     }
     public function edit(Request $request) {
         
@@ -45,18 +45,18 @@ class WerknemerController extends Controller
                 'name' => $werknemer[1],
                 'email' => $werknemer[2]
             ]);
+
     }  
     public function delete($id){
         if (Auth::id() != $id) {
-        $werknemer = User::find($id);
-        $werknemer->delete();
-        $message = "Het account is verwijderd.";
-        return redirect('/werknemers')->with('success', $message);
+            $werknemer = User::find($id);
+            $werknemer->delete();
+            $message = $this->message("Het account is verwijderd.", "SUC");
         } else {
-            $message = "Je kan niet je eigen account verwijderen.";
-            return redirect('/werknemers')->with('error', $message);
+            $message = $this->message("Je kan niet je eigen account verwijderen.", "ERR");
+            
         }
-
+        return redirect('/werknemers')->with('message', $message);
         
     }
     public function pwedit(Request $request) {
@@ -65,5 +65,20 @@ class WerknemerController extends Controller
             ->update([
                 'password' => bcrypt($request->password)
             ]);
+    }
+
+    function message($message, $code) {
+        $returnMessage = "";
+        if ($code == "ERR") {
+            $returnMessage = '<div style="z-index: 10;border-radius:10px; margin-left:auto; margin-right:auto; background-color:rgb(205, 23, 23); color:white; padding: 10px; width: 30%; text-align:center;">
+            <h2>'.$message.'</h2>
+        </div>';
+        } else if ($code == "SUC") {
+            $returnMessage = '<div style="z-index: 10;border-radius:10px; margin-left:auto; margin-right:auto; background-color:rgb(41, 180, 17); color:white; padding: 10px; width: 30%; text-align:center;">
+            <h2>'.$message.'</h2>
+        </div>';
+        }
+
+        return $returnMessage;
     }
 } 

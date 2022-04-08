@@ -6,15 +6,11 @@
             {{ __('Werknemers') }}
         </h2>
     </x-slot>
-    @if(Session::has('error'))
-        <div style="z-index: 10;border-radius:10px; margin-left:auto; margin-right:auto; background-color:rgb(205, 23, 23); color:white; padding: 10px; width: 30%; text-align:center;">
-            <h2><b>{{ Session::get('error')}}</b></h2>
-        </div>
-    @elseif(Session::has('success'))
-    <div style="z-index: 10;border-radius:10px; margin-left:auto; margin-right:auto; background-color:rgb(38, 205, 23); color:white; padding: 10px; width: 30%; text-align:center;">
-        <h2><b>{{ Session::get('success')}}</b></h2>
+    <div id="message">
+        @if(Session::has('message'))
+            {!! Session::get('message') !!}
+        @endif
     </div>
-    @endif
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">      
@@ -32,7 +28,6 @@
                             <td><span>{{$werknemer->name}}</span><input class="hidden" type="text" value="{{$werknemer->name}}"/></td>
                             <td><span>{{$werknemer->email}}</span><input class="hidden" type="text" value="{{$werknemer->email}}"/></td>
                             <td>
-                                <div class="float-right">
                                     <button id="save" onclick="save({{$werknemer->id}})" class="btn hidden btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-save"></i></button> 
                                     <button id="edit" onclick="edit({{$werknemer->id}})" class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-pencil-alt"></i></button> 
                                     <button id="changePw" onclick="changePw({{$werknemer->id}})" class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-key"></i></button>
@@ -41,7 +36,6 @@
                                         @method('delete')
                                         <button class="btn px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"><i class="fas fa-trash-alt"></i></button></td>
                                     </form>
-                                </div>
                             </td>                    
                         </tr>
                         </tbody>
