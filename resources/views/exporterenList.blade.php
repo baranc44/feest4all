@@ -4,7 +4,11 @@
             @forelse ($projects as $project)
             <div style="display:block; " class="text-left pt-2">    
                 <h1 style="font-size: 35px; display:inline;">{{ $project->project_nummer }} {{ $project->naam }} </h1> 
+                @if (count($project->uren) > 0)
                 <a href="export/{{$project->id}}" style="display:inline;" class="btn btn-success">Exporteren</a>
+                @else 
+                <p style="display:inline;">Geen data om te exporteren</p>
+                @endif
                 <p scope="col" id="showBtn{{$project->id}}" onclick="show({{$project->id}});" style="display:inline; color:rgb(33, 129, 231); cursor:pointer; user-select:none;"> [show table] </p>
                 <p scope="col" id="hideBtn{{$project->id}}" onclick="hide({{$project->id}});" style="display:inline; color:rgb(232, 29, 29); cursor:pointer; user-select:none;" class="hidden"> [hide table] </p>
                 <br>

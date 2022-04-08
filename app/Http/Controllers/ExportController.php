@@ -29,7 +29,7 @@ class ExportController extends Controller
 
     public function export($id) {
         // MAAK EEN EXPORT !
-        $date = date("d/m/Y");
+        $date = date("d/m/Y h:i:s");
         $fileName = "urenexport $date.csv";
 
         $project = Project::find($id);
@@ -45,23 +45,23 @@ class ExportController extends Controller
         $columns = array("Project", "Datum", "Werknemer", "Omschrijving", "Uren");
 
         $callback = function() use($project, $columns) {
-            $file = fopen('php://outpout', 'w');
+            $file = fopen('php://output', 'w');
             fputcsv($file, $columns, ';');
 
             foreach ($project->uren as $uren) {
-                $row["Project"] = $project->name;
-                $row["Datum"] = $uren->date;
+                $row["Project"] = $project->naam;
+                $row["Datum"] = $uren->datum;
                 $row["Werknemer"] = $uren->member_id;
                 $row["Omschrijving"] = $uren->omschrijving;
                 $row["Uren"] = $uren->uren;
-                fputcsv($file, array($row["Project"], $row["Datum"], $row["Werknemer"], $row["Omschrijving"], $row["Uren"], ), ';');
+                fputcsv($file, array($row["Project"], $row["Datum"], $row["Werknemer"], $row["Omschrijving"], $row["Uren"]),';');
             }
             fclose($file);
             
         };
-        //return response()->stream($callback, 200, $headers);
+        return response()->stream($callback, 200, $headers);
 
-        return response()->download('img/menu-logo.png');
+        // return response()->download('img/menu-logo.png');
         
 
     }
