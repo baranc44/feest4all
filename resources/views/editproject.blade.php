@@ -62,7 +62,6 @@
                 console.log(a);
                 array.push(a);
             }      
-            var_dump(ids);
             var id = {{ $projects->id }}
             $.ajax({
             type: 'post',
