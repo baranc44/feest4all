@@ -19,8 +19,8 @@ class PlanningController extends Controller
     
     public function action(Request $request){
         // $project = DB::table('project')->get('id');
-        if($request->ajax()){            
-             if($request->type = 'POST'){
+        $request->ajax();
+        if($request->type = 'add'){
             $planning = Planning::create([
                 'uren' => $request->uren,
                 'omschrijving' => $request->opmerking,
@@ -28,7 +28,7 @@ class PlanningController extends Controller
                 'user_id' => $request->werknemer,
             ]);         
             return response()->json($planning);
-            }
+            dd($planning);
         }
     }
 }
