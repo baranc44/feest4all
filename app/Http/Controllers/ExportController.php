@@ -34,6 +34,8 @@ class ExportController extends Controller
 
         $project = Project::find($id);
 
+        $urenProject = DB::select('SELECT h.datum, u.name, h.omschrijving, h.uren FROM uren as h, users as u WHERE h.project_id = '.$id.' AND h.member_id = u.id');
+        
         $headers = array(
             "Content-type"        => "text/csv",
             "Content-Disposition" => "attachment; filename=$fileName",
@@ -42,19 +44,20 @@ class ExportController extends Controller
             "Expires"             => "0"
         );
 
-        $columns = array("Project", "Datum", "Werknemer", "Omschrijving", "Uren");
+        $columns = array("Datum", "Werknemer", "Omschrijving", "Uren");
 
-        $callback = function() use($project, $columns) {
+        $callback = function() use($project, $urenProject, $columns) {
             $file = fopen('php://output', 'w');
+            fputcsv($file, array('Project:', $project->naam), ';');
+
             fputcsv($file, $columns, ';');
 
-            foreach ($project->uren as $uren) {
-                $row["Project"] = $project->naam;
+            foreach ($urenProject as $uren) {
                 $row["Datum"] = $uren->datum;
-                $row["Werknemer"] = $uren->member_id;
+                $row["Werknemer"] = $uren->name;
                 $row["Omschrijving"] = $uren->omschrijving;
                 $row["Uren"] = $uren->uren;
-                fputcsv($file, array($row["Project"], $row["Datum"], $row["Werknemer"], $row["Omschrijving"], $row["Uren"]),';');
+                fputcsv($file, array($row["Datum"], $row["Werknemer"], $row["Omschrijving"], $row["Uren"]),';');
             }
             fclose($file);
             
