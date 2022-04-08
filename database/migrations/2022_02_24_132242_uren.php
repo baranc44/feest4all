@@ -15,8 +15,12 @@ return new class extends Migration
     {
         Schema::create('uren', function(Blueprint $table){
             $table->increments('id');
-            $table->integer('project_id');
-            $table->integer('member_id');
+            $table->integer('project_id')->unsigned();
+            $table->foreign('project_id')->references('id')->on('project')->onDelete('cascade');
+
+            $table->integer('member_id')->unsigned();
+            $table->foreign('member_id')->references('id')->on('users')->onDelete('cascade');
+
             $table->double('uren');
             $table->longText('omschrijving');
             $table->date('datum');

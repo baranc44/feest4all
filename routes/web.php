@@ -71,6 +71,9 @@ Route::get('/projectlist/{id}', 'App\Http\Controllers\OverzichtenController@uren
 
 // exporteren
 Route::get('/exporteren', [ExportController::class, 'allExports'])->name('exporteren');
+Route::get('/allExports', [ExportController::class, 'allExports_ajax'])->name('allExports');
+Route::get('/export/{id}', [ExportController::class, 'export'])->name('export');
+
 
 // projecten
 Route::get('/projecten', [ProjectController::class, 'allProjects'])->name('projecten');

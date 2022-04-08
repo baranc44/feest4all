@@ -28,8 +28,6 @@ class ProductsController extends Controller
                     ->orWhere('eenheid', 'like', '%'.$search.'%')
                     ->paginate(50);
 
-
-
                     return view('productsList', [
                         'products' => $products
                     ]);
