@@ -86,7 +86,7 @@
                 header:{
                     right: 'prev,next'
                 },      
-                events:'/planning',
+                url:'/planning',
                 selectable:true,
                 selectHelper: true,
                 select:function(date, project, werknemer, uren, opmerking){
@@ -94,7 +94,7 @@
                     modal.show();  
                     var date = date.format();
                     $('#date').val(date);                                                                                                                
-                },      
+                }      
             });                    
         });      
         function hide(){
@@ -115,12 +115,10 @@
             opmerking: opmerking,
             project: project,
             werknemer: werknemer
-          },
-          success:function(data)
-          {
-            calendar.fullCalendar('refetchEvents');
-            alert("Taak succesvol gewijzigd");
           }
+        }).done(function(response){
+          response = JSON.parse(response)
+          console.log(response)
         })          
       }
     </script>
