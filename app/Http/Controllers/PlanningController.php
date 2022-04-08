@@ -25,8 +25,10 @@ class PlanningController extends Controller
                 'uren' => $request->uren,
                 'omschrijving' => $request->opmerking,
                 'project_id' => $request->project,
-                'member_id' => $request->werknemer,
-            ]);            
+                'user_id' => $request->werknemer,
+            ]);         
+            return response()->json($planning);
+            $planning->save();
         }
     }
 }

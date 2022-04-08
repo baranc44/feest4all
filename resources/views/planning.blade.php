@@ -20,7 +20,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script> 
 </head>
 <body>
-<div id="schedule-calendar">
+<div id="calendar" style="width: 120vh; margin-left: auto; margin-right: auto;">
     <div class="container mt-5" style="max-width: 700px">
         <div class="row">
             <div class="col-12">
@@ -39,12 +39,11 @@
         <div class="modal-header">
           <h5 class="modal-title" id="modaltitle">Taak Plannen</h5>
         </div>
-        <div class="modal-body">
+        <div id="data" class="modal-body">
         <table id="table">
           <label for="date">Datum:</label><br>
           <input type="date" id="date" disabled type="text"><br><br>
           <label for="selectUser">Werknemer:</label><br>
-          
           <select id="selectUser" style="width:100%;">
             <option style="display:none"></option>
             @foreach($werknemer as $werknemer)
@@ -55,7 +54,7 @@
           <select id="selectProject" style="width:100%;">
             <option style="display:none"></option>
             @foreach($project as $project)
-              <option id="project">{{ $project->naam }}</option>
+              <option id="project" value="{{ $project->id }}">{{ $project->naam }}</option>
             @endforeach
           <br><br></select><br><br>
           <label for="uren">Aantal uren:</label><br>
@@ -65,7 +64,7 @@
         </table>
         </div>
         <div class="modal-footer">
-          <button type="button" onclick="save()" id="btn" class="btn btn-primary">Opslaan</button>
+          <button type="button" onclick="save(); hide();" id="btn" class="btn btn-primary">Opslaan</button>
         </div>
       </div>
     </div>
@@ -77,33 +76,38 @@
             }
           });       
         $(document).ready(function(){
-          var modal = document.getElementById('modal');
+          var modal = document.getElementById('modal');    
           modal.addEventListener('hidden.bs.modal', function (event) {
-           // Remove data from modal
+            // Clear modal data
+            $("#modal :input").val("");
           });
-
             $('#calendar').fullCalendar({
                 editable: true,
                 header:{
                     right: 'prev,next'
                 },      
-                events:'/planning',
+                url:'/planning',
                 selectable:true,
                 selectHelper: true,
-                select:function(date){
+                select:function(date, project, werknemer, uren, opmerking){
                     var modal = new bootstrap.Modal(document.getElementById('modal'));
                     modal.show();  
                     var date = date.format();
                     $('#date').val(date);                                                                                                                
-                }             
+                }      
             });                    
         });      
-        function save(){
-        var uren = document.getElementById('uren').value;
-        var opmerking = document.getElementById('opmerking').value;
+        function hide(){
+          var id = document.getElementById('modal');
+          $('#modal').modal('hide');
+        }
+        function save(){     
         var project = document.getElementById('selectProject').value;
         var werknemer = document.getElementById('selectUser').value;
-        $.ajax({
+        var uren = document.getElementById('uren').value;
+        var opmerking = document.getElementById('opmerking').value;
+
+          $.ajax({
           type: "POST",
           url: "planning/action",
           data:{
@@ -111,9 +115,12 @@
             opmerking: opmerking,
             project: project,
             werknemer: werknemer
-          }        
-        }) 
-      } 
+          }
+        }).done(function(response){
+          response = JSON.parse(response)
+          console.log(response)
+        })          
+      }
     </script>
 </body>
 </html>
