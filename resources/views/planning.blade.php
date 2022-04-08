@@ -64,7 +64,7 @@
         </table>
         </div>
         <div class="modal-footer">
-          <button type="button" onclick="save();" id="btn" class="btn btn-primary">Opslaan</button>
+          <button type="button" onclick="save(); hide();" id="btn" class="btn btn-primary">Opslaan</button>
         </div>
       </div>
     </div>
@@ -89,7 +89,7 @@
                 events:'/planning',
                 selectable:true,
                 selectHelper: true,
-                select:function(date, uren, opmerking){
+                select:function(date, project, werknemer, uren, opmerking){
                     var modal = new bootstrap.Modal(document.getElementById('modal'));
                     modal.show();  
                     var date = date.format();
@@ -97,14 +97,17 @@
                 },      
             });                    
         });      
-        function save(){
-
-        var uren = document.getElementById('uren').value;
-        var opmerking = document.getElementById('opmerking').value;
+        function hide(){
+          var id = document.getElementById('modal');
+          $('#modal').modal('hide');
+        }
+        function save(){     
         var project = document.getElementById('selectProject').value;
         var werknemer = document.getElementById('selectUser').value;
+        var uren = document.getElementById('uren').value;
+        var opmerking = document.getElementById('opmerking').value;
 
-        $.ajax({
+          $.ajax({
           type: "POST",
           url: "planning/action",
           data:{
@@ -113,18 +116,13 @@
             project: project,
             werknemer: werknemer
           },
-          success:function(data) {
-            var title = prompt('Event Title:');
-            if(title){
-
-            }
+          success:function(data)
+          {
             calendar.fullCalendar('refetchEvents');
-            alert("Taak succesvol opgeslagen");
-          }, error:function(){
-            console.log("Er is iets misgegaan");          
-          }       
-        })
-        }
+            alert("Taak succesvol gewijzigd");
+          }
+        })          
+      }
     </script>
 </body>
 </html>
