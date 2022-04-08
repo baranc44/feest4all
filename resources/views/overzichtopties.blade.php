@@ -41,30 +41,7 @@
                 header:{
                     right: 'prev,next',
                 },
-                events:'/planning',
-                selectable:true,
-                selectHelper: true,
-                select:function(start, end, allday){
-                    var title = prompt("Title:");
-                    if(title){
-                        var start = $.fullCalendar.formatDate(start, 'Y-MM-DD HH:mm:ss');
-                        var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');            
-                        $.ajax({
-                            url:"planning/action",
-                            type:"POST",
-                            data:{
-                                 title: title,
-                                 start: start,
-                                 end: end
-                            },
-                            success:function(data){                              
-                                calendar.fullCalendar('refetchEvents');
-                                alert("Gelukt! De taak is succesvol opgeslagen");
-                                console.log(data);
-                            }
-                        })
-                    }                  
-                }
+                events:'/planning'
             });          
         });        
     </script>

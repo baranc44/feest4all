@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -31,8 +32,8 @@ class WerknemerController extends Controller
             'email' => $request->input('email'),
             'password' => $password
         ]);
-
-        return redirect('/werknemers');    
+        $message = "Het account is toegevoegd.";
+        return redirect('/werknemers')->with('success', $message);    
     }
     public function edit(Request $request) {
         
@@ -46,10 +47,17 @@ class WerknemerController extends Controller
             ]);
     }  
     public function delete($id){
+        if (Auth::id() != $id) {
         $werknemer = User::find($id);
         $werknemer->delete();
+        $message = "Het account is verwijderd.";
+        return redirect('/werknemers')->with('success', $message);
+        } else {
+            $message = "Je kan niet je eigen account verwijderen.";
+            return redirect('/werknemers')->with('error', $message);
+        }
 
-        return redirect('/werknemers');
+        
     }
     public function pwedit(Request $request) {
         $pw = DB::table('users')
