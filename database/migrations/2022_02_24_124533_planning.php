@@ -13,14 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('planning', function(Blueprint $table){
+        Schema::create('plannings', function(Blueprint $table){
             $table->increments('id');
-            $table->unsignedBigInteger('project_id');
-            $table->unsignedBigInteger('member_id');          
+            $table->unsignedInteger('project_id');
+            $table->unsignedInteger('user_id')->default(0);         
             $table->double('uren');
             $table->longText('omschrijving');
             $table->timestamps();
-            $table->boolean('voltooid');           
+            $table->boolean('voltooid')->default(0);   
         });
     }
 

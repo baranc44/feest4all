@@ -40,7 +40,7 @@
           <h5 class="modal-title" id="modaltitle">Taak Plannen</h5>
         </div>
         <div class="modal-body">
-        <table>
+        <table id="table">
           <label for="date">Datum:</label><br>
           <input type="date" id="date" disabled type="text"><br><br>
           <label for="selectUser">Werknemer:</label><br>
@@ -48,14 +48,14 @@
           <select id="selectUser" style="width:100%;">
             <option style="display:none"></option>
             @foreach($werknemer as $werknemer)
-              <option>{{ $werknemer->name }}</option>
+              <option id="werknemer" value="{{ $werknemer->id }}">{{ $werknemer->name }}</option>
             @endforeach
           <br><br></select><br><br>         
           <label for="selectProject">Project:</label><br>
           <select id="selectProject" style="width:100%;">
             <option style="display:none"></option>
             @foreach($project as $project)
-              <option>{{ $project->naam }}</option>
+              <option id="project">{{ $project->naam }}</option>
             @endforeach
           <br><br></select><br><br>
           <label for="uren">Aantal uren:</label><br>
@@ -75,23 +75,28 @@
             headers:{
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
+          });       
+        $(document).ready(function(){
+          var modal = document.getElementById('modal');
+          modal.addEventListener('hidden.bs.modal', function (event) {
+           // Remove data from modal
           });
-        $(document).ready(function(){              
+
             $('#calendar').fullCalendar({
                 editable: true,
                 header:{
                     right: 'prev,next'
-                },
+                },      
                 events:'/planning',
                 selectable:true,
                 selectHelper: true,
                 select:function(date){
                     var modal = new bootstrap.Modal(document.getElementById('modal'));
-                    modal.show();     
+                    modal.show();  
                     var date = date.format();
                     $('#date').val(date);                                                                                                                
-                }              
-            });          
+                }             
+            });                    
         });      
         function save(){
         var uren = document.getElementById('uren').value;

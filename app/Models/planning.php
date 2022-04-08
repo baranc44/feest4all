@@ -12,11 +12,17 @@ class Planning extends Model
     protected $fillable = [
         	'id',
             'project_id',
-            'member_id',
+            'user_id',
             'uren',
             'omschrijving',
             'voltooid',
             'created_at',
             'updated_at'
     ];
+    public function project(){
+        return $this->hasMany(Project::class);
+    }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
 }
