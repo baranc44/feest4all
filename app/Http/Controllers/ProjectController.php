@@ -52,6 +52,7 @@ class ProjectController extends Controller
         $array = $request->all()['array'];
         $pnaam = $request->all()['pnaam'];
         $pnummer = $request->all()['pnummer'];
+        
         $update = DB::table('project')
             ->where('id', $id)
             ->update([
@@ -81,7 +82,7 @@ class ProjectController extends Controller
                     $element[3] = "";
                 }
         
-                $project_product = DB::table('project_producten')
+                $project_product2 = DB::table('project_producten')
                 ->insert([
                     'project_id' => $id,
                     'product_id' => $element[1], 

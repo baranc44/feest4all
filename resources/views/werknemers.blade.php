@@ -6,6 +6,15 @@
             {{ __('Werknemers') }}
         </h2>
     </x-slot>
+    @if(Session::has('error'))
+        <div style="z-index: 10;border-radius:10px; margin-left:auto; margin-right:auto; background-color:rgb(205, 23, 23); color:white; padding: 10px; width: 30%; text-align:center;">
+            <h2><b>{{ Session::get('error')}}</b></h2>
+        </div>
+    @elseif(Session::has('success'))
+    <div style="z-index: 10;border-radius:10px; margin-left:auto; margin-right:auto; background-color:rgb(38, 205, 23); color:white; padding: 10px; width: 30%; text-align:center;">
+        <h2><b>{{ Session::get('success')}}</b></h2>
+    </div>
+    @endif
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">      
