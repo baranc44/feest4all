@@ -9,12 +9,23 @@ use App\Models\Planning;
 class PlanningController extends Controller
 {
     public function allPlanning(){  
+        $events = array();
+        $planning = Planning::all();    
+        foreach($planning as $planning){
+            $events[] = [
+                'uren' => $planning->uren,
+                'omschrijving' => $planning->omschrijving
+            ];   
+        }  
         $werknemer = DB::table("users")->get();
         $project = DB::table("project")->get();
+
         return view('/planning',[
             'werknemer' => $werknemer,
-            'project' => $project
+            'project' => $project,
+            'events' => $events
         ]);
+        
     }
     
     public function action(Request $request){
@@ -26,6 +37,7 @@ class PlanningController extends Controller
                 'omschrijving' => $request->opmerking,
                 'project_id' => $request->project,
                 'user_id' => $request->werknemer,
+                'datum' => $request->date
             ]);         
             return response()->json($planning);
             $planning->save();

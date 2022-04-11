@@ -20,6 +20,7 @@ return new class extends Migration
             $table->double('uren');
             $table->longText('omschrijving');
             $table->timestamps();
+            $table->date('datum');
             $table->boolean('voltooid')->default(0);   
         });
     }

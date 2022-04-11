@@ -76,6 +76,7 @@
             }
           });       
         $(document).ready(function(){
+          var planning = @json($events);
           var modal = document.getElementById('modal');    
           modal.addEventListener('hidden.bs.modal', function (event) {
             // Clear modal data
@@ -84,29 +85,39 @@
             $('#calendar').fullCalendar({
                 editable: true,
                 header:{
-                    right: 'prev,next'
-                },      
+                    left: 'prev,next, today',
+                    center: 'title',
+                    right: 'month, agendaDay'
+                },   
+                events: [
+                {
+                  id: 'a',
+                  title: 'asdf',
+                  start: '2022-04-12'
+                }
+              ],
                 url:'/planning',
                 selectable:true,
                 selectHelper: true,
-                select:function(date, project, werknemer, uren, opmerking){
+                select:function(date){
                     var modal = new bootstrap.Modal(document.getElementById('modal'));
                     modal.show();  
                     var date = date.format();
-                    $('#date').val(date);                                                                                                                
+                    $('#date').val(date);                                                                                                             
                 }      
             });                    
         });      
+
         function hide(){
           var id = document.getElementById('modal');
           $('#modal').modal('hide');
         }
         function save(){     
+        var date = document.getElementById('date').value;
         var project = document.getElementById('selectProject').value;
         var werknemer = document.getElementById('selectUser').value;
         var uren = document.getElementById('uren').value;
         var opmerking = document.getElementById('opmerking').value;
-
           $.ajax({
           type: "POST",
           url: "planning/action",
@@ -114,7 +125,8 @@
             uren: uren,
             opmerking: opmerking,
             project: project,
-            werknemer: werknemer
+            werknemer: werknemer,
+            date: date
           }
         }).done(function(response){
           response = JSON.parse(response)

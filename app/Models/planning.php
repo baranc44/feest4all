@@ -16,6 +16,7 @@ class Planning extends Model
             'uren',
             'omschrijving',
             'voltooid',
+            'datum',
             'created_at',
             'updated_at'
     ];
