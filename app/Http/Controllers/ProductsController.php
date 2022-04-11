@@ -57,7 +57,8 @@ class ProductsController extends Controller
                 'created_at' => $date
             ]);
 
-        return redirect('/producten');
+        $message = $this->message("Het product is toegevoegd.", "SUC");
+        return redirect('/producten')->with('message', $message);  
     }
 
     public function edit(Request $request) {
@@ -80,6 +81,10 @@ class ProductsController extends Controller
                 'updated_at' => $date
             ]);
 
+        $message = $this->message("Het product is gewijzigd.", "SUC");
+
+        return array('message' => $message);
+
     }
 
     public function delete($id) {
@@ -88,8 +93,24 @@ class ProductsController extends Controller
             ->where('id', $id)
             ->delete();
 
-        return redirect('/producten');
+        $message = $this->message("Het product is verwijderd.", "SUC");
+        return redirect('/producten')->with('message', $message);  
 
+    }
+
+    function message($message, $code) {
+        $returnMessage = "";
+        if ($code == "ERR") {
+            $returnMessage = '<div style="z-index: 10;border-radius:10px; margin-left:auto; margin-right:auto; background-color:rgb(252, 43, 43); color:white; padding: 10px; width: 30%; text-align:center;">
+            <h2>'.$message.'</h2>
+        </div>';
+        } else if ($code == "SUC") {
+            $returnMessage = '<div style="z-index: 10;border-radius:10px; margin-left:auto; margin-right:auto; background-color:rgb(39, 181, 7); color:white; padding: 10px; width: 30%; text-align:center;">
+            <h2>'.$message.'</h2>
+        </div>';
+        }
+
+        return $returnMessage;
     }
 
 }

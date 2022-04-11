@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\WerknemerController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\PlanningController;
@@ -25,7 +26,11 @@ Route::get('/', function () {
     return view('auth/login');
 });
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
+    $id= Auth::id();
+    $uren = DB::select('SELECT h.datum, h.uren, h.gefactureerd FROM uren as h WHERE h.member_id = '.$id.' ORDER BY h.created_at  DESC LIMIT 5');
+    return view('dashboard', [
+        'uren' => $uren
+    ]);
 })->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
