@@ -90,16 +90,15 @@ class ProjectController extends Controller
                     'opmerkingen' => $element[3]
                 ]);
             }
-        }
-
-       
+        } 
     }
 
     public function delete($id){
         $project = Project::find($id);
         $project->delete();
 
-        return redirect('/projecten');
+        $message = $this->message("Het project is verwijderd.", "SUC");
+        return redirect('/projecten')->with('message', $message);  
     }
     public function addView(){
         $products = DB::table('products')->get();
@@ -140,7 +139,19 @@ class ProjectController extends Controller
         response() ->json(['code'=>200,'success' => 'Hooray']);       
         return;
     }
-    }  
- 
-        
 
+    function message($message, $code) {
+        $returnMessage = "";
+        if ($code == "ERR") {
+            $returnMessage = '<div style="z-index: 10;border-radius:10px; margin-left:auto; margin-right:auto; background-color:rgb(252, 43, 43); color:white; padding: 10px; width: 30%; text-align:center;">
+            <h2>'.$message.'</h2>
+        </div>';
+        } else if ($code == "SUC") {
+            $returnMessage = '<div style="z-index: 10;border-radius:10px; margin-left:auto; margin-right:auto; background-color:rgb(39, 181, 7); color:white; padding: 10px; width: 30%; text-align:center;">
+            <h2>'.$message.'</h2>
+        </div>';
+        }
+
+        return $returnMessage;
+    }
+}

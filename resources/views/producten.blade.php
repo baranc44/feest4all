@@ -7,6 +7,11 @@
             {{ __('Producten') }}
         </h2>
     </x-slot>
+    <div id="message">
+        @if(Session::has('message'))
+            {!! Session::get('message') !!}
+        @endif
+    </div>
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">       
@@ -33,6 +38,7 @@
     </div>
 
     <script>
+        setTimeout(function() { $('#message').html(''); }, 4000);
         let timeout = null;
 
         function search(search) {
@@ -96,6 +102,10 @@
             url: "/product/edit",
             data: {
                 product: product
+            },
+            success: function( data ) {
+                $('#message').html(data.message);
+                setTimeout(function() { $('#message').html(''); }, 4000);
             }
         })  
             

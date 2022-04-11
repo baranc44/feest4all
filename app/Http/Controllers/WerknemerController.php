@@ -46,6 +46,10 @@ class WerknemerController extends Controller
                 'email' => $werknemer[2]
             ]);
 
+        $message = $this->message("Het account is gewijzigd.", "SUC");
+
+        return array('message' => $message);
+
     }  
     public function delete($id){
         if (Auth::id() != $id) {
@@ -65,16 +69,21 @@ class WerknemerController extends Controller
             ->update([
                 'password' => bcrypt($request->password)
             ]);
+
+        $message = $this->message("Het wachtwoord is gewijzigd.", "SUC");
+
+        return array('message' => $message);
+        
     }
 
     function message($message, $code) {
         $returnMessage = "";
         if ($code == "ERR") {
-            $returnMessage = '<div style="z-index: 10;border-radius:10px; margin-left:auto; margin-right:auto; background-color:rgb(205, 23, 23); color:white; padding: 10px; width: 30%; text-align:center;">
+            $returnMessage = '<div style="z-index: 10;border-radius:10px; margin-left:auto; margin-right:auto; background-color:rgb(252, 43, 43); color:white; padding: 10px; width: 30%; text-align:center;">
             <h2>'.$message.'</h2>
         </div>';
         } else if ($code == "SUC") {
-            $returnMessage = '<div style="z-index: 10;border-radius:10px; margin-left:auto; margin-right:auto; background-color:rgb(41, 180, 17); color:white; padding: 10px; width: 30%; text-align:center;">
+            $returnMessage = '<div style="z-index: 10;border-radius:10px; margin-left:auto; margin-right:auto; background-color:rgb(39, 181, 7); color:white; padding: 10px; width: 30%; text-align:center;">
             <h2>'.$message.'</h2>
         </div>';
         }

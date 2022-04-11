@@ -51,6 +51,8 @@
     </div>
 </div>
     <script>
+            setTimeout(function() { $('#message').html(''); }, 4000);
+
             function edit(id) {
             
             // Show all the inputs next to the edit button
@@ -89,6 +91,10 @@
             data: {
                 id: id,
                 password: pw
+            },
+            success: function( data ) {
+                $('#message').html(data.message);
+                setTimeout(function() { $('#message').html(''); }, 4000);
             }
             });      
             }
@@ -123,6 +129,10 @@
             url: "/werknemeredit",
             data: {
                 werknemer: werknemer
+            },
+            success: function( data ) {
+                $('#message').html(data.message);
+                setTimeout(function() { $('#message').html(''); }, 4000);
             }
             });  
 

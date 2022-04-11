@@ -4,6 +4,11 @@
             {{ __('Projecten') }}
         </h2>
     </x-slot>
+    <div id="message">
+        @if(Session::has('message'))
+            {!! Session::get('message') !!}
+        @endif
+    </div>
     <div class="py-12">
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">       
@@ -41,18 +46,7 @@
         </div>
     </div>
     <script>
-        function edit(id) {
-            
-            // Show all the inputs next to the edit button
-            $("#"+id).find("td").find("input").removeClass("hidden");
-            // Hide all the text next to the edit button
-            $("#"+id).find("td").find("span").addClass("hidden");
-
-            // Show the save button
-            $("#"+id).find("td").find("#save").removeClass("hidden");
-            // Hide the edit button
-            $("#"+id).find("td").find("#edit").addClass("hidden");
-        }
+        setTimeout(function() { $('#message').html(''); }, 4000);
     </script>
     <style>
         .btn {
