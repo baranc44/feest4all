@@ -97,7 +97,7 @@
 
         <div class="ml-12">
             <div class="mt-2 text-sm text-gray-500">
-                Registreer je tijd hier!
+                Laatste uren:
             </div>
         </div>
     </div>
