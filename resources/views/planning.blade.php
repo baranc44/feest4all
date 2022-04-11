@@ -129,6 +129,16 @@
             project: project,
             werknemer: werknemer,
             date: date
+          },
+          success: function(data) {
+            newEvents = [{
+                  id: data.planning["id"],
+                  title: data.planning["omschrijving"],
+                  start: data.planning["datum"]
+                }]
+
+            // $('#calendar').fullCalendar('removeEvents');
+            $('#calendar').fullCalendar( 'addEventSource', newEvents);
           }
         })         
       }

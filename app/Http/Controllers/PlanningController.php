@@ -40,7 +40,12 @@ class PlanningController extends Controller
                 'project_id' => $request->project,
                 'user_id' => $request->werknemer,
                 'datum' => $request->date
-            ]);         
+            ]);
+
+            $planning = Planning::latest()->first();
+                     
+            return array('planning' => $planning);
+
             return response()->json($planning);
             $planning->save();
         }
