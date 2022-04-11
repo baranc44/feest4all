@@ -13,8 +13,10 @@ class PlanningController extends Controller
         $planning = Planning::all();    
         foreach($planning as $planning){
             $events[] = [
+                'id' => $planning->id,
                 'uren' => $planning->uren,
-                'omschrijving' => $planning->omschrijving
+                'omschrijving' => $planning->omschrijving,
+                'datum' => $planning->datum
             ];   
         }  
         $werknemer = DB::table("users")->get();
@@ -34,7 +36,7 @@ class PlanningController extends Controller
         if($request->type = 'POST'){
             $planning = Planning::create([
                 'uren' => $request->uren,
-                'omschrijving' => $request->opmerking,
+                'omschrijving' => $request->omschrijving,
                 'project_id' => $request->project,
                 'user_id' => $request->werknemer,
                 'datum' => $request->date

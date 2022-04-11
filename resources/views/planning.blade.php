@@ -59,8 +59,8 @@
           <br><br></select><br><br>
           <label for="uren">Aantal uren:</label><br>
           <input type="number" id="uren"><br><br>
-          <label for="opmerking">Opmerkingen:</label><br>
-          <input type="text" id="opmerking"><br><br>
+          <label for="omschrijving">Omschrijving:</label><br>
+          <input type="text" id="omschrijving"><br><br>
         </table>
         </div>
         <div class="modal-footer">
@@ -83,18 +83,20 @@
             $("#modal :input").val("");
           });
             $('#calendar').fullCalendar({
-                editable: true,
+                editable: false,
                 header:{
                     left: 'prev,next, today',
                     center: 'title',
                     right: 'month, agendaDay'
                 },   
                 events: [
+                @foreach ($events as $event)
                 {
-                  id: 'a',
-                  title: 'asdf',
-                  start: '2022-04-12'
-                }
+                  id: '{{ $event["id"] }}',
+                  title: '{{ $event["omschrijving"] }}',
+                  start: '{{ $event["datum"] }}'
+                },
+                @endforeach
               ],
                 url:'/planning',
                 selectable:true,
@@ -117,21 +119,18 @@
         var project = document.getElementById('selectProject').value;
         var werknemer = document.getElementById('selectUser').value;
         var uren = document.getElementById('uren').value;
-        var opmerking = document.getElementById('opmerking').value;
+        var omschrijving = document.getElementById('omschrijving').value;
           $.ajax({
           type: "POST",
           url: "planning/action",
           data:{
             uren: uren,
-            opmerking: opmerking,
+            omschrijving: omschrijving,
             project: project,
             werknemer: werknemer,
             date: date
           }
-        }).done(function(response){
-          response = JSON.parse(response)
-          console.log(response)
-        })          
+        })         
       }
     </script>
 </body>
