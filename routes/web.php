@@ -66,6 +66,7 @@ Route::get('/overzichtopties', [OverzichtenController::class, 'overzichtOpties']
 Route::get('/urenOverzichtUser', [OverzichtenController::class, 'urenOverzichtUser'])->name('urenOverzichtUser');
 Route::get('/uren_ajax', [OverzichtenController::class, 'allUren_ajax'])->name('urenajax');
 Route::get('/overzichtopties', [OverzichtenController::class, 'getData'])->name('datedata');
+Route::get('/overzichtopties_ajax', [OverzichtenController::class, 'getData_ajax'])->name('opverzichtopties_ajax');
 
 Route::get("/projects_ajax", [OverzichtenController::class, 'allProjects_ajax'])->name('projectsajax');
 Route::delete('/uren/{id}/delete', [OverzichtenController::class, 'delete'])->name('urendel');
