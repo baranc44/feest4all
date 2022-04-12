@@ -24,24 +24,12 @@ class ProjectController extends Controller
     public function edit($id) {  
         $project = Project::find($id);
         $products = Projectproducten::where("project_id", $id)->get();
-        $lijst = DB::table("products")->get();
-        $newlijst = array();
-        foreach ($lijst as $list) {
-            $i= true;
-            foreach ($products as $product) {
-                if (($list->id == $product["product_id"])) {
-                    $i= false;
-                }
-            }
-            if ($i) {
-                array_push($newlijst, $list);
-            }
-        }
+        $allproducts = DB::table("products")->get();
 
         return view('editproject',[
             'projects' => $project,
             'products' => $products,
-            'lijst' => $newlijst
+            'allproducts' => $allproducts
         ]);         
     }
 

@@ -88,8 +88,8 @@
                 $('#omschrijving').val(event.title);    
                 $('#date').val(event.start.format());
                 $('#uren').val(event.uren);
-                $('#project').val(event.project);
-                $('#werknemer').val(event.werknemer);
+                $('#selectProject').val(event.project);
+                $('#selectUser').val(event.werknemer);
                 $('#modal').modal('toggle');
                 $('#calendar').fullCalendar('updateEvent', event);
               },

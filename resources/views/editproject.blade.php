@@ -15,9 +15,8 @@
                     </tr>
                     <tr>
                         @foreach($products as $product)
-                        <td><select name="producten">                  
-                            <option id="products" name="products" value="{{ $product->id }}">{{ $product->product->naam }}</option> 
-                            @foreach($lijst as $item) <option name="products" value="{{ $item->id }}">{{ $item->naam }} </option> @endforeach                                         
+                        <td><select class="selectProducts" name="producten">                  
+                            @foreach($allproducts as $item) <option name="products" value="{{ $item->id }}">{{ $item->naam }} </option> @endforeach                                         
                         </select>   
                         </td>                            
                          <td><input type="text" id="amount" name="amount" value="{{ $product->hoeveelheid }}" placeholder="Hoeveelheid"></td>
@@ -34,12 +33,21 @@
     </div>       
     <script>
         var ids =[@foreach($products as $product) {{ $product->id }}, @endforeach ]
+
+        var product_ids =[@foreach($products as $product) {{ $product->product_id }}, @endforeach ]
+        var selectedProducts = document.getElementsByClassName('selectProducts');
+        for (let i = 0; i < selectedProducts.length; i++) {
+            selectedProducts[i].value = product_ids[i];
+        }
+
+        
+       
       
         $(document).ready(function(){
             var tbody = $('#tableId').children('tbody');
             var table = tbody.length ? tbody : $('tableId');
             $('a').click(function(){
-                table.append('<tr> <td><select name="producten"> <option value="-1" hidden>Voeg een product toe</option> @foreach($lijst as $item) <option name="products" value="{{ $item->id }}">{{ $item->naam }} </option> @endforeach</select></td><td><input type="number" name="amount" placeholder="Hoeveelheid" value="0"></td><td><input type="text" name="comment" placeholder="Opmerkingen"></td></tr>');
+                table.append('<tr> <td><select name="producten"> <option value="-1" hidden>Voeg een product toe</option> @foreach($allproducts as $item) <option name="products" value="{{ $item->id }}">{{ $item->naam }} </option> @endforeach</select></td><td><input type="number" name="amount" placeholder="Hoeveelheid" value="0"></td><td><input type="text" name="comment" placeholder="Opmerkingen"></td></tr>');
             })
         });
                 $.ajaxSetup({
