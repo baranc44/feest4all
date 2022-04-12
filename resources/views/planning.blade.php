@@ -17,7 +17,8 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script> 
+    
 </head>
 <body>
 <div id="calendar" style="width: 120vh; margin-left: auto; margin-right: auto;">
@@ -34,7 +35,7 @@
 </div>
 <!-- Modal -->
   <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modal" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog" id="dialog">
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title" id="modaltitle">Taak Plannen</h5>
@@ -83,8 +84,13 @@
             $("#modal :input").val("");
           });
             $('#calendar').fullCalendar({
-              eventClick: function(event){
-                $('#modal').modal('show');
+              eventClick: function(event, date){
+                $('#omschrijving').val(event.title);    
+                $('#date').val(event.start.format());
+                $('#uren').val(event.uren);
+                $('#project').val(event.project);
+                $('#werknemer').val(event.werknemer);
+                $('#modal').modal('toggle');
                 $('#calendar').fullCalendar('updateEvent', event);
               },
                 editable: false,
@@ -98,7 +104,10 @@
                 {
                   id: '{{ $event["id"] }}',
                   title: '{{ $event["omschrijving"] }}',
-                  start: '{{ $event["datum"] }}'
+                  start: '{{ $event["datum"] }}',
+                  uren: '{{ $event["uren"] }}',
+                  project: '{{ $event["project_id"] }}',
+                  werknemer: '{{ $event["user_id"] }}'
                 },
                 @endforeach
               ],

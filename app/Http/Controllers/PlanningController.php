@@ -16,8 +16,11 @@ class PlanningController extends Controller
                 'id' => $planning->id,
                 'uren' => $planning->uren,
                 'omschrijving' => $planning->omschrijving,
-                'datum' => $planning->datum
+                'datum' => $planning->datum,
+                'project_id' => $planning->project_id,
+                'user_id' => $planning->user_id
             ];   
+            // dd($events);
         }  
         $werknemer = DB::table("users")->get();
         $project = DB::table("project")->get();
@@ -27,7 +30,6 @@ class PlanningController extends Controller
             'project' => $project,
             'events' => $events
         ]);
-        
     }
     
     public function action(Request $request){

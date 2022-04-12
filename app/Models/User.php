@@ -62,6 +62,6 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
     public function planning(){
-        return $this->hasMany(Planning::class);
+        return $this->belongsTo(Planning::class);
     }
 }

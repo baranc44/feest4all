@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Planning extends Model
 {
     use HasFactory;
-
+    
     protected $fillable = [
         	'id',
             'project_id',
@@ -22,8 +22,8 @@ class Planning extends Model
     ];
     public function project(){
         return $this->hasMany(Project::class);
-    }
+    } 
     public function user(){
-        return $this->belongsTo(User::class);
+        return $this->hasMany(User::class);
     }
 }
