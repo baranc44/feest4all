@@ -32,11 +32,32 @@ class OverzichtenController extends Controller
         ]);
     }
     public function getData(){
-        $user = DB::table('users')->get();
+        $users = DB::table('users')->get();
+
         return view('overzichtopties',[
-            'user' => $user 
+            'users' => $users
         ]);
         
+    }
+
+    public function getData_ajax(Request $request) {
+
+        $month = $request->date;
+        $nextMonth = date('Y-m', strtotime($month. "+1 month"));
+
+        $users = DB::table('users')->get();
+
+        $uren_users = DB::select('SELECT h.datum, h.uren, u.name, p.naam
+        FROM uren as h, users as u, project as p
+        WHERE h.member_id = u.id
+        AND p.id = h.project_id
+        AND h.datum >= "'.$month.'-00"
+        AND h.datum <= "'.$nextMonth.'-00"');
+        
+        return view('overzichtoptiesList',[
+            'uren_users' => $uren_users
+        ]);
+
     }
     public function projectKiezen(){       
         $projects = DB::table('project')->get();
