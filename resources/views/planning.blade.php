@@ -83,11 +83,15 @@
             $("#modal :input").val("");
           });
             $('#calendar').fullCalendar({
+              eventClick: function(event){
+                $('#modal').modal('show');
+                $('#calendar').fullCalendar('updateEvent', event);
+              },
                 editable: false,
                 header:{
                     left: 'prev,next, today',
                     center: 'title',
-                    right: 'month, agendaDay'
+                    right: 'month, basicDay'
                 },   
                 events: [
                 @foreach ($events as $event)
@@ -99,14 +103,14 @@
                 @endforeach
               ],
                 url:'/planning',
-                selectable:true,
+                selectable: true,
                 selectHelper: true,
                 select:function(date){
                     var modal = new bootstrap.Modal(document.getElementById('modal'));
                     modal.show();  
                     var date = date.format();
                     $('#date').val(date);                                                                                                             
-                }      
+                }
             });                    
         });      
 
