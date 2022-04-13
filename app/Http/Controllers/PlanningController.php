@@ -66,7 +66,7 @@ class PlanningController extends Controller
             $planningUpdate = DB::table('plannings')
             ->where('id', $request->id)
             ->update([
-                'uren' => $request->id,
+                'uren' => $request->uren,
                 'omschrijving' => $request->omschrijving,
                 'project_id' => $request->project,
                 'user_id' => $request->werknemer,
