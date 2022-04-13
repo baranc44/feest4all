@@ -58,9 +58,23 @@ class PlanningController extends Controller
         $planning->delete();
         return redirect('/planning');
     }
+
+    public function edit(Request $request) {
+        $request->ajax();
+        if($request->type = 'POST'){
+            
+            $planningUpdate = DB::table('plannings')
+            ->where('id', $request->id)
+            ->update([
+                'uren' => $request->id,
+                'omschrijving' => $request->omschrijving,
+                'project_id' => $request->project,
+                'user_id' => $request->werknemer,
+                'datum' => $request->date
+            ]);
+
+            $planning = DB::table('plannings')->where('id', $request->id)->get();
+            return array('planning' => $planning);
+        }
+    }
 }
-
-
-
-
-

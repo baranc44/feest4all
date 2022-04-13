@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Artisan;
 */
 
 Artisan::command('inspire', function () {
-    $this->comment('you are dumb');
-    // $this->comment(Inspiring::quote().' test');
+    // $this->comment('you are dumb');
+    $this->comment(Inspiring::quote().' test');
 })->purpose('Display an inspiring quote');
 
 Artisan::command('lnspire', function () {

@@ -152,7 +152,40 @@
             });
         }
         function update(id){
-        }    
+          console.log(id);
+
+          var date = document.getElementById('date').value;
+          var project = document.getElementById('selectProject').value;
+          var werknemer = document.getElementById('selectUser').value;
+          var uren = document.getElementById('uren').value;
+          var omschrijving = document.getElementById('omschrijving').value;
+          
+          $.ajax({
+          type: "POST",
+          url: "/planning/edit",
+          data:{
+            id: id,
+            uren: uren,
+            omschrijving: omschrijving,
+            project: project,
+            werknemer: werknemer,
+            date: date
+          },
+          success: function(data) {
+            console.log(data.planning[0]);
+            updatedEvent = [{
+                  id: data.planning[0]["id"],
+                  title: data.planning[0]["omschrijving"],
+                  start: data.planning[0]["datum"],
+                  uren: data.planning[0]["uren"],
+                  werknemer: data.planning[0]["user_id"],
+                  project: data.planning[0]["project_id"]
+                }]
+            $('#calendar').fullCalendar( 'removeEvents', [ data.planning[0]["id"] ] );
+            $('#calendar').fullCalendar( 'addEventSource', updatedEvent);
+          }
+        });
+      }    
         function emptyModal(){
           $('#uren').val('');
           $('#omschrijving').val('');
