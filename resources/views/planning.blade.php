@@ -64,14 +64,10 @@
           <input type="text" id="omschrijving"><br><br>
         </table>
         </div>
-        <div class="modal-footer">
-          @foreach($planning as $planning)
-          <form action="/planning/{{ $planning->id }}/delete" method="POST">
-            @csrf
-            @method("POST")
-          <button type="button" id="btnDelete" class="btn btn-danger">Verwijder</button>
-          @endforeach
-          <button type="button" onclick="save(); hide();" id="btn" class="btn btn-primary">Opslaan</button>         
+        <div class="modal-footer">        
+          <button type="button" onclick="remove(value);" id="btnDelete" class="btn btn-danger">Verwijder</button>
+          <button type="button" onclick="update(value); hide();" id="btnUpdate" class="btn btn-primary">Bewerk</button>         
+          <button type="button" onclick="save(value); hide();" id="btnSave" class="btn btn-primary">Opslaan</button>         
         </div>
       </div>
     </div>
@@ -83,15 +79,19 @@
             }
           });       
         $(document).ready(function(){
-          var planning = @json($events);
           var modal = document.getElementById('modal');    
           modal.addEventListener('hidden.bs.modal', function (event) {
             // Clear modal data
             $("#modal :input").val("");
           });
             $('#calendar').fullCalendar({
-              eventClick: function(event, date){
+              eventClick: function(event, date){   
+                $('#btnUpdate').val(event.id);           
+                $('#btnDelete').val(event.id);
+                $('#btnSave').val(event.id);
                 $('#btnDelete').show();
+                $('#btnUpdate').show();
+                $('#btnSave').hide();
                 $('#omschrijving').val(event.title);    
                 $('#date').val(event.start.format());
                 $('#uren').val(event.uren);
@@ -130,19 +130,39 @@
 
                     if(modal!=emptyModal()){
                       $('#btnDelete').hide();
+                      $('#btnUpdate').hide();
+                      $('#btnSave').show();
                     }
                 }
             });                    
-        });     
-        function delete(event){
+        });         
+        function remove(id) {
+          var id = id;
+                if(confirm('Weet je het zeker?')){
+                  $.ajax({
+                  action:"{{ url('/planning/delete', '') }}" + "/" + id,
+                  type:'DELETE',
+                  dataType:'json',
+                  success:function(response){
+                    var id = response.id
+                    console.log(id);
+                    alert("Verwijderd");
+                  },
+                  error:function(error){
+                    alert("Er is iets fout gegaan");
+                  }
+                })
+                }
+        }  
+        function update(id){
 
-        }
+        }    
         function emptyModal(){
           $('#uren').val('');
           $('#omschrijving').val('');
           $('#selectUser').val('');
           $('#selectProject').val('');
-        }
+        }      
         function hide(){
           var id = document.getElementById('modal');
           $('#modal').modal('hide');
