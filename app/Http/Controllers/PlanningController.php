@@ -52,6 +52,13 @@ class PlanningController extends Controller
             $planning->save();
         }
     }
+    public function delete($id){
+        $planning = Planning::find($id);
+        $planning->delete();
+
+        $message = $this->message("De taak is verwijderd");
+        return redirect('/planning')->with('message', $message);
+    }
 }
 
 

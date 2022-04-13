@@ -48,14 +48,14 @@
           <select id="selectUser" style="width:100%;">
             <option style="display:none"></option>
             @foreach($werknemer as $werknemer)
-              <option id="werknemer" value="{{ $werknemer->id }}">{{ $werknemer->name }}</option>
+              <option value="{{ $werknemer->id }}">{{ $werknemer->name }}</option>
             @endforeach
           <br><br></select><br><br>         
           <label for="selectProject">Project:</label><br>
           <select id="selectProject" style="width:100%;">
             <option style="display:none"></option>
             @foreach($project as $project)
-              <option id="project" value="{{ $project->id }}">{{ $project->naam }}</option>
+              <option value="{{ $project->id }}">{{ $project->naam }}</option>
             @endforeach
           <br><br></select><br><br>
           <label for="uren">Aantal uren:</label><br>
@@ -65,7 +65,13 @@
         </table>
         </div>
         <div class="modal-footer">
-          <button type="button" onclick="save(); hide();" id="btn" class="btn btn-primary">Opslaan</button>
+          @foreach($planning as $planning)
+          <form action="/planning/{{ $planning->id }}/delete" method="POST">
+            @csrf
+            @method("POST")
+          <button type="button" id="btnDelete" class="btn btn-danger">Verwijder</button>
+          @endforeach
+          <button type="button" onclick="save(); hide();" id="btn" class="btn btn-primary">Opslaan</button>         
         </div>
       </div>
     </div>
@@ -85,6 +91,7 @@
           });
             $('#calendar').fullCalendar({
               eventClick: function(event, date){
+                $('#btnDelete').show();
                 $('#omschrijving').val(event.title);    
                 $('#date').val(event.start.format());
                 $('#uren').val(event.uren);
@@ -92,6 +99,7 @@
                 $('#selectUser').val(event.werknemer);
                 $('#modal').modal('toggle');
                 $('#calendar').fullCalendar('updateEvent', event);
+
               },
                 editable: false,
                 header:{
@@ -118,11 +126,23 @@
                     var modal = new bootstrap.Modal(document.getElementById('modal'));
                     modal.show();  
                     var date = date.format();
-                    $('#date').val(date);                                                                                                             
+                    $('#date').val(date);        
+
+                    if(modal!=emptyModal()){
+                      $('#btnDelete').hide();
+                    }
                 }
             });                    
-        });      
+        });     
+        function delete(event){
 
+        }
+        function emptyModal(){
+          $('#uren').val('');
+          $('#omschrijving').val('');
+          $('#selectUser').val('');
+          $('#selectProject').val('');
+        }
         function hide(){
           var id = document.getElementById('modal');
           $('#modal').modal('hide');
@@ -144,12 +164,15 @@
             date: date
           },
           success: function(data) {
+            console.log(data);
             newEvents = [{
                   id: data.planning["id"],
                   title: data.planning["omschrijving"],
-                  start: data.planning["datum"]
+                  start: data.planning["datum"],
+                  uren: data.planning["uren"],
+                  werknemer: data.planning["user_id"],
+                  project: data.planning["project_id"]
                 }]
-
             // $('#calendar').fullCalendar('removeEvents');
             $('#calendar').fullCalendar( 'addEventSource', newEvents);
           }
