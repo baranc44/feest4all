@@ -44,23 +44,19 @@ class PlanningController extends Controller
                 'datum' => $request->date
             ]);
 
-            $planning = Planning::latest()->first();
+            // $planning = Planning::latest()->first();
+            // $planning->save();
                      
             return array('planning' => $planning);
 
             return response()->json($planning);
-            $planning->save();
         }
     }
     public function delete($id){
-        $planning = Planning::find($id);
-        if(! $planning){
-            return response()->json([
-                 'error' => 'Unable to locate the event'
-            ], 404);
-        }
+        // $planning2 = DB::select('DELETE FROM plannings WHERE id = '.$id);
+        $planning = Planning::find($id);   
         $planning->delete();
-        return $id;
+        return redirect('/planning');
     }
 }
 

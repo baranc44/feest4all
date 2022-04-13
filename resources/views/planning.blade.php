@@ -64,8 +64,8 @@
           <input type="text" id="omschrijving"><br><br>
         </table>
         </div>
-        <div class="modal-footer">        
-          <button type="button" onclick="remove(value);" id="btnDelete" class="btn btn-danger">Verwijder</button>
+        <div class="modal-footer">                  
+          <button type="submit" onclick="remove(value);" id="btnDelete" class="btn btn-danger">Verwijder</button>          
           <button type="button" onclick="update(value); hide();" id="btnUpdate" class="btn btn-primary">Bewerk</button>         
           <button type="button" onclick="save(value); hide();" id="btnSave" class="btn btn-primary">Opslaan</button>         
         </div>
@@ -135,27 +135,23 @@
                     }
                 }
             });                    
-        });         
-        function remove(id) {
-          var id = id;
-                if(confirm('Weet je het zeker?')){
-                  $.ajax({
-                  action:"{{ url('/planning/delete', '') }}" + "/" + id,
-                  type:'DELETE',
-                  dataType:'json',
-                  success:function(response){
-                    var id = response.id
-                    console.log(id);
-                    alert("Verwijderd");
-                  },
+        });        
+        function remove(id){
+                $.ajax({               
+                action:"{{ url('/planning/delete', '') }}" + "/" + id,
+                type: 'DELETE',
+                dataType:'json',
+                success:function(response){
+                  var id = response.id
+                  alert("Verwijderd");
+                },
                   error:function(error){
-                    alert("Er is iets fout gegaan");
-                  }
-                })
-                }
-        }  
+                    console.log(error);
+                  alert("Er is iets fout gegaan");
+              }
+            });
+        }
         function update(id){
-
         }    
         function emptyModal(){
           $('#uren').val('');
@@ -175,7 +171,7 @@
         var omschrijving = document.getElementById('omschrijving').value;
           $.ajax({
           type: "POST",
-          url: "planning/action",
+          url: "/planning/action",
           data:{
             uren: uren,
             omschrijving: omschrijving,
