@@ -1,5 +1,12 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<x-app-layout>
+  <script>
+      BASE_URL="<?php echo url('');?>"
+  </script>
+  <x-slot name="header">
+      <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+          {{ __('Planning') }}
+      </h2>
+  </x-slot>
 <head>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.all.js"></script>
     <meta name="csrf-token" content="{{csrf_token()}}"/>
@@ -18,10 +25,20 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script> 
+
+    <style>
+      a {
+        text-decoration: none !important;
+      }
+    </style>
     
 </head>
 <body>
-<div id="calendar" style="width: 120vh; margin-left: auto; margin-right: auto;">
+  <div class="py-12">
+    <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">       
+            <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-left">
+<div id="calendar" style="width: 75vw; margin-left: auto; margin-right: auto;">
     <div class="container mt-5" style="max-width: 700px">
         <div class="row">
             <div class="col-12">
@@ -76,6 +93,10 @@
       </div>
     </div>
   </div>
+</div>
+</div>
+</div>
+</div>
 <script>
         $.ajaxSetup({
             headers:{
@@ -219,5 +240,4 @@
         })         
       }
     </script>
-</body>
-</html>
+</x-app-layout>

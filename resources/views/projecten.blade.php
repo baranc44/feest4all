@@ -17,6 +17,7 @@
                         <tr class="mt-8 text-2xl">
                             <th>Projectnummer</th>
                             <th>Projectnaam</th>
+                            <th>Actie</th>
                         </tr>
                         @foreach($projecten as $project)
                         <tbody id="projectenBody">
@@ -58,6 +59,18 @@
 
         .trproducts > td:last-child {
             display: flex;
+        }
+
+        input {
+            height: 35px;
+        }
+
+        form {
+            display: inline;
+        }
+
+        .btn > i {
+            text-align: center;
         }
     </style>
 </x-app-layout>
