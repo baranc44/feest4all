@@ -204,6 +204,7 @@
           },
           success: function(data) {
             console.log(data);
+            location.replace("/planning");
             newEvents = [{
                   id: data.planning["id"],
                   title: data.planning["omschrijving"],
