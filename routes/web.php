@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\WerknemerController;
 use App\Http\Controllers\ProductsController;
 use App\Http\Controllers\PlanningController;
@@ -10,6 +8,7 @@ use App\Http\Controllers\ExportController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\OverzichtenController;
 use App\Http\Controllers\TijdController;
+use App\Http\Controllers\DashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,18 +20,16 @@ use App\Http\Controllers\TijdController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
 Route::get('/', function () {
     return view('auth/login');
 });
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    $id= Auth::id();
-    $uren = DB::select('SELECT h.datum, h.uren, h.gefactureerd FROM uren as h WHERE h.member_id = '.$id.' ORDER BY h.created_at  DESC LIMIT 5');
-    return view('dashboard', [
-        'uren' => $uren
-    ]);
-})->name('dashboard');
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth'])->group(function () {    
+//dashboard
+Route::get('/', [DashboardController::class, 'redirectDashboard'])->name('redirectDashboard');
+Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
+
 // werknemers
 Route::get('/werknemers', [WerknemerController::class, 'allUsers'])->name('werknemers');
 Route::get('/werknemer/add', [WerknemerController::class, 'addView'])->name('addwerknemer');
