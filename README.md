@@ -2,7 +2,7 @@
 Appuren - A project by DE-IT
 
 ## Installation
-- `https://github.com/de-it-projects/App-uren.git .`
+- `git clone https://github.com/de-it-projects/app-uren.git .`
 - Edit `.env` and set your database & email connection details
 - `composer i`
 - `npm i`
