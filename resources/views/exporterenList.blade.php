@@ -13,7 +13,7 @@
                 <p scope="col" id="hideBtn{{$project->id}}" onclick="hide({{$project->id}});" style="display:inline; color:rgb(232, 29, 29); cursor:pointer; user-select:none;" class="v-hidden"> [hide table] </p>
                 <br>
             </div> 
-                <table style="width:100% "class="text-left table hidden" id="table{{$project->id}}">
+                <table style="width:100%"class="text-left table hidden" id="table{{$project->id}}">
                 <thead>
                 <tr class="mt-8 text-2xl">
                     <th scope="col">Datum</th>

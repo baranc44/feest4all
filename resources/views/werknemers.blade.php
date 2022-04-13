@@ -159,5 +159,31 @@
             float:left;
             margin-left: 2px;
         }
+
+        @media only screen and (max-width: 810px) {
+
+        .btnSearch {
+            width: 100%;
+            
+        }
+
+        table {
+            display:flex;
+        }
+
+        th {
+            display: none;
+        }
+        td {
+            display:flex;
+        }
+        form > .btn {
+            width: 50%;
+        }
+
+        td > .btn {
+            width:50%;
+        }
+    }
     </style>
 </x-app-layout>

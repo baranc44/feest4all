@@ -89,6 +89,38 @@
             }
         }
     </script>
+    <style>
+        
+        @media only screen and (max-width: 810px) {
+
+            tr:nth-child(even) input, tr:nth-child(even) select  {
+            background-color: #f2f2f2;
+        }
+
+        table {
+            display:flex;
+        }
+
+        th {
+            display: none;
+        }
+        td {
+            display:flex;
+        }
+
+        input {
+            width:100%;
+        }
+
+        form > .btn {
+            width: 100%;
+        }
+
+        td > .btn {
+            width:100%;
+        }
+        }
+    </style>
 </x-guest-layout>
 
 

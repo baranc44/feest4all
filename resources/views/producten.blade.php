@@ -214,5 +214,6 @@
         td > .btn {
             width:50%;
         }
+    }
     </style>
 </x-app-layout>
