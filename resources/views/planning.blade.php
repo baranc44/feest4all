@@ -64,8 +64,12 @@
           <input type="text" id="omschrijving"><br><br>
         </table>
         </div>
-        <div class="modal-footer">                  
-          <button type="submit" onclick="remove(value);" id="btnDelete" class="btn btn-danger">Verwijder</button>          
+        <div class="modal-footer">        
+          <form action="/planning/delete/" id="formDelete" method="post">
+          @csrf
+          @method('delete')
+          <button type="submit" id="btnDelete" class="btn btn-danger">Verwijder</button>
+          </form>
           <button type="button" onclick="update(value); hide();" id="btnUpdate" class="btn btn-primary">Bewerk</button>         
           <button type="button" onclick="save(value); hide();" id="btnSave" class="btn btn-primary">Opslaan</button>         
         </div>
@@ -87,7 +91,8 @@
             $('#calendar').fullCalendar({
               eventClick: function(event, date){   
                 $('#btnUpdate').val(event.id);           
-                $('#btnDelete').val(event.id);
+                console.log(event);
+                document.getElementById("formDelete").action = '/planning/delete/'+event.id;
                 $('#btnSave').val(event.id);
                 $('#btnDelete').show();
                 $('#btnUpdate').show();
@@ -135,22 +140,7 @@
                     }
                 }
             });                    
-        });        
-        function remove(id){
-                $.ajax({               
-                action:"{{ url('/planning/delete', '') }}" + "/" + id,
-                type: 'DELETE',
-                dataType:'json',
-                success:function(response){
-                  var id = response.id
-                  alert("Verwijderd");
-                },
-                  error:function(error){
-                    console.log(error);
-                  alert("Er is iets fout gegaan");
-              }
-            });
-        }
+        });         
         function update(id){
         }    
         function emptyModal(){
