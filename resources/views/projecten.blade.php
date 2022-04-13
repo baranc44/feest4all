@@ -20,7 +20,7 @@
                         </tr>
                         @foreach($projecten as $project)
                         <tbody id="projectenBody">
-                        <tr id="{{ $project->id }}"class="mt-6 text-gray-500">
+                        <tr id="{{ $project->id }}"class="mt-6 text-gray-500 trproducts">
                             <td><span>{{$project->project_nummer}}</span><input class="hidden" type="text" value="{{$project->project_nummer}}"/></td>
                             <td><span>{{$project->naam}}</span><input class="hidden" type="text" value="{{$project->naam}}"/></td>
                             <td>
@@ -54,6 +54,10 @@
             height: 40px;
             float:left;
             margin-left: 2px;
+        }
+
+        .trproducts > td:last-child {
+            display: flex;
         }
     </style>
 </x-app-layout>

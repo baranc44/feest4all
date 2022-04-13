@@ -177,7 +177,38 @@
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('producten') }}" :active="request()->routeIs('producten')">
+                {{ __('Producten') }}
+            </x-jet-responsive-nav-link> 
+
+            <x-jet-responsive-nav-link href="{{ route('planning') }}" :active="request()->routeIs('planning')">
+                {{ __('Planning') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('overzichten') }}" :active="request()->routeIs('overzichten')">
+                {{ __('Overzichten') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('werknemers') }}" :active="request()->routeIs('werknemers')">
+                {{ __('Werknemers') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('exporteren') }}" :active="request()->routeIs('exporteren')">
+                {{ __('Exporteren') }}
+            </x-jet-responsive-nav-link>
+            
+            <x-jet-responsive-nav-link href="{{ route('projecten') }}" :active="request()->routeIs('projecten')">
+                {{ __('Projecten') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('tijdregistratie') }}" :active="request()->routeIs('tijdregistratie')">
+                {{ __('Tijdregistratie') }}
+            </x-jet-responsive-nav-link>
         </div>
+        {{-- <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
+            {{ __('Profile') }}
+        </x-jet-responsive-nav-link> --}}
 
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
@@ -196,39 +227,6 @@
 
             <div class="mt-3 space-y-1">
                 <!-- Account Management -->
-                <x-jet-responsive-nav-link href="{{ route('profile.show') }}" :active="request()->routeIs('profile.show')">
-                    {{ __('Profile') }}
-                </x-jet-responsive-nav-link>
-
-                <x-jet-responsive-nav-link href="{{ route('producten') }}" :active="request()->routeIs('producten')">
-                    {{ __('Producten') }}
-                </x-jet-responsive-nav-link> 
-
-                <x-jet-responsive-nav-link href="{{ route('planning') }}" :active="request()->routeIs('planning')">
-                    {{ __('Planning') }}
-                </x-jet-responsive-nav-link>
-
-                <x-jet-responsive-nav-link href="{{ route('overzichten') }}" :active="request()->routeIs('overzichten')">
-                    {{ __('Overzichten') }}
-                </x-jet-responsive-nav-link>
-
-                <x-jet-responsive-nav-link href="{{ route('werknemers') }}" :active="request()->routeIs('werknemers')">
-                    {{ __('Werknemers') }}
-                </x-jet-responsive-nav-link>
-
-                <x-jet-responsive-nav-link href="{{ route('exporteren') }}" :active="request()->routeIs('exporteren')">
-                    {{ __('Exporteren') }}
-                </x-jet-responsive-nav-link>
-                
-                <x-jet-responsive-nav-link href="{{ route('projecten') }}" :active="request()->routeIs('projecten')">
-                    {{ __('Projecten') }}
-                </x-jet-responsive-nav-link>
-
-                <x-jet-responsive-nav-link href="{{ route('tijdregistratie') }}" :active="request()->routeIs('tijdregistratie')">
-                    {{ __('Tijdregistratie') }}
-                </x-jet-responsive-nav-link>
-                <div style="width: 25%; height:2px;background-color: rgb(107 114 128);"></div>
-
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}
