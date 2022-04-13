@@ -54,7 +54,7 @@ Route::delete('product/{id}/delete', [ProductsController::class, 'delete'])->nam
 // planning
 Route::get('/planning', [PlanningController::class, 'allPlanning'])->name('planning');
 Route::post('planning/action', [PlanningController::class, 'action'])->name('action');
-Route::post('/planning/{id}/delete', [PlanningController::class, 'delete'])->name('eventdelete');
+Route::delete('/planning/delete/{id}', 'App\Http\Controllers\PlanningCntroller@delete')->name('deleteEvent');
 
 // tijd registratie
 Route::get('/tijdregistratie', [TijdController::class, 'showTijd'])->name('tijdregistratie');

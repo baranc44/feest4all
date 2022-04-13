@@ -54,10 +54,13 @@ class PlanningController extends Controller
     }
     public function delete($id){
         $planning = Planning::find($id);
+        if(! $planning){
+            return response()->json([
+                 'error' => 'Unable to locate the event'
+            ], 404);
+        }
         $planning->delete();
-
-        $message = $this->message("De taak is verwijderd");
-        return redirect('/planning')->with('message', $message);
+        return $id;
     }
 }
 
