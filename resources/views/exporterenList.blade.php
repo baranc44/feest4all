@@ -1,4 +1,4 @@
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+{{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> --}}
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="p-6 sm:px-20 bg-white border-b border-gray-200 text-left" style="text-align: center;">
             @forelse ($projects as $project)
@@ -10,10 +10,10 @@
                 <p style="display:inline;">Geen data om te exporteren</p>
                 @endif
                 <p scope="col" id="showBtn{{$project->id}}" onclick="show({{$project->id}});" style="display:inline; color:rgb(33, 129, 231); cursor:pointer; user-select:none;"> [show table] </p>
-                <p scope="col" id="hideBtn{{$project->id}}" onclick="hide({{$project->id}});" style="display:inline; color:rgb(232, 29, 29); cursor:pointer; user-select:none;" class="hidden"> [hide table] </p>
+                <p scope="col" id="hideBtn{{$project->id}}" onclick="hide({{$project->id}});" style="display:inline; color:rgb(232, 29, 29); cursor:pointer; user-select:none;" class="v-hidden"> [hide table] </p>
                 <br>
             </div> 
-                <table class="table hidden" id="table{{$project->id}}">
+                <table style="width:100% "class="text-left table hidden" id="table{{$project->id}}">
                 <thead>
                 <tr class="mt-8 text-2xl">
                     <th scope="col">Datum</th>
