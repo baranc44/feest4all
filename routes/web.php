@@ -24,12 +24,11 @@ use App\Http\Controllers\DashboardController;
 Route::get('/', function () {
     return view('auth/login');
 });
-
-Route::middleware(['auth'])->group(function () {    
 //dashboard
 Route::get('/', [DashboardController::class, 'redirectDashboard'])->name('redirectDashboard');
 Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
 
+Route::middleware(['auth'])->group(function(){
 // werknemers
 Route::get('/werknemers', [WerknemerController::class, 'allUsers'])->name('werknemers');
 Route::get('/werknemer/add', [WerknemerController::class, 'addView'])->name('addwerknemer');
@@ -37,6 +36,7 @@ Route::post('/addwerknemerdata', [WerknemerController::class, 'addUser'])->name(
 Route::post('/werknemeredit', [WerknemerController::class, 'edit'])->name('werknemeredit');
 Route::delete('/werknemer/{id}/delete', [WerknemerController::class, 'delete'])->name('werknemerdelete');
 Route::post('/passwordedit', [WerknemerController::class, 'pwedit'])->name('passwordedit');
+});
 
 // producten
 Route::get('/producten', [ProductsController::class, 'allProducts'])->name('producten');
@@ -73,11 +73,12 @@ Route::get('/projectProducten/{id}', 'App\Http\Controllers\OverzichtenController
 Route::get('/urenproject', [OverzichtenController::class, 'urenProject'])->name('urenProject');
 Route::get('/projectlist/{id}', 'App\Http\Controllers\OverzichtenController@urenProjectId')->name('urenProjectId');
 
+Route::middleware(['auth'])->group(function(){
 // exporteren
 Route::get('/exporteren', [ExportController::class, 'allExports'])->name('exporteren');
 Route::get('/allExports', [ExportController::class, 'allExports_ajax'])->name('allExports');
 Route::get('/export/{id}', [ExportController::class, 'export'])->name('export');
-
+});
 
 // projecten
 Route::get('/projecten', [ProjectController::class, 'allProjects'])->name('projecten');
@@ -86,5 +87,5 @@ Route::post('/addprojectdata', [ProjectController::class, 'addProject'])->name('
 Route::get('project/{id}/edit', [ProjectController::class, 'edit'])->name('projectedit');
 Route::post('/update', [ProjectController::class, 'updateData'])->name('projectupdate');
 Route::post('/project/{id}/delete', [ProjectController::class, 'delete'])->name('deleteproject');
-});
+
 
