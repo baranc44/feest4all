@@ -46,7 +46,7 @@ Route::get('/producten_ajax', [ProductsController::class, 'allProducts_ajax'])->
 Route::get('/product/add', [ProductsController::class, 'add'])->name('productadd');
 Route::post('/product/addproduct', [ProductsController::class, 'insert'])->name('addproduct');
 Route::post('/product/edit', [ProductsController::class, 'edit'])->name('productedit');
-Route::delete('product/{id}/delete', [ProductsController::class, 'delete'])->name('productdel');
+Route::delete('product/{id}/delete', [ProductsController::class, 'delete'])->name('productdel')->middleware('admin');
 
 // planning
 Route::get('/planning', [PlanningController::class, 'allPlanning'])->name('planning');
@@ -61,7 +61,7 @@ Route::post('tijdpost', [TijdController::class, 'add'])->name('tijdpost');
 // overzichten
 Route::get('/overzichten', [OverzichtenController::class, 'overzichtMenu'])->name('overzichten');
 Route::get('/Overzicht', [OverzichtenController::class, 'Overzicht'])->name('overzicht');
-Route::get('/overzichtopties', [OverzichtenController::class, 'overzichtOpties'])->name('overzichtopties');
+Route::get('/overzichtopties', [OverzichtenController::class, 'overzichtOpties'])->name('overzichtopties')->middleware('admin');
 Route::get('/urenOverzichtUser', [OverzichtenController::class, 'urenOverzichtUser'])->name('urenOverzichtUser');
 Route::get('/uren_ajax', [OverzichtenController::class, 'allUren_ajax'])->name('urenajax');
 Route::get('/overzichtopties', [OverzichtenController::class, 'getData'])->name('datedata');
@@ -75,9 +75,9 @@ Route::get('/urenproject', [OverzichtenController::class, 'urenProject'])->name(
 Route::get('/projectlist/{id}', 'App\Http\Controllers\OverzichtenController@urenProjectId')->name('urenProjectId');
 
 // exporteren
-Route::get('/exporteren', [ExportController::class, 'allExports'])->name('exporteren');
-Route::get('/allExports', [ExportController::class, 'allExports_ajax'])->name('allExports');
-Route::get('/export/{id}', [ExportController::class, 'export'])->name('export');
+Route::get('/exporteren', [ExportController::class, 'allExports'])->name('exporteren')->middleware('admin');
+Route::get('/allExports', [ExportController::class, 'allExports_ajax'])->name('allExports')->middleware('admin');
+Route::get('/export/{id}', [ExportController::class, 'export'])->name('export')->middleware('admin');
 
 // projecten
 Route::get('/projecten', [ProjectController::class, 'allProjects'])->name('projecten');
@@ -85,6 +85,6 @@ Route::get('/project/add', [ProjectController::class, 'addView'])->name('addproj
 Route::post('/addprojectdata', [ProjectController::class, 'addProject'])->name('addprojectdata');
 Route::get('project/{id}/edit', [ProjectController::class, 'edit'])->name('projectedit');
 Route::post('/update', [ProjectController::class, 'updateData'])->name('projectupdate');
-Route::post('/project/{id}/delete', [ProjectController::class, 'delete'])->name('deleteproject');
+Route::post('/project/{id}/delete', [ProjectController::class, 'delete'])->name('deleteproject')->middleware('admin');
 });
 

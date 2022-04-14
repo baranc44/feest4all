@@ -6,6 +6,7 @@ use Closure;
 use App\Models\User;
 use DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 
 class AdminMiddleware
@@ -19,14 +20,11 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        $user = DB::table("users")->get("power");
-        // dd($user);
-        foreach($user as $user){
-        if($user->power == 1){
+        if (Auth::user()->power !== 1) {
+
+            return redirect('/dashboard');
+            
+        }
         return $next($request);
-        }else{
-        return redirect('/dashboard');
-        }
-        }
     }
 }
