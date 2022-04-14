@@ -17,6 +17,7 @@
                         <tr class="mt-8 text-2xl">
                             <th>Projectnummer</th>
                             <th>Projectnaam</th>
+                            <th>Action</th>
                         </tr>
                         @foreach($projecten as $project)
                         <tbody id="projectenBody">
@@ -27,11 +28,13 @@
                                 <div>
                                     <button id="save" class="btn hidden btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-save"></i></button> 
                                     <a href="/project/{{ $project->id }}/edit" id="edit" class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-pencil-alt"></i></a> 
+                                    @if (Auth::user()->power == 1)
                                     <form action="/project/{{ $project->id }}/delete" method="POST">
                                         @csrf
                                         @method('post')
                                         <button class="btn px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"><i class="fas fa-trash-alt"></i></button></td>
                                     </form>
+                                    @endif
                                 </div> 
                             </td>                    
                         </tr>
@@ -58,6 +61,16 @@
 
         .trproducts > td:last-child {
             display: flex;
+        }
+
+        form {
+            display: inline;
+        }
+
+        .btn {
+            width:  40px;
+            height: 40px;
+            margin-left: 2px;
         }
     </style>
 </x-app-layout>

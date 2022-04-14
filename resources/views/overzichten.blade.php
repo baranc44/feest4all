@@ -8,9 +8,11 @@
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">       
                 <div class="p-6 sm:px-2 bg-white border-b border-gray-200" id="overzichten">
+                    @if (Auth::user()->power == 1)
                     <div onclick="location.href='overzichtopties'" class="btnOverzicht">
                         <h1>Maand overzicht</h1> <!-- Overzicht per week,maand,jaar? && per project -->
                     </div>
+                    @endif
                     <div onclick="location.href='urenOverzichtUser'" class="btnOverzicht">
                         <h1>Uren per werknemer</h1>
                     </div>

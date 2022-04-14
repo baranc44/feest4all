@@ -32,16 +32,20 @@
                     {{ __('Overzichten') }}
                     </x-jet-nav-link>
                 </div>
+                @if (Auth::user()->power == 1)
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('werknemers') }}" :active="request()->routeIs('werknemers')">
                     {{ __('Werknemers') }}
                     </x-jet-nav-link>
                 </div>
+                @endif
+                @if (Auth::user()->power == 1)
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{  route('exporteren') }}" :active="request()->routeIs('exporteren')">
                     {{ __('Exporteren') }}
                     </x-jet-nav-link>
                 </div>
+                @endif
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-jet-nav-link href="{{ route('projecten') }}" :active="request()->routeIs('projecten')">
                     {{ __('Projecten') }}
@@ -189,15 +193,16 @@
             <x-jet-responsive-nav-link href="{{ route('overzichten') }}" :active="request()->routeIs('overzichten')">
                 {{ __('Overzichten') }}
             </x-jet-responsive-nav-link>
-
+            @if (Auth::user()->power == 1)
             <x-jet-responsive-nav-link href="{{ route('werknemers') }}" :active="request()->routeIs('werknemers')">
                 {{ __('Werknemers') }}
             </x-jet-responsive-nav-link>
-
+            @endif
+            @if (Auth::user()->power == 1)
             <x-jet-responsive-nav-link href="{{ route('exporteren') }}" :active="request()->routeIs('exporteren')">
                 {{ __('Exporteren') }}
             </x-jet-responsive-nav-link>
-            
+            @endif
             <x-jet-responsive-nav-link href="{{ route('projecten') }}" :active="request()->routeIs('projecten')">
                 {{ __('Projecten') }}
             </x-jet-responsive-nav-link>
