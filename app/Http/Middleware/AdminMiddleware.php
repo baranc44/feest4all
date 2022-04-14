@@ -3,7 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use User;
+use App\Models\User;
+use DB;
 use Illuminate\Http\Request;
 
 
@@ -18,10 +19,14 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        if($request->input('power') == 1){
+        $user = DB::table("users")->get("power");
+        // dd($user);
+        foreach($user as $user){
+        if($user->power == 1){
         return $next($request);
-        }else{ 
-        return Redirect::back();
+        }else{
+        return redirect('/dashboard');
+        }
         }
     }
 }
