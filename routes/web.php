@@ -31,12 +31,12 @@ Route::get('/', [DashboardController::class, 'redirectDashboard'])->name('redire
 Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
 
 // werknemers
-Route::get('/werknemers', ['middleware' => 'admin', WerknemerController::class, 'allUsers'])->name('werknemers');
-Route::get('/werknemer/add', ['middleware' => 'admin', WerknemerController::class, 'addView'])->name('addwerknemer');
-Route::post('/addwerknemerdata', ['middleware' => 'admin', WerknemerController::class, 'addUser'])->name('addwerknemerdata');
-Route::post('/werknemeredit', ['middleware' => 'admin', WerknemerController::class, 'edit'])->name('werknemeredit');
-Route::delete('/werknemer/{id}/delete', ['middleware' => 'admin', WerknemerController::class, 'delete'])->name('werknemerdelete');
-Route::post('/passwordedit', ['middleware' => 'admin', WerknemerController::class, 'pwedit'])->name('passwordedit');
+Route::get('/werknemers', [WerknemerController::class, 'allUsers'])->name('werknemers')->middleware('admin');
+Route::get('/werknemer/add', [WerknemerController::class, 'addView'])->name('addwerknemer')->middleware('admin');
+Route::post('/addwerknemerdata', [WerknemerController::class, 'addUser'])->name('addwerknemerdata')->middleware('admin');
+Route::post('/werknemeredit', [ WerknemerController::class, 'edit'])->name('werknemeredit')->middleware('admin');
+Route::delete('/werknemer/{id}/delete', [WerknemerController::class, 'delete'])->name('werknemerdelete')->middleware('admin');
+Route::post('/passwordedit', [WerknemerController::class, 'pwedit'])->name('passwordedit')->middleware('admin');
 
 
 // producten
