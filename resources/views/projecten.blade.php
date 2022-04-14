@@ -17,7 +17,7 @@
                         <tr class="mt-8 text-2xl">
                             <th>Projectnummer</th>
                             <th>Projectnaam</th>
-                            <th>Action</th>
+                            <th>Actie</th>
                         </tr>
                         @foreach($projecten as $project)
                         <tbody id="projectenBody">
@@ -63,14 +63,26 @@
             display: flex;
         }
 
+<<<<<<< HEAD
+=======
+        input {
+            height: 35px;
+        }
+
+>>>>>>> Jordy
         form {
             display: inline;
         }
 
+<<<<<<< HEAD
         .btn {
             width:  40px;
             height: 40px;
             margin-left: 2px;
+=======
+        .btn > i {
+            text-align: center;
+>>>>>>> Jordy
         }
     </style>
 </x-app-layout>
