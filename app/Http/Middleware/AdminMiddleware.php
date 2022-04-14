@@ -21,9 +21,8 @@ class AdminMiddleware
     public function handle(Request $request, Closure $next)
     {
         if (Auth::user()->power !== 1) {
-
             return redirect('/dashboard');
-            
+        
         }
         return $next($request);
     }
