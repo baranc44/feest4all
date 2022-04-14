@@ -5,6 +5,7 @@
         <div class="max-w-8xl mx-auto sm:px-6 lg:px-8">
             <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
                 <div class="bg-gray-200 bg-opacity-25 grid grid-cols-1 md:grid-cols-2">
+                    @if (Auth::user()->power == 1)
                     <div class="p-6">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -12,13 +13,13 @@
                               </svg>
                             <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a class="btnHover" href="{{ route('exporteren') }}">Exporteren</a></div>
                         </div>
-                
                         <div class="ml-12">
                             <div class="mt-2 text-sm text-gray-500">
                                 Exporteer hier!
                             </div>
                         </div>
                     </div>
+                    @endif
                 
                     <div class="p-6 border-t border-gray-200 md:border-t-0 md:border-l">
                         <div class="flex items-center">
@@ -34,7 +35,7 @@
                             </div>
                         </div>
                     </div>
-                
+                    @if (Auth::user()->power == 1)
                     <div class="p-6 border-t border-gray-200">
                         <div class="flex items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -42,13 +43,13 @@
                             </svg>            
                         <div class="ml-4 text-lg text-gray-600 leading-7 font-semibold"><a class="btnHover" href="{{ route('werknemers') }}">Werknemers</a></div>
                         </div>
-                
                         <div class="ml-12">
                             <div class="mt-2 text-sm text-gray-500">
                                 Zie de werknemers!
                             </div>
                         </div>
                     </div>
+                    @endif
                 
                     <div class="p-6 border-t border-gray-200 md:border-l">
                         <div class="flex items-center">
