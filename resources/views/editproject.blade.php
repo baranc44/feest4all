@@ -1,5 +1,10 @@
 <x-guest-layout>
     @csrf
+    <style>
+        select{
+            max-width: 17vw;
+        }
+    </style>
     <div class="mt-8 sm:mx-auto sm:w-full" style="width: 59%;">
         <div class="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
             <div class="mb-0 space-y-6 ">        
@@ -19,8 +24,8 @@
                             @foreach($allproducts as $item) <option name="products" value="{{ $item->id }}">{{ $item->naam }} </option> @endforeach                                         
                         </select>   
                         </td>                            
-                         <td><input type="text" id="amount" name="amount" value="{{ $product->hoeveelheid }}" placeholder="Hoeveelheid"></td>
-                         <td><input type="text" id="comment" name="comment" value="{{ $product->opmerkingen }}" placeholder="Opmerkingen"></td>                                                           
+                         <td><input style="width: 17vw;" type="text" id="amount" name="amount" value="{{ $product->hoeveelheid }}" placeholder="Hoeveelheid"></td>
+                         <td><input style="width: 17vw;" type="text" id="comment" name="comment" value="{{ $product->opmerkingen }}" placeholder="Opmerkingen"></td>                                                           
                     </tr>  
                     @endforeach    
                 </table>
