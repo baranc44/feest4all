@@ -19,10 +19,13 @@ class ExportController extends Controller
             $date = $request->get('date');
             //SELECT * FROM project as p WHERE p.created_at > "2002-04-06"
             $id= 1;
-            $projects = Project::where('created_at', '>=', $date)->get();
+            // $projects = Project::where('created_at', '>=', $date)->get();
+            $projects = DB::table('project')->where('created_at', '>=', $date)->get();
+            $uren = DB::table('uren')->get();
 
             return view('ExporterenList', [
-                'projects' => $projects
+                'projects' => $projects,
+                'uren' => $uren
             ]);
             }
     }
@@ -32,7 +35,7 @@ class ExportController extends Controller
         $date = date("d/m/Y h:i:s");
         $fileName = "urenexport $date.csv";
 
-        $project = Project::find($id);
+        $project = DB::table('project')->where('id', $id)->get()[0];
 
         $urenProject = DB::select('SELECT h.datum, u.name, h.omschrijving, h.uren FROM uren as h, users as u WHERE h.project_id = '.$id.' AND h.member_id = u.id');
         

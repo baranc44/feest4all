@@ -40,6 +40,7 @@ class ProjectController extends Controller
         $array = $request->all()['array'];
         $pnaam = $request->all()['pnaam'];
         $pnummer = $request->all()['pnummer'];
+        $date = date("d/m/Y h:i:s");
         
         $update = DB::table('project')
             ->where('id', $id)
@@ -82,8 +83,11 @@ class ProjectController extends Controller
     }
 
     public function delete($id){
-        $project = Project::find($id);
-        $project->delete();
+
+        $delete = DB::table('project')->where('id', $id)->delete();
+
+        // $project = Project::find($id);
+        // $project->delete();
 
         $message = $this->message("Het project is verwijderd.", "SUC");
         return redirect('/projecten')->with('message', $message);  
@@ -99,14 +103,22 @@ class ProjectController extends Controller
         $pnaam = $request->all()["pnaam"];
         $pnummer = $request->all()["pnummer"];
         $array = $request->all()["array"];
+        $date = date("d-m-Y h:i:s");
 
-        
-        $project = Project::create([
+        $create = DB::table('project')->insert([
             'project_nummer' => $pnummer,            
-            'naam' => $pnaam          
+            'naam' => $pnaam
         ]);
 
-        $lastprojectId = Project::select('id')->orderBy('created_at', 'DESC')->first();
+
+        // $project = Project::create([
+        //     'project_nummer' => $pnummer,            
+        //     'naam' => $pnaam          
+        // ]);
+
+        $lastprojectId = DB::table('project')->select('id')->orderBy('id', 'DESC')->first();
+        
+        // $lastprojectId = Project::select('id')->orderBy('created_at', 'DESC')->first();
         
         foreach($array as $item){
         if ($item[0] == "-1" || $item[1] == "")
@@ -117,7 +129,7 @@ class ProjectController extends Controller
             $item[2] = "";
         }
 
-        $project_product = ProjectProducten::create([
+        $project_product = DB::table('project_producten')->insert([
             'project_id' => $lastprojectId->id,
             'product_id' => $item[0], 
             'hoeveelheid' => $item[1],

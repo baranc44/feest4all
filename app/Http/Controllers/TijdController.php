@@ -11,7 +11,7 @@ class TijdController extends Controller
 {
     public function showTijd() {
 
-        $projects = Project::all();
+        $projects = DB::table("project")->get();
 
         return view('tijdregistratie', [
             'projects' => $projects

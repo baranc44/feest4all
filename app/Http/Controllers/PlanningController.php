@@ -10,7 +10,8 @@ class PlanningController extends Controller
 {
     public function allPlanning(){  
         $events = array();
-        $planning = Planning::all();    
+        $planning = DB::table('plannings')->get();
+        // $planning = Planning::all();    
         foreach($planning as $planning){
             $events[] = [
                 'id' => $planning->id,
@@ -20,8 +21,8 @@ class PlanningController extends Controller
                 'project_id' => $planning->project_id,
                 'user_id' => $planning->user_id
             ];   
-            // dd($events);
         }  
+        
         $werknemer = DB::table("users")->get();
         $project = DB::table("project")->get();
 

@@ -80,7 +80,8 @@ class OverzichtenController extends Controller
         ]);
     }
     public function urenProjectId($id){
-        $project = Project::find($id);
+        $project = DB::table('project')->where('id', $id)->get()[0];
+        
         $uren = Uren::where("project_id", $id)->get();
         return view('projectList',[
             'projects' => $project,
