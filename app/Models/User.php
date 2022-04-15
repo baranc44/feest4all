@@ -9,6 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Hours;
 
 class User extends Authenticatable
 {
@@ -62,7 +63,10 @@ class User extends Authenticatable
     protected $appends = [
         'profile_photo_url',
     ];
-    public function planning(){
-        return $this->belongsTo(Planning::class);
+    // public function planning(){
+    //     return $this->belongsTo(Planning::class);
+    // }
+    public function hours(){
+        return $this->hasMany(Hours::class);
     }
 }
