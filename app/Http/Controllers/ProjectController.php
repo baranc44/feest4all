@@ -22,12 +22,12 @@ class ProjectController extends Controller
     }
 
     public function edit($id) {  
-        $project = Project::find($id);
-        $products = Projectproducten::where("project_id", $id)->get();
-        $allproducts = DB::table("products")->get();
+        $project = DB::table("project")->where('id', $id)->get();
+        $products = DB::table("project_producten")->where('project_id', $id)->get();
+        $allproducts = DB::table("products")->get(); 
 
         return view('editproject',[
-            'projects' => $project,
+            'projects' => $project[0],
             'products' => $products,
             'allproducts' => $allproducts
         ]);         
@@ -66,7 +66,6 @@ class ProjectController extends Controller
                 
             } else {
                 // insert
-
                 if (!$element[3]) {
                     $element[3] = "";
                 }

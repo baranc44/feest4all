@@ -47,7 +47,7 @@
             var tbody = $('#tableId').children('tbody');
             var table = tbody.length ? tbody : $('tableId');
             $('a').click(function(){
-                table.append('<tr> <td><select name="producten"> <option value="-1" hidden>Voeg een product toe</option> @foreach($allproducts as $item) <option name="products" value="{{ $item->id }}">{{ $item->naam }} </option> @endforeach</select></td><td><input type="number" name="amount" placeholder="Hoeveelheid" value="0"></td><td><input type="text" name="comment" placeholder="Opmerkingen"></td></tr>');
+                table.append('<tr> <td> <select name="producten"> <option value="-1" hidden>Voeg een product toe</option> @foreach($allproducts as $item) <option name="products" value="{{ $item->id }}">{{ $item->naam }} </option> @endforeach</select></td><td><input type="number" name="amount" placeholder="Hoeveelheid" value="0"></td><td><input type="text" name="comment" placeholder="Opmerkingen"></td></tr>');
             })
         });
                 $.ajaxSetup({
