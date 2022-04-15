@@ -1,5 +1,10 @@
 <x-guest-layout>
     @csrf
+    <style>
+        select{
+            max-width: 17vw;
+        }
+    </style>
     <div class="mt-8 sm:mx-auto sm:w-full" style="width: 59%;">
         <div class="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
             <div class="mb-0 space-y-6 ">        
@@ -21,8 +26,8 @@
                                 <option name="products" value="{{ $product->id }}">{{ $product->naam }} </option>
                             @endforeach
                           </select></td>
-                                <td><input type="number" id="amount" name="amount" value="0" placeholder="Hoeveelheid"></td>
-                                <td><input type="text" name="comment" placeholder="Opmerkingen"></td>                                         
+                                <td><input style="width: 17vw;" type="number" id="amount" name="amount" value="0" placeholder="Hoeveelheid"></td>
+                                <td><input style="width: 17vw;" type="text" name="comment" placeholder="Opmerkingen"></td>                                         
                             </tr>
                 </table>
                 <div class="text-center">
@@ -37,7 +42,7 @@
             var tbody = $('#tableId').children('tbody');
             var table = tbody.length ? tbody : $('tableId');
             $('a').click(function(){
-            table.append('<tr> <td><select name="producten"> <option value="-1" hidden>Voeg een product toe</option> @foreach($products as $product) <option name="products" value="{{ $product->id }}">{{ $product->naam }} </option> @endforeach</select></td><td><input type="number" name="amount" placeholder="Hoeveelheid" value="0"></td><td><input type="text" name="comment" placeholder="Opmerkingen"></td></tr>');
+            table.append('<tr> <td><select name="producten"> <option value="-1" hidden>Voeg een product toe</option> @foreach($products as $product) <option name="products" value="{{ $product->id }}">{{ $product->naam }} </option> @endforeach</select></td><td><input style="width: 17vw;" type="number" name="amount" placeholder="Hoeveelheid" value="0"></td><td><input style="width: 17vw;" type="text" name="comment" placeholder="Opmerkingen"></td></tr>');
             })        
         });  
         function allData(){
