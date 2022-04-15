@@ -22,6 +22,7 @@ class AdminMiddleware
     {
         if (Auth::user()->power == 1) {
             return $next($request);
+            
         }
 
         return redirect('/dashboard');
