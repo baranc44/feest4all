@@ -13,15 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('plannings', function(Blueprint $table){
-            $table->increments('id');
-            $table->unsignedInteger('project_id');
-            $table->unsignedInteger('user_id')->default(0);         
-            $table->double('uren');
-            $table->longText('omschrijving');
+        Schema::create('plannings', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger("project_id");
+            $table->unsignedBigInteger("user_id");
+            $table->double("hours");
+            $table->longText("description");
+            $table->date("date");
+            $table->boolean("completed");
             $table->timestamps();
-            $table->date('datum');
-            $table->boolean('voltooid')->default(0);   
         });
     }
 
@@ -32,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('planning');
+        Schema::dropIfExists('plannings');
     }
 };

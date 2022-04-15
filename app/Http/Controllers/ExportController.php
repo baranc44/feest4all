@@ -2,73 +2,84 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\export;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\Models\Project;
-use Illuminate\Support\Facades\Response;
 
 class ExportController extends Controller
 {
-    public function allExports(){
-        return view('exporteren');
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
     }
 
-    public function allExports_ajax(Request $request) {
-        if ($request->ajax()) {
-
-            $date = $request->get('date');
-            //SELECT * FROM project as p WHERE p.created_at > "2002-04-06"
-
-            // $projects = Project::where('created_at', '>=', $date)->get();
-            $projects = DB::table('project')->where('created_at', '>=', $date)->get();
-            $uren = DB::table('uren')->get();
-
-            return view('exporterenList', [
-                'projects' => $projects,
-                'uren' => $uren
-            ]);
-            }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
-    public function export($id) {
-        // MAAK EEN EXPORT !
-        $date = date("d/m/Y h:i:s");
-        $fileName = "urenexport $date.csv";
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        //
+    }
 
-        $project = DB::table('project')->where('id', $id)->get()[0];
+    /**
+     * Display the specified resource.
+     *
+     * @param  \App\Models\export  $export
+     * @return \Illuminate\Http\Response
+     */
+    public function show(export $export)
+    {
+        //
+    }
 
-        $urenProject = DB::select('SELECT h.datum, u.name, h.omschrijving, h.uren FROM uren as h, users as u WHERE h.project_id = '.$id.' AND h.member_id = u.id');
-        
-        $headers = array(
-            "Content-type"        => "text/csv",
-            "Content-Disposition" => "attachment; filename=$fileName",
-            "Pragma"              => "no-cache",
-            "Cache-Control"       => "must-revalidate, post-check=0, pre-check=0",
-            "Expires"             => "0"
-        );
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\export  $export
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(export $export)
+    {
+        //
+    }
 
-        $columns = array("Datum", "Werknemer", "Omschrijving", "Uren");
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\export  $export
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, export $export)
+    {
+        //
+    }
 
-        $callback = function() use($project, $urenProject, $columns) {
-            $file = fopen('php://output', 'w');
-            fputcsv($file, array('Project:', $project->naam), ';');
-
-            fputcsv($file, $columns, ';');
-
-            foreach ($urenProject as $uren) {
-                $row["Datum"] = $uren->datum;
-                $row["Werknemer"] = $uren->name;
-                $row["Omschrijving"] = $uren->omschrijving;
-                $row["Uren"] = $uren->uren;
-                fputcsv($file, array($row["Datum"], $row["Werknemer"], $row["Omschrijving"], $row["Uren"]),';');
-            }
-            fclose($file);
-            
-        };
-        return response()->stream($callback, 200, $headers);
-
-        // return response()->download('img/menu-logo.png');
-        
-
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\export  $export
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(export $export)
+    {
+        //
     }
 }

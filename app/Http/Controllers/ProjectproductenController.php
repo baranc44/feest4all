@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\project;
+use App\Models\projectproducten;
 use Illuminate\Http\Request;
 
-class ProjectController extends Controller
+class ProjectproductenController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -41,10 +41,10 @@ class ProjectController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\project  $project
+     * @param  \App\Models\projectproducten  $projectproducten
      * @return \Illuminate\Http\Response
      */
-    public function show(project $project)
+    public function show(projectproducten $projectproducten)
     {
         //
     }
@@ -52,10 +52,10 @@ class ProjectController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\project  $project
+     * @param  \App\Models\projectproducten  $projectproducten
      * @return \Illuminate\Http\Response
      */
-    public function edit(project $project)
+    public function edit(projectproducten $projectproducten)
     {
         //
     }
@@ -64,10 +64,10 @@ class ProjectController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\project  $project
+     * @param  \App\Models\projectproducten  $projectproducten
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, project $project)
+    public function update(Request $request, projectproducten $projectproducten)
     {
         //
     }
@@ -75,10 +75,10 @@ class ProjectController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\project  $project
+     * @param  \App\Models\projectproducten  $projectproducten
      * @return \Illuminate\Http\Response
      */
-    public function destroy(project $project)
+    public function destroy(projectproducten $projectproducten)
     {
         //
     }

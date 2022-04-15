@@ -13,10 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('facturen', function(Blueprint $table){
-            $table->increments('id');
-            $table->longText('factuur_data');
-            $table->timestamp('factuur_datum');
+        Schema::create('factuurs', function (Blueprint $table) {
+            $table->id();
+            $table->longText('invoice_data');
+            $table->date('invoice_date');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('facturen');
+        Schema::dropIfExists('factuurs');
     }
 };

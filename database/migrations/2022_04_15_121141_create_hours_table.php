@@ -13,12 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('products', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('naam');
-            $table->integer('voorraad');
-            $table->decimal('prijs');
-            $table->string('eenheid');
+        Schema::create('hours', function (Blueprint $table) {
+            $table->id();
+            $table->unsignedBigInteger("project_id");
+            $table->unsignedBigInteger("user_id");
+            $table->double("hours");
+            $table->longText("description");
+            $table->date("datum");
+            $table->boolean("invoiced");
+            $table->integer("invoice_number");
             $table->timestamps();
         });
     }
@@ -30,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('products');
+        Schema::dropIfExists('hours');
     }
 };
