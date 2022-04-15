@@ -105,7 +105,7 @@
                         <div class="ml-12">
                             <div class="mt-2 text-sm text-gray-500">
                                 Laatste uren:
-                                @if($uren)
+                                {{-- @if($uren) --}}
                                 <table style="width: 100%; text-align:left;">
                                     <tr class="mt-8 text-2xl">
                                         <th>Datum</th>
@@ -113,16 +113,16 @@
                                         <th>Gefactureerd</th>
                                     </tr>
                                 
-                                @foreach ($uren as $uur)
+                                {{-- @foreach ($uren as $uur) --}}
                                 <tr class="mt-6 text-gray-500">
-                                    <td>{{$uur->datum}}</td>
-                                    <td>{{$uur->uren}}</td>
-                                    <td>{{$uur->gefactureerd}}</td>
+                                    {{-- <td>{{$uur->datum}}</td> --}}
+                                    {{-- <td>{{$uur->uren}}</td> --}}
+                                    {{-- <td>{{$uur->gefactureerd}}</td> --}}
                                 </tr>
                                     
-                                @endforeach
+                                {{-- @endforeach --}}
                                 </table>
-                                @endif
+                                {{-- @endif --}}
                             </div>
                         </div>
                     </div>
