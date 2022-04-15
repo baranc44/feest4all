@@ -102,11 +102,13 @@ class ProjectController extends Controller
         $pnaam = $request->all()["pnaam"];
         $pnummer = $request->all()["pnummer"];
         $array = $request->all()["array"];
-        $date = date("d-m-Y h:i:s");
+        $date = date('Y-m-d H:i:s');
 
         $create = DB::table('project')->insert([
             'project_nummer' => $pnummer,            
-            'naam' => $pnaam
+            'naam' => $pnaam,
+            'created_at' => $date,
+            'updated_at' => $date
         ]);
 
 
