@@ -9,6 +9,7 @@ use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\OverzichtenController;
 use App\Http\Controllers\TijdController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,17 +26,17 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-Route::middleware(['auth'])->group(function () {    
+// Route::middleware(['auth'])->group(function () {    
 //dashboard
 Route::get('/', [DashboardController::class, 'redirectDashboard'])->name('redirectDashboard');
 Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
 
 // werknemers
-Route::get('/werknemers', [WerknemerController::class, 'allUsers'])->name('werknemers')->middleware('admin');
-Route::get('/werknemer/add', [WerknemerController::class, 'addView'])->name('addwerknemer')->middleware('admin');
-Route::post('/addwerknemerdata', [WerknemerController::class, 'addUser'])->name('addwerknemerdata')->middleware('admin');
-Route::post('/werknemeredit', [ WerknemerController::class, 'edit'])->name('werknemeredit')->middleware('admin');
-Route::delete('/werknemer/{id}/delete', [WerknemerController::class, 'delete'])->name('werknemerdelete')->middleware('admin');
+Route::get('/werknemers', [UserController::class, 'allUsers'])->name('werknemers')->middleware('admin');
+Route::get('/werknemer/add', [UserController::class, 'addView'])->name('addwerknemer')->middleware('admin');
+Route::post('/addwerknemerdata', [UserController::class, 'addUser'])->name('addwerknemerdata')->middleware('admin');
+Route::post('/werknemeredit', [ UserController::class, 'edit'])->name('werknemeredit')->middleware('admin');
+Route::delete('/werknemer/{id}/delete', [UserController::class, 'delete'])->name('werknemerdelete')->middleware('admin');
 Route::post('/passwordedit', [WerknemerController::class, 'pwedit'])->name('passwordedit')->middleware('admin');
 
 
@@ -80,11 +81,14 @@ Route::get('/allExports', [ExportController::class, 'allExports_ajax'])->name('a
 Route::get('/export/{id}', [ExportController::class, 'export'])->name('export')->middleware('admin');
 
 // projecten
-Route::get('/projecten', [ProjectController::class, 'allProjects'])->name('projecten');
-Route::get('/project/add', [ProjectController::class, 'addView'])->name('addproject');
-Route::post('/addprojectdata', [ProjectController::class, 'addProject'])->name('addprojectdata');
-Route::get('project/{id}/edit', [ProjectController::class, 'edit'])->name('projectedit');
-Route::post('/update', [ProjectController::class, 'updateData'])->name('projectupdate');
-Route::post('/project/{id}/delete', [ProjectController::class, 'delete'])->name('deleteproject')->middleware('admin');
-});
+// Route::get('/projecten', [ProjectController::class, 'allProjects'])->name('projecten');
+Route::get('/project/add', [ProjectController::class, 'show'])->name('addproject');
+// Route::post('/addprojectdata', [ProjectController::class, 'addProject'])->name('addprojectdata');
+// Route::get('project/{id}/edit', [ProjectController::class, 'edit'])->name('projectedit');
+// Route::post('/update', [ProjectController::class, 'updateData'])->name('projectupdate');
+// Route::post('/project/{id}/delete', [ProjectController::class, 'delete'])->name('deleteproject')->middleware('admin');
+// });
+
+//Projecten
+Route::get("/projecten", [ProjectController::class, 'index'])->name('projectenShow');
 

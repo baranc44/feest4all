@@ -28,13 +28,13 @@
                                 <div>
 
                                     <a href="/project/{{ $project->id }}/edit" id="edit" class="btn px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition"><i class="fas fa-pencil-alt"></i></a> 
-                                    @if (Auth::user()->power == 1)
+                                    {{-- @if (Auth::user()->power == 1) --}}
                                     <form action="/project/{{ $project->id }}/delete" method="POST">
                                         @csrf
                                         @method('post')
                                         <button id="delete" class="btn px-4 py-2 bg-red-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-red-500 focus:outline-none focus:border-red-700 focus:ring focus:ring-red-200 active:bg-red-600 disabled:opacity-25 transition"><i class="fas fa-trash-alt"></i></button></td>
                                     </form>
-                                    @endif                                
+                                    {{-- @endif                                 --}}
                                 </div> 
                             </td>                    
                         </tr>
@@ -42,7 +42,7 @@
                         @endforeach
                     </table>  
                     <div class="text-center">
-                        <a href="{{ route('addproject') }}" class=" px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Nieuw project</a>
+                        {{-- <a href="{{ route('addproject') }}" class=" px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">Nieuw project</a> --}}
                     </div> 
                 </div>
             </div>
