@@ -88,7 +88,6 @@ class ProductsController extends Controller
     }
 
     public function delete($id) {
-
         $change = DB::table('products')
             ->where('id', $id)
             ->delete();
