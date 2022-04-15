@@ -15,15 +15,15 @@ class ExportController extends Controller
 
     public function allExports_ajax(Request $request) {
         if ($request->ajax()) {
-            
+
             $date = $request->get('date');
             //SELECT * FROM project as p WHERE p.created_at > "2002-04-06"
-            $id= 1;
+
             // $projects = Project::where('created_at', '>=', $date)->get();
             $projects = DB::table('project')->where('created_at', '>=', $date)->get();
             $uren = DB::table('uren')->get();
 
-            return view('ExporterenList', [
+            return view('exporterenList', [
                 'projects' => $projects,
                 'uren' => $uren
             ]);
