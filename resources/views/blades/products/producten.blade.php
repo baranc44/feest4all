@@ -27,9 +27,9 @@
                             <th>Eenheid</th>
                             <th><a href="product/add" style="margin-bottom: 20px;" class="px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 active:bg-gray-900 focus:outline-none focus:border-gray-900 focus:ring focus:ring-gray-300 disabled:opacity-25 transition">+</a></th>
                         </tr>
-                        {{-- <tbody id="tbody">
+                        <tbody id="tbody">
                             @include('blades.products.productsList')
-                        </tbody> --}}
+                        </tbody>
                     </table>
                     
                 </div>
