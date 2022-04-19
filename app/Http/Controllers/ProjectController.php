@@ -16,7 +16,7 @@ class ProjectController extends Controller
     {
         $projecten = Project::all();
 
-        return view('projecten', [
+        return view('blades.projects.projects', [
             'projecten' => $projecten
         ]);
     }
@@ -28,7 +28,7 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        //
+        return view('addproject');
     }
 
     /**

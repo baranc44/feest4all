@@ -26,7 +26,7 @@ Route::get('/', function () {
     return view('auth/login');
 });
 
-// Route::middleware(['auth'])->group(function () {    
+Route::middleware(['auth'])->group(function () {    
 //dashboard
 Route::get('/', [DashboardController::class, 'redirectDashboard'])->name('redirectDashboard');
 Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->name('dashboard');
@@ -80,15 +80,15 @@ Route::get('/exporteren', [ExportController::class, 'allExports'])->name('export
 Route::get('/allExports', [ExportController::class, 'allExports_ajax'])->name('allExports')->middleware('admin');
 Route::get('/export/{id}', [ExportController::class, 'export'])->name('export')->middleware('admin');
 
+//Projecten
+Route::get("/projecten", [ProjectController::class, 'index'])->name("projecten");
+Route::get("/projecten/create", [ProjectController::class, 'create'])->name("projecten/create");
+
 // projecten
 // Route::get('/projecten', [ProjectController::class, 'allProjects'])->name('projecten');
-Route::get('/project/add', [ProjectController::class, 'show'])->name('addproject');
+// Route::get('/project/add', [ProjectController::class, 'show'])->name('addproject');
 // Route::post('/addprojectdata', [ProjectController::class, 'addProject'])->name('addprojectdata');
 // Route::get('project/{id}/edit', [ProjectController::class, 'edit'])->name('projectedit');
 // Route::post('/update', [ProjectController::class, 'updateData'])->name('projectupdate');
 // Route::post('/project/{id}/delete', [ProjectController::class, 'delete'])->name('deleteproject')->middleware('admin');
-// });
-
-//Projecten
-Route::get("/projecten", [ProjectController::class, 'index'])->name('projectenShow');
-
+});
