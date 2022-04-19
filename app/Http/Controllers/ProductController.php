@@ -16,7 +16,6 @@ class ProductController extends Controller
     {
         return view("blades.products.producten");
     }
-
     /**
      * Show the form for creating a new resource.
      *
