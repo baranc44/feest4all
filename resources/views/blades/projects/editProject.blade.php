@@ -9,8 +9,8 @@
         <div class="bg-white py-8 px-6 shadow rounded-lg sm:px-10">
             <div class="mb-0 space-y-6 ">        
                    <h1 class="text-6xl font-bold text-center">Wijzig project</h1>
-                <input type="number" id="pnummer" name="project_nummer" value="{{ $projects->project_nummer }}" placeholder="{{ __('Project nummer') }}"class="sm:w-full form-control border-gray-300 rounded-md shadow-sm block mt-1">
-                <input type="text" id="pnaam"name="naam" value="{{ $projects->naam }}" placeholder="{{ __('Project naam') }}"class="sm:w-full form-control border-gray-300 rounded-md shadow-sm block mt-1">
+                <input type="number" id="pnummer" name="project_nummer" value="{{ $project->project_nummer }}" placeholder="{{ __('Project nummer') }}"class="sm:w-full form-control border-gray-300 rounded-md shadow-sm block mt-1">
+                <input type="text" id="pnaam"name="naam" value="{{ $project->naam }}" placeholder="{{ __('Project naam') }}"class="sm:w-full form-control border-gray-300 rounded-md shadow-sm block mt-1">
                 <h1 class="text-6xl font-bold text-center">Producten</h1>
                 <table id="tableId" name="table" style="width: 100%; !important; text-align: left;">               
                     <tr class="mt-8 text-2xl">
@@ -21,7 +21,7 @@
                     <tr>
                         @foreach($products as $product)
                         <td><select class="selectProducts" name="producten">                  
-                            @foreach($allproducts as $item) <option name="products" value="{{ $item->id }}">{{ $item->naam }} </option> @endforeach                                         
+                            @foreach($products as $item) <option name="products" value="{{ $item->id }}">{{ $item->naam }} </option> @endforeach                                         
                         </select>   
                         </td>                            
                          <td><input style="width: 17vw;" type="text" id="amount" name="amount" value="{{ $product->hoeveelheid }}" placeholder="Hoeveelheid"></td>
@@ -52,7 +52,7 @@
             var tbody = $('#tableId').children('tbody');
             var table = tbody.length ? tbody : $('tableId');
             $('a').click(function(){
-                table.append('<tr> <td> <select name="producten"> <option value="-1" hidden>Voeg een product toe</option> @foreach($allproducts as $item) <option name="products" value="{{ $item->id }}">{{ $item->naam }} </option> @endforeach</select></td><td><input type="number" name="amount" placeholder="Hoeveelheid" value="0"></td><td><input type="text" name="comment" placeholder="Opmerkingen"></td></tr>');
+                table.append('<tr> <td> <select name="producten"> <option value="-1" hidden>Voeg een product toe</option> @foreach($products as $item) <option name="products" value="{{ $item->id }}">{{ $item->naam }} </option> @endforeach</select></td><td><input type="number" name="amount" placeholder="Hoeveelheid" value="0"></td><td><input type="text" name="comment" placeholder="Opmerkingen"></td></tr>');
             })
         });
                 $.ajaxSetup({
@@ -75,7 +75,7 @@
                 console.log(a);
                 array.push(a);
             }      
-            var id = {{ $projects->id }}
+            var id = {{ $project->id }}
             $.ajax({
             type: 'post',
             url: '/update',

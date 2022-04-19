@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\product;
 use App\Models\project;
+use App\Models\projectproducten;
 use Illuminate\Http\Request;
 
 class ProjectController extends Controller
@@ -14,7 +16,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projecten = Project::all();
+        $projecten = project::all();
 
         return view('blades.projects.projects', [
             'projecten' => $projecten
@@ -28,7 +30,11 @@ class ProjectController extends Controller
      */
     public function create()
     {
-        return view('addproject');
+        $products = product::all();
+
+        return view('blades.projects.createProject', [
+            'products' => $products
+        ]);
     }
 
     /**
@@ -39,7 +45,34 @@ class ProjectController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $project_number = $request->project_number;
+        $project_name = $request->project_name;
+        $products_project = $request->array;
+        $date = date('Y-m-d H:i:s');
+
+        $create_project = Project::create([
+            "project_number" => $project_number,
+            "name" => $project_name,
+            'created_at' => $date,
+            'updated_at' => $date
+        ]);
+
+        $project_id = $create_project->id;
+
+        foreach ($products_project as $product) {
+            if ($product[0] == "-1") {
+                return;
+            } else if ($product[2] == null) {
+                $product[2] = "";
+            }
+            
+            $create_project_product = projectproducten::create([
+                "project_id" => $project_id,
+                "product_id" => $product[0],
+                "amount" => $product[1],
+                "comments" => $product[2]
+            ]);
+        }
     }
 
     /**
@@ -61,7 +94,12 @@ class ProjectController extends Controller
      */
     public function edit(project $project)
     {
-        //
+        $products = product::all();
+
+        return view('blades.projects.editProject', [
+            'project' => $project,
+            'products' => $products
+        ]);
     }
 
     /**

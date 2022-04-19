@@ -23,7 +23,7 @@
                         <td><select name="producten">
                             @foreach($products as $product)
                                 <option value="-1" hidden>Voeg een product toe</option>
-                                <option name="products" value="{{ $product->id }}">{{ $product->naam }} </option>
+                                <option name="products" value="{{ $product->id }}">{{ $product->name }} </option>
                             @endforeach
                           </select></td>
                                 <td><input style="width: 17vw;" type="number" id="amount" name="amount" value="0" placeholder="Hoeveelheid"></td>
@@ -42,8 +42,8 @@
             var tbody = $('#tableId').children('tbody');
             var table = tbody.length ? tbody : $('tableId');
             $('a').click(function(){
-            table.append('<tr> <td><select name="producten"> <option value="-1" hidden>Voeg een product toe</option> @foreach($products as $product) <option name="products" value="{{ $product->id }}">{{ $product->naam }} </option> @endforeach</select></td><td><input style="width: 17vw;" type="number" name="amount" placeholder="Hoeveelheid" value="0"></td><td><input style="width: 17vw;" type="text" name="comment" placeholder="Opmerkingen"></td></tr>');
-            })        
+            table.append('<tr> <td><select name="producten"> <option value="-1" hidden>Voeg een product toe</option> @foreach($products as $product) <option name="products" value="{{ $product->id }}">{{ $product->name }} </option> @endforeach</select></td><td><input style="width: 17vw;" type="number" name="amount" placeholder="Hoeveelheid" value="0"></td><td><input style="width: 17vw;" type="text" name="comment" placeholder="Opmerkingen"></td></tr>');
+            })
         });  
         function allData(){
             $.ajaxSetup({
@@ -52,9 +52,10 @@
                 }
             });
 
+
+            const p_number = document.getElementById("pnummer").value;
+            const p_name = document.getElementById("pnaam").value;
             const products = document.getElementsByName("producten");
-            const pnummer = document.getElementById("pnummer").value;
-            const pnaam = document.getElementById("pnaam").value;
             const amount = document.getElementsByName("amount");
             const comment = document.getElementsByName("comment");
             var array = new Array();
@@ -68,11 +69,11 @@
             console.log(array);
             $.ajax({
             type: 'post',
-            url: '/addprojectdata',
+            url: '/projecten/store',
             data: {
                 array: array,
-                pnummer: pnummer,
-                pnaam: pnaam
+                project_number: p_number,
+                project_name: p_name
             },success: function(){
                 location.replace('/projecten');
             },error: function(){

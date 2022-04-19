@@ -17,11 +17,11 @@ return new class extends Migration
             $table->id();
             $table->integer("project_number");
             $table->string("name");
-            $table->double("hourprice");
-            $table->boolean("assortment");
-            $table->double("order_amount");
-            $table->text("invoice_type");
-            $table->longText("invoice_address");
+            $table->double("hourprice")->default(0);
+            $table->boolean("assortment")->default(0);
+            $table->double("order_amount")->default(0);
+            $table->text("invoice_type")->default("0");
+            $table->longText("invoice_address")->default("0");
             $table->timestamps();
         });
     }

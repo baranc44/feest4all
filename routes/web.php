@@ -83,6 +83,8 @@ Route::get('/export/{id}', [ExportController::class, 'export'])->name('export')-
 //Projecten
 Route::get("/projecten", [ProjectController::class, 'index'])->name("projecten");
 Route::get("/projecten/create", [ProjectController::class, 'create'])->name("projecten/create");
+Route::post("/projecten/store", [ProjectController::class, 'store'])->name("projecten/store");
+Route::get("/project/{project}/edit", [ProjectController::class, 'edit'])->name("projecten/edit");
 
 // projecten
 // Route::get('/projecten', [ProjectController::class, 'allProjects'])->name('projecten');
