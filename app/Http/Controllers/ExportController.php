@@ -14,7 +14,7 @@ class ExportController extends Controller
      */
     public function allExports()
     {
-        return view('exporteren');
+        return view('blades.exporteren.exporteren');
     }
     public function allExports_ajax(Request $request){
         if($request->ajax()){
@@ -22,10 +22,11 @@ class ExportController extends Controller
 
             $projects = Project::where('created_at', '>=', $date)->get();
             $hours = Hours::where('hours', $hours)->get();
-            return view('exporterenList',[
+            return view('blades.exporteren.exporterenList',[
                 'projects' => $projects,
                 'hours' => $hours
             ]);
+            
         }
     }
     /**

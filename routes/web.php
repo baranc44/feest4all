@@ -41,8 +41,8 @@ Route::post('/passwordedit', [WerknemerController::class, 'pwedit'])->name('pass
 
 
 // producten
-Route::get('/producten', [ProductsController::class, 'allProducts'])->name('producten');
-Route::get('/producten_ajax', [ProductsController::class, 'allProducts_ajax'])->name('productenajax');
+Route::get('/producten', 'App\Http\Controllers\ProductController@allProducts')->name('producten');
+Route::get('/producten_ajax', 'App\Http\Controllers\ProductController@allProducts_ajax')->name('productenajax');
 
 Route::get('/product/add', [ProductsController::class, 'add'])->name('productadd');
 Route::post('/product/addproduct', [ProductsController::class, 'insert'])->name('addproduct');

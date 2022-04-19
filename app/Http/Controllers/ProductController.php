@@ -12,9 +12,9 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function allProducts()
     {
-        //
+        return view("blades.products.producten");
     }
 
     /**
