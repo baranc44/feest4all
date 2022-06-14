@@ -10,6 +10,7 @@ use App\Http\Controllers\OverzichtenController;
 use App\Http\Controllers\TijdController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KilometerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,4 +94,7 @@ Route::get("/project/{project}/edit", [ProjectController::class, 'edit'])->name(
 // Route::get('project/{id}/edit', [ProjectController::class, 'edit'])->name('projectedit');
 // Route::post('/update', [ProjectController::class, 'updateData'])->name('projectupdate');
 // Route::post('/project/{id}/delete', [ProjectController::class, 'delete'])->name('deleteproject')->middleware('admin');
+
+// Kilometerregistratie
+Route::get("/kmdashboard", [KilometerController::class, 'index'])->name("kmdashboard")->middleware('admin');
 });
